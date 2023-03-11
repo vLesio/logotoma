@@ -1,0 +1,8 @@
+env screen_size 20 20
+env background_color (255, 255, 255, 54)
+env start_position 0 0
+
+loop while position_x < screen_size_x {
+    paint
+    move +1 +0
+}

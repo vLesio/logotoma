@@ -1,0 +1,25 @@
+env screen_size 20 20
+env background_color (255, 255, 255, 54)
+env start_position 0 0
+
+pattern line(number x, number y, number len, string dir){
+    move x y
+    loop len times{
+        paint
+        if(dir == 'up'){
+            move +0 +1
+        }
+        if(dir == 'down'){
+            move +0 -1
+        }
+        if(dir == 'right'){
+            move +1 +0
+        }
+        if(dir == 'left'){
+            move -1 +0
+        }
+    }
+}
+
+brush (10, 240, 78, 100)
+line(0, 0, 10, 'up')
