@@ -21,17 +21,95 @@ move
     : ('move' | 'mv') ('+' | '-')?number ('+' | '-')?number
     ;
 
+brush_shape
+    : ('brush-shape' | 'bs-sh') shape
+    ;
+
+brush_color
+    : ('brush-color' | 'bs-cl') color
+    ;
+
+brush_size
+    : ('brush-size' | 'bs-sz') number
+    ;
+
 color
     : '(' number ',' number ',' number ')'
     | '(' number ',' number ',' number ',' number ')'
     ;
 
 number
-    : NUMBER
+    : SIGN_OPERATORS* NUMBER
     ;
 
 string
     : '"' STRING '"'
+    ;
+
+bool
+    : BOOL
+    ;
+
+shape
+    : SHAPE
+    ;
+
+aritmetic_expression
+    : number
+    | aritmetic_expression SIGN_OPERATORS aritmetic_expression
+    | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
+    ;
+
+compare_expression
+    : number ARITMETIC_OPERATORS number
+    ;
+
+logic_expression
+    : bool
+    | compare_expression
+    | logic_expression LOGIC_OPERATORS logic_expression
+    | NEGATION_OPERATOR logic_expression
+    ;
+
+type
+    : shape
+    | bool
+    | color
+    | shape
+    | number
+    | string
+    ;
+
+SIGN_OPERATORS
+    : '+'
+    | '-'
+    ;
+
+ARITMETIC_OPERATORS
+    : '/'
+    | '*'
+    | '%'
+    ;
+
+NEGATION_OPERATOR
+    : '!'
+    ;
+
+LOGIC_OPERATORS
+    : '|'
+    | '&'
+    ;
+
+COMPARISON_OPERATORS
+    : '=='
+    | '<'
+    | '>'
+    | '<='
+    | '>='
+    ;
+
+SHAPE
+    : ('Caligrafic' | 'Dot')
     ;
 
 BOOL
@@ -43,7 +121,7 @@ STRING
     ;
 
 NUMBER
-    : '-'?[0-9]+
+    : [0-9]+
     ;
 
 EOL
