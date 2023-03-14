@@ -1,25 +1,54 @@
-env screen_size 20 20
+env screen_size 40 40
 env background_color (255, 255, 255, 54)
 env start_position 0 0
 
-pattern line(number x, number y, number len, string dir){
-    move x y
-    loop len times{
-        paint
-        if(dir == 'up'){
-            move +0 +1
-        }
-        if(dir == 'down'){
-            move +0 -1
-        }
-        if(dir == 'right'){
-            move +1 +0
-        }
-        if(dir == 'left'){
-            move -1 +0
-        }
-    }
+pattern square(number x_start, number y_start, number x_end, number y_end){
+    line x_start y_start x_start y_end
+    line x_start y_end x_end y_end
+    line x_end y_end x_end y_start
+    line x_end y_start x_start y_start
 }
 
-brush (10, 240, 78, 100)
-line(0, 0, 10, 'up')
+number house_size_x = 20
+number house_size_y = 20
+color house_color = (255, 0, 0, 100)
+
+# Obramówka domu
+brush-color house_color
+move 5 5
+square(position_x, position_y, position_x + house_size_x, position_y + house_size_y)
+
+# Daszek
+move position_x +house_size_y
+line position_x position_y position_x+house_size_x/2 position_y+5
+line position_x+house_size_x/2 position_y+5 position_x+house_size_x position_y
+
+bool small_house = True
+
+# Jeżeli domek mały, narysuj drzwi po lewej, jeżeli nie to na środku
+move 5 5
+if (small_house == True){
+    move +3 +0
+}else{
+    move +house_size_x/2-2 +0
+}
+square(position_x, position_y, position_x+3, position_y+5)
+
+move 5 5
+# Jeżeli domek mały, narysuj okno po prawej, jeżeli nie to 2 okna po obu stronach drzwi
+if(small_house == False){
+    circle 10 +house_size_y/2 3
+}
+circle house_size_x-10+5 +house_size_y/2 3
+
+# Narysuj trawke przy ziemi
+move 0 0
+brush-color (0, 255, 0, 100)
+loop while(position_x < screen_size_x){
+    print
+    if(position_x % 2 == 0){
+        move +0 +1
+        print
+        move +0 -1
+    }
+}
