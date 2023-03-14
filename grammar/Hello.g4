@@ -54,6 +54,12 @@ shape
     : SHAPE
     ;
 
+aritmetic_expression
+    : number
+    | aritmetic_expression SIGN_OPERATORS aritmetic_expression
+    | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
+    ;
+
 compare_expression
     : number ARITMETIC_OPERATORS number
     ;
