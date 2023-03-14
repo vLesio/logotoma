@@ -80,6 +80,40 @@ type
     | string
     ;
 
+name
+    : NAME
+    ;
+
+block
+    : '{' line+ '}'
+    ;
+
+function
+    : type name '(' type string (',' type string)* ')' block
+    ;
+
+ife
+    : 'if (' compare_expression ')' block
+    ;
+
+loope
+    : 'loop (' number ') times' block
+    ;
+
+whilee
+    : 'loop while ('  compare_expression ')' block
+    ;
+
+elsee
+    : 'else' block
+    ;
+
+NAME
+    : [a-zA-Z][a-zA-Z0-9]*
+    ;
+
+
+
 SIGN_OPERATORS
     : '+'
     | '-'
@@ -117,7 +151,7 @@ BOOL
     ;
 
 STRING
-    : [a-zA-Z_-0-9]*
+    : [a-zA-Z_\-0-9]+
     ;
 
 NUMBER
