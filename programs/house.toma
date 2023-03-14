@@ -45,10 +45,12 @@ circle house_size_x-10+5 +house_size_y/2 3
 move 0 0
 brush-color (0, 255, 0, 100)
 loop while(position_x < screen_size_x){
-    print
+    paint
     if(position_x % 2 == 0){
         move +0 +1
-        print
+        paint
         move +0 -1
     }
 }
+
+save 'house.png'

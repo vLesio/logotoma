@@ -2,7 +2,12 @@ env screen_size 20 20
 env background_color (255, 255, 255, 54)
 env start_position 0 0
 
+brush-color = (255, 0, 0, 100)
+
 loop while position_x < screen_size_x {
-    paint
-    move +1 +0
+    loop while position_y < screen_size_y{
+        paint
+        move +0 +1
+    }
+    move +1 0
 }
