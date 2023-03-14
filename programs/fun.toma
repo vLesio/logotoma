@@ -13,7 +13,7 @@ number house_size_x = 20
 number house_size_y = 20
 color house_color = (255, 0, 0, 100)
 
-# Obramówka domu
+# Obramowka domu
 brush-color house_color
 move 5 5
 square(position_x, position_y, position_x + house_size_x, position_y + house_size_y)
@@ -25,7 +25,7 @@ line position_x+house_size_x/2 position_y+5 position_x+house_size_x position_y
 
 bool small_house = True
 
-# Jeżeli domek mały, narysuj drzwi po lewej, jeżeli nie to na środku
+# Jezeli domek maly, narysuj drzwi po lewej, jezeli nie to na srodku
 move 5 5
 if (small_house == True){
     move +3 +0
@@ -35,7 +35,7 @@ if (small_house == True){
 square(position_x, position_y, position_x+3, position_y+5)
 
 move 5 5
-# Jeżeli domek mały, narysuj okno po prawej, jeżeli nie to 2 okna po obu stronach drzwi
+# Jezeli domek maly, narysuj okno po prawej, jezeli nie to 2 okna po obu stronach drzwi
 if(small_house == False){
     circle 10 +house_size_y/2 3
 }
