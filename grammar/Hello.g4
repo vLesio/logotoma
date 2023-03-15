@@ -2,6 +2,8 @@ grammar Hello;
 
 program
     : (line? EOL)+ line? EOF
+    | number
+    // | function EOL EOF
     ;
 
 line
@@ -20,15 +22,14 @@ command
     | paint
     | linee
     | save
-    | '}'
     ;
 
 comment
-    : '#' string*
+    : '#' name*
     ;
 
 move
-    : ('move' | 'mv') ('+' | '-')?number ('+' | '-')?number
+    : ('mv' | 'move') ('+' | '-')?number ('+' | '-')?number
     ;
 
 paint
@@ -93,7 +94,7 @@ logic_expression
 
 assign
     : type_name deref '=' value
-    | deref '=' value
+    | deref ' = ' value
     ;
 
 type_name
@@ -120,11 +121,12 @@ deref
     ;
 
 block
-    : '{' line+ '}'
+    : '{' (line EOL*)+ '}'
     ;
 
 function
-    : type_name 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
+    : type_name ' pattern ' name '(' type_name' 'deref (',' type_name deref)* ')' block
+    | type_name ' pattern ' name
     ;
 
 ife
@@ -182,7 +184,8 @@ SHAPE
     ;
 
 BOOL
-    : ('True' | 'False')
+    : 'True'
+    | 'False'
     ;
 
 STRING

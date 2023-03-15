@@ -1,13 +1,8 @@
-env screen_size 40 40
-env background_color (255, 255, 255, 54)
-env start_position 0 0
-
-number pattern square(number x_start, number y_start, number x_end, number y_end){
-    line x_start y_start x_start y_end
-    line x_start y_end x_end y_end
-    line x_end y_end x_end y_start
-    line x_end y_start x_start y_start
-}
+# number pattern square(number x_start, number y_start, number x_end, number y_end){
+#    line x_start y_start x_start y_end
+#    line x_start y_end x_end y_end
+#    line x_end y_end x_end y_start
+#    line x_end y_start x_start y_start}
 
 number house_size_x = 20
 number house_size_y = 20
@@ -53,4 +48,4 @@ loop while(position_x < screen_size_x){
     }
 }
 
-save "house.png"
+save house.png
