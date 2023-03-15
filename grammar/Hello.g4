@@ -11,14 +11,36 @@ line
 
 command
     : move
+    | function
+    | assign
+    | loope
+    | ife
+    | whilee
+    | elsee
+    | paint
+    | linee
+    | save
+    | '}'
     ;
 
 comment
-    : 'dupa'
+    : '#' string*
     ;
 
 move
     : ('move' | 'mv') ('+' | '-')?number ('+' | '-')?number
+    ;
+
+paint
+    : 'paint'
+    ;
+
+linee
+    : 'line' aritmetic_expression' 'aritmetic_expression' 'aritmetic_expression' 'aritmetic_expression
+    ;
+
+save
+    : 'save' string
     ;
 
 brush_shape
@@ -58,29 +80,42 @@ aritmetic_expression
     : number
     | aritmetic_expression SIGN_OPERATORS aritmetic_expression
     | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
-    ;
-
-compare_expression
-    : number ARITMETIC_OPERATORS number
+    | deref
     ;
 
 logic_expression
     : bool
-    | compare_expression
     | logic_expression LOGIC_OPERATORS logic_expression
     | NEGATION_OPERATOR logic_expression
+    | deref
+    | number ARITMETIC_OPERATORS number
     ;
 
-type
-    : shape
-    | bool
-    | color
-    | shape
-    | number
-    | string
+assign
+    : type_name deref '=' value
+    | deref '=' value
+    ;
+
+type_name
+    : 'shape'
+    | 'bool'
+    | 'color'
+    | 'number'
+    | 'string'
     ;
 
 name
+    : NAME
+    ;
+
+value
+    : aritmetic_expression
+    | logic_expression
+    | string
+    | deref
+    ;
+
+deref
     : NAME
     ;
 
@@ -89,11 +124,11 @@ block
     ;
 
 function
-    : type name '(' type string (',' type string)* ')' block
+    : type_name 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
     ;
 
 ife
-    : 'if (' compare_expression ')' block
+    : 'if (' logic_expression ')' block
     ;
 
 loope
@@ -101,7 +136,7 @@ loope
     ;
 
 whilee
-    : 'loop while ('  compare_expression ')' block
+    : 'loop while (' logic_expression ')' block
     ;
 
 elsee
@@ -151,7 +186,7 @@ BOOL
     ;
 
 STRING
-    : [a-zA-Z_\-0-9]+
+    : [a-zA-Z_\-0-9.]+
     ;
 
 NUMBER
