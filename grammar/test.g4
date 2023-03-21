@@ -26,7 +26,7 @@ command
     ;
 
 move
-    : ('mv' | 'move') ('+' | '-')?aritmetic_expression ('+' | '-')?aritmetic_expression
+    : ('mv' | 'move') ('#')?value ('#')?value
     ;
 
 assign
@@ -51,24 +51,20 @@ brush_color
     ;
 
 brush_size
-    : ('brush-size' | 'bs-sz') number
+    : ('brush-size' | 'bs-sz') value
     ;
 
 linee
-    : 'line' aritmetic_expression aritmetic_expression aritmetic_expression aritmetic_expression
+    : 'line' value value value value
     ;
 
 circle
-    : 'circle' aritmetic_expression ',' aritmetic_expression ',' aritmetic_expression
+    : 'circle' value value value
     ;
 
 color
-    : '(' number ',' number ',' number ')'
-    | '(' number ',' number ',' number ',' number ')'
-    ;
-
-number
-    : SIGN_OPERATORS* NUMBER
+    : '(' value ',' value ',' value ')'
+    | '(' value ',' value ',' value ',' value ')'
     ;
 
 type_name
@@ -84,15 +80,13 @@ name
     ;
 
 value
-    : aritmetic_expression
-    | logic_expression
+    : expression
     | string
-    | deref
     | color
     ;
 
 ife
-    : 'if' '(' logic_expression ')' block
+    : 'if' '(' value ')' block
     ;
 
 loope
@@ -100,27 +94,40 @@ loope
     ;
 
 whilee
-    : 'loop while'  logic_expression  block
+    : 'loop while' value  block
     ;
 
 elsee
     : 'else' block
     ;
 
-aritmetic_expression
-    : aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
-    | aritmetic_expression SIGN_OPERATORS aritmetic_expression
-    | number
-    | deref
-    ;
+signExpression
+   : (('+' | '-'))* (number | deref | function | '(' expression ')')
+   ;
+
+multiplyingExpression
+   : signExpression (('*' | '/') signExpression)*
+   ;
+
+nestedExpression
+   : 
+   ;
+
+expression
+   : multiplyingExpression (('+' | '-') multiplyingExpression)*
+   | logic_expression
+   ;
 
 logic_expression
     : bool
     | logic_expression LOGIC_OPERATORS logic_expression
     | NEGATION_OPERATOR logic_expression
     | deref
-    | number ARITMETIC_OPERATORS number
     | logic_expression COMPARISON_OPERATORS logic_expression
+    ;
+
+number
+    : SIGN_OPERATORS* NUMBER
     ;
 
 bool
@@ -144,7 +151,7 @@ function
     ;
 
 f_call
-    : name '(' aritmetic_expression (',' aritmetic_expression)* ')'
+    : name '(' value (',' value)* ')'
     ;
 
 comment

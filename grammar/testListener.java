@@ -137,16 +137,6 @@ public interface testListener extends ParseTreeListener {
 	 */
 	void exitColor(testParser.ColorContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link testParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void enterNumber(testParser.NumberContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link testParser#number}.
-	 * @param ctx the parse tree
-	 */
-	void exitNumber(testParser.NumberContext ctx);
-	/**
 	 * Enter a parse tree produced by {@link testParser#type_name}.
 	 * @param ctx the parse tree
 	 */
@@ -217,15 +207,45 @@ public interface testListener extends ParseTreeListener {
 	 */
 	void exitElsee(testParser.ElseeContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link testParser#aritmetic_expression}.
+	 * Enter a parse tree produced by {@link testParser#signExpression}.
 	 * @param ctx the parse tree
 	 */
-	void enterAritmetic_expression(testParser.Aritmetic_expressionContext ctx);
+	void enterSignExpression(testParser.SignExpressionContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link testParser#aritmetic_expression}.
+	 * Exit a parse tree produced by {@link testParser#signExpression}.
 	 * @param ctx the parse tree
 	 */
-	void exitAritmetic_expression(testParser.Aritmetic_expressionContext ctx);
+	void exitSignExpression(testParser.SignExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link testParser#multiplyingExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterMultiplyingExpression(testParser.MultiplyingExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link testParser#multiplyingExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitMultiplyingExpression(testParser.MultiplyingExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link testParser#nestedExpression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNestedExpression(testParser.NestedExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link testParser#nestedExpression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNestedExpression(testParser.NestedExpressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link testParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterExpression(testParser.ExpressionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link testParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitExpression(testParser.ExpressionContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link testParser#logic_expression}.
 	 * @param ctx the parse tree
@@ -236,6 +256,16 @@ public interface testListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitLogic_expression(testParser.Logic_expressionContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link testParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void enterNumber(testParser.NumberContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link testParser#number}.
+	 * @param ctx the parse tree
+	 */
+	void exitNumber(testParser.NumberContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link testParser#bool}.
 	 * @param ctx the parse tree
