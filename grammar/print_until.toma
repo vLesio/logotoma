@@ -1,0 +1,8 @@
+brush-color (255, 0, 0, 100)
+loop while position_x < screen_size_x {
+    loop while position_y < screen_size_y{
+        paint
+        move +0 +1
+    }
+    move +1 0
+}

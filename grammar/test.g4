@@ -1,8 +1,7 @@
-grammar Hello;
+grammar test;
 
 program
-    : (line? EOL)+ line? EOF
-    | number
+    : (line? EOL+)+ line? EOF
     ;
 
 line
@@ -13,6 +12,8 @@ line
 command
     : move
     | function
+    | f_call
+    | brush_color
     | assign
     | loope
     | ife
@@ -21,22 +22,20 @@ command
     | paint
     | linee
     | save
-    ;
-
-comment
-    : '#' name*
+    | circle
     ;
 
 move
-    : ('mv' | 'move') ('+' | '-')?number ('+' | '-')?number
+    : ('mv' | 'move') ('+' | '-')?aritmetic_expression ('+' | '-')?aritmetic_expression
+    ;
+
+assign
+    : type_name deref '=' value
+    | deref '=' value
     ;
 
 paint
     : 'paint'
-    ;
-
-linee
-    : 'line' aritmetic_expression' 'aritmetic_expression' 'aritmetic_expression' 'aritmetic_expression
     ;
 
 save
@@ -44,7 +43,7 @@ save
     ;
 
 brush_shape
-    : ('brush-shape' | 'bs-sh') shape
+    : ('brush-shape' | 'bs-sh') SHAPE 
     ;
 
 brush_color
@@ -53,6 +52,14 @@ brush_color
 
 brush_size
     : ('brush-size' | 'bs-sz') number
+    ;
+
+linee
+    : 'line' aritmetic_expression aritmetic_expression aritmetic_expression aritmetic_expression
+    ;
+
+circle
+    : 'circle' aritmetic_expression aritmetic_expression aritmetic_expression
     ;
 
 color
@@ -64,38 +71,6 @@ number
     : SIGN_OPERATORS* NUMBER
     ;
 
-string
-    : '"' STRING '"'
-    ;
-
-bool
-    : BOOL
-    ;
-
-shape
-    : SHAPE
-    ;
-
-aritmetic_expression
-    : number
-    | aritmetic_expression SIGN_OPERATORS aritmetic_expression
-    | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
-    | deref
-    ;
-
-logic_expression
-    : bool
-    | logic_expression LOGIC_OPERATORS logic_expression
-    | NEGATION_OPERATOR logic_expression
-    | deref
-    | number ARITMETIC_OPERATORS number
-    ;
-
-assign
-    : type_name deref '=' value
-    | deref ' = ' value
-    ;
-
 type_name
     : 'shape'
     | 'bool'
@@ -105,7 +80,7 @@ type_name
     ;
 
 name
-    : NAME
+    : STRING
     ;
 
 value
@@ -113,10 +88,51 @@ value
     | logic_expression
     | string
     | deref
+    | color
+    ;
+
+ife
+    : 'if' '(' logic_expression ')' block
+    ;
+
+loope
+    : 'loop' value 'times' block
+    ;
+
+whilee
+    : 'loop while'  logic_expression  block
+    ;
+
+elsee
+    : 'else' block
+    ;
+
+aritmetic_expression
+    : number
+    | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
+    | aritmetic_expression SIGN_OPERATORS aritmetic_expression
+    | deref
+    ;
+
+logic_expression
+    : bool
+    | logic_expression LOGIC_OPERATORS logic_expression
+    | NEGATION_OPERATOR logic_expression
+    | deref
+    | number ARITMETIC_OPERATORS number
+    | logic_expression COMPARISON_OPERATORS logic_expression
+    ;
+
+bool
+    : BOOL
     ;
 
 deref
-    : NAME
+    : STRING
+    ;
+
+string
+    : STRING
     ;
 
 block
@@ -124,41 +140,32 @@ block
     ;
 
 function
-    : type_name ' pattern ' name '(' type_name' 'deref (',' type_name deref)* ')' block
-    | type_name ' pattern ' name
+    : type_name 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
     ;
 
-ife
-    : 'if (' logic_expression ')' block
+f_call
+    : name '(' aritmetic_expression (',' aritmetic_expression)* ')'
     ;
 
-loope
-    : 'loop (' number ') times' block
+comment
+    : '#' STRING*
     ;
-
-whilee
-    : 'loop while (' logic_expression ')' block
-    ;
-
-elsee
-    : 'else' block
-    ;
-
-NAME
-    : [a-zA-Z][a-zA-Z0-9]*
-    ;
-
-
 
 SIGN_OPERATORS
     : '+'
     | '-'
     ;
 
+NUMBER
+    : [0-9]+
+    ;
+
 ARITMETIC_OPERATORS
     : '/'
     | '*'
     | '%'
+    | '+'
+    | '-'
     ;
 
 NEGATION_OPERATOR
@@ -178,21 +185,18 @@ COMPARISON_OPERATORS
     | '>='
     ;
 
-SHAPE
-    : ('Caligrafic' | 'Dot')
-    ;
-
 BOOL
     : 'True'
     | 'False'
     ;
 
-STRING
-    : [a-zA-Z_\-0-9.]+
+SHAPE
+    : 'Caligrafic'
+    | 'Dot'
     ;
 
-NUMBER
-    : [0-9]+
+STRING
+    : [a-zA-Z_]+
     ;
 
 EOL

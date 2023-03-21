@@ -1,0 +1,19 @@
+number x = 5
+number y = 4
+loop 3 times{
+    paint
+    move +1 +0
+}
+loop y times{
+    paint
+    move +0 +1
+}
+loop x times{
+    paint
+    move -1 +0
+}
+loop y times{
+    paint
+    move +0 -1
+}
+save square
