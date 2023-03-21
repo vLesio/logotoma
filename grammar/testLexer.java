@@ -47,7 +47,7 @@ public class testLexer extends Lexer {
 		return new String[] {
 			null, "'mv'", "'move'", "'+'", "'-'", "'='", "'paint'", "'save'", "'brush-shape'", 
 			"'bs-sh'", "'brush-color'", "'bs-cl'", "'brush-size'", "'bs-sz'", "'line'", 
-			"'circle'", "'('", "','", "')'", "'shape'", "'bool'", "'color'", "'number'", 
+			"'circle'", "','", "'('", "')'", "'shape'", "'bool'", "'color'", "'number'", 
 			"'string'", "'if'", "'loop'", "'times'", "'loop while'", "'else'", "'{'", 
 			"'}'", "'pattern'", "'#'", null, null, null, "'!'"
 		};
@@ -246,8 +246,8 @@ public class testLexer extends Lexer {
 		"\u0000\u0000\u00a9\u001c\u0001\u0000\u0000\u0000\u00aa\u00ab\u0005c\u0000"+
 		"\u0000\u00ab\u00ac\u0005i\u0000\u0000\u00ac\u00ad\u0005r\u0000\u0000\u00ad"+
 		"\u00ae\u0005c\u0000\u0000\u00ae\u00af\u0005l\u0000\u0000\u00af\u00b0\u0005"+
-		"e\u0000\u0000\u00b0\u001e\u0001\u0000\u0000\u0000\u00b1\u00b2\u0005(\u0000"+
-		"\u0000\u00b2 \u0001\u0000\u0000\u0000\u00b3\u00b4\u0005,\u0000\u0000\u00b4"+
+		"e\u0000\u0000\u00b0\u001e\u0001\u0000\u0000\u0000\u00b1\u00b2\u0005,\u0000"+
+		"\u0000\u00b2 \u0001\u0000\u0000\u0000\u00b3\u00b4\u0005(\u0000\u0000\u00b4"+
 		"\"\u0001\u0000\u0000\u0000\u00b5\u00b6\u0005)\u0000\u0000\u00b6$\u0001"+
 		"\u0000\u0000\u0000\u00b7\u00b8\u0005s\u0000\u0000\u00b8\u00b9\u0005h\u0000"+
 		"\u0000\u00b9\u00ba\u0005a\u0000\u0000\u00ba\u00bb\u0005p\u0000\u0000\u00bb"+

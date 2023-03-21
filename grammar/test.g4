@@ -59,7 +59,7 @@ linee
     ;
 
 circle
-    : 'circle' aritmetic_expression aritmetic_expression aritmetic_expression
+    : 'circle' aritmetic_expression ',' aritmetic_expression ',' aritmetic_expression
     ;
 
 color
@@ -108,9 +108,9 @@ elsee
     ;
 
 aritmetic_expression
-    : number
-    | aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
+    : aritmetic_expression ARITMETIC_OPERATORS aritmetic_expression
     | aritmetic_expression SIGN_OPERATORS aritmetic_expression
+    | number
     | deref
     ;
 
