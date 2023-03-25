@@ -10,23 +10,48 @@ line
     ;
 
 command
-    : move
+    : engine
+    | wheel
+    | spray
+    | spray_color
+    | spray_size
+    | cast
     | function
     | f_call
-    | brush_color
     | assign
     | loope
     | ife
     | whilee
     | elsee
-    | paint
-    | linee
     | save
-    | circle
     ;
 
-move
-    : ('mv' | 'move') ('#')?value ('#')?value
+engine
+    : 'engine' ('on' | 'off')
+    ;
+
+wheel
+    : 'wheel' ('right' | 'left' | 'off')
+    ;
+
+spray
+    : 'spray' ('on' | 'off')
+    ;
+
+spray_color
+    : 'spray color' color
+    ;
+
+spray_size
+    : 'spray size' value
+    ;
+
+cast
+    : 'cast' object '->' type_name
+    ;
+
+object
+    : deref
     ;
 
 assign
@@ -34,44 +59,19 @@ assign
     | deref '=' value
     ;
 
-paint
-    : 'paint'
-    ;
-
 save
     : 'save' string
     ;
 
-brush_shape
-    : ('brush-shape' | 'bs-sh') SHAPE 
-    ;
-
-brush_color
-    : ('brush-color' | 'bs-cl') color
-    ;
-
-brush_size
-    : ('brush-size' | 'bs-sz') value
-    ;
-
-linee
-    : 'line' value value value value
-    ;
-
-circle
-    : 'circle' value value value
-    ;
-
 color
     : '(' value ',' value ',' value ')'
-    | '(' value ',' value ',' value ',' value ')'
     ;
 
 type_name
-    : 'shape'
-    | 'bool'
+    : 'bool'
     | 'color'
-    | 'number'
+    | 'int'
+    | 'float'
     | 'string'
     ;
 
@@ -80,8 +80,9 @@ name
     ;
 
 value
-    : expression
-    | string
+    : logic_expression
+    | expression
+    | '"' string '"'
     | color
     ;
 
@@ -102,32 +103,35 @@ elsee
     ;
 
 signExpression
-   : (('+' | '-'))* (number | deref | function | '(' expression ')')
+   : (('+' | '-'))* (integer | floate | deref | f_call | '(' expression ')')
    ;
 
 multiplyingExpression
-   : signExpression (('*' | '/') signExpression)*
-   ;
-
-nestedExpression
-   : 
+   : signExpression (MULTIPLYING_OPERATORS signExpression)*
    ;
 
 expression
-   : multiplyingExpression (('+' | '-') multiplyingExpression)*
-   | logic_expression
+   : multiplyingExpression (SUM_OPERATORS multiplyingExpression)*
    ;
 
-logic_expression
-    : bool
-    | logic_expression LOGIC_OPERATORS logic_expression
-    | NEGATION_OPERATOR logic_expression
-    | deref
-    | logic_expression COMPARISON_OPERATORS logic_expression
+atomicLogicExpression
+    : (expression | deref | bool | integer | floate | f_call | '(' logic_expression ')')
     ;
 
-number
+comparisonExpression
+    : atomicLogicExpression (COMPARISON_OPERATORS atomicLogicExpression)?
+    ;
+
+logic_expression
+    : NEGATION_OPERATOR? comparisonExpression (LOGIC_OPERATORS NEGATION_OPERATOR? comparisonExpression)*
+    ;
+
+integer
     : SIGN_OPERATORS* NUMBER
+    ;
+
+floate
+    : SIGN_OPERATORS* NUMBER '.' NUMBER
     ;
 
 bool
@@ -143,7 +147,12 @@ string
     ;
 
 block
-    : '{' (line EOL*)+ '}'
+    : '{' statement+ '}'
+    ;
+
+statement
+    : line EOL*
+    | 'return' expression EOL*
     ;
 
 function
@@ -167,11 +176,14 @@ NUMBER
     : [0-9]+
     ;
 
-ARITMETIC_OPERATORS
+MULTIPLYING_OPERATORS
     : '/'
     | '*'
     | '%'
-    | '+'
+    ;
+
+SUM_OPERATORS
+    : '+'
     | '-'
     ;
 
@@ -197,13 +209,8 @@ BOOL
     | 'False'
     ;
 
-SHAPE
-    : 'Caligrafic'
-    | 'Dot'
-    ;
-
 STRING
-    : [a-zA-Z_]+
+    : [a-zA-Z_.0-9]+
     ;
 
 EOL
