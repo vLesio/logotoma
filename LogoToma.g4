@@ -1,4 +1,4 @@
-grammar test;
+grammar LogoToma;
 
 program
     : (line? EOL+)+ line? EOF

@@ -1,4 +1,4 @@
-// Generated from d:\Projects\logotoma\grammar\test.g4 by ANTLR 4.9.2
+// Generated from d:\Projects\logotoma\LogoToma.g4 by ANTLR 4.9.2
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -9,7 +9,7 @@ import java.util.Iterator;
 import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
-public class testParser extends Parser {
+public class LogoTomaParser extends Parser {
 	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
@@ -97,7 +97,7 @@ public class testParser extends Parser {
 	}
 
 	@Override
-	public String getGrammarFileName() { return "test.g4"; }
+	public String getGrammarFileName() { return "LogoToma.g4"; }
 
 	@Override
 	public String[] getRuleNames() { return ruleNames; }
@@ -108,22 +108,22 @@ public class testParser extends Parser {
 	@Override
 	public ATN getATN() { return _ATN; }
 
-	public testParser(TokenStream input) {
+	public LogoTomaParser(TokenStream input) {
 		super(input);
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
 	public static class ProgramContext extends ParserRuleContext {
-		public TerminalNode EOF() { return getToken(testParser.EOF, 0); }
+		public TerminalNode EOF() { return getToken(LogoTomaParser.EOF, 0); }
 		public List<LineContext> line() {
 			return getRuleContexts(LineContext.class);
 		}
 		public LineContext line(int i) {
 			return getRuleContext(LineContext.class,i);
 		}
-		public List<TerminalNode> EOL() { return getTokens(testParser.EOL); }
+		public List<TerminalNode> EOL() { return getTokens(LogoTomaParser.EOL); }
 		public TerminalNode EOL(int i) {
-			return getToken(testParser.EOL, i);
+			return getToken(LogoTomaParser.EOL, i);
 		}
 		public ProgramContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -640,7 +640,7 @@ public class testParser extends Parser {
 	}
 
 	public static class Brush_shapeContext extends ParserRuleContext {
-		public TerminalNode SHAPE() { return getToken(testParser.SHAPE, 0); }
+		public TerminalNode SHAPE() { return getToken(LogoTomaParser.SHAPE, 0); }
 		public Brush_shapeContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -958,7 +958,7 @@ public class testParser extends Parser {
 	}
 
 	public static class NameContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(testParser.STRING, 0); }
+		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public NameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1463,7 +1463,7 @@ public class testParser extends Parser {
 		public BoolContext bool() {
 			return getRuleContext(BoolContext.class,0);
 		}
-		public TerminalNode NEGATION_OPERATOR() { return getToken(testParser.NEGATION_OPERATOR, 0); }
+		public TerminalNode NEGATION_OPERATOR() { return getToken(LogoTomaParser.NEGATION_OPERATOR, 0); }
 		public List<Logic_expressionContext> logic_expression() {
 			return getRuleContexts(Logic_expressionContext.class);
 		}
@@ -1473,8 +1473,8 @@ public class testParser extends Parser {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
 		}
-		public TerminalNode LOGIC_OPERATORS() { return getToken(testParser.LOGIC_OPERATORS, 0); }
-		public TerminalNode COMPARISON_OPERATORS() { return getToken(testParser.COMPARISON_OPERATORS, 0); }
+		public TerminalNode LOGIC_OPERATORS() { return getToken(LogoTomaParser.LOGIC_OPERATORS, 0); }
+		public TerminalNode COMPARISON_OPERATORS() { return getToken(LogoTomaParser.COMPARISON_OPERATORS, 0); }
 		public Logic_expressionContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1579,10 +1579,10 @@ public class testParser extends Parser {
 	}
 
 	public static class NumberContext extends ParserRuleContext {
-		public TerminalNode NUMBER() { return getToken(testParser.NUMBER, 0); }
-		public List<TerminalNode> SIGN_OPERATORS() { return getTokens(testParser.SIGN_OPERATORS); }
+		public TerminalNode NUMBER() { return getToken(LogoTomaParser.NUMBER, 0); }
+		public List<TerminalNode> SIGN_OPERATORS() { return getTokens(LogoTomaParser.SIGN_OPERATORS); }
 		public TerminalNode SIGN_OPERATORS(int i) {
-			return getToken(testParser.SIGN_OPERATORS, i);
+			return getToken(LogoTomaParser.SIGN_OPERATORS, i);
 		}
 		public NumberContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1627,7 +1627,7 @@ public class testParser extends Parser {
 	}
 
 	public static class BoolContext extends ParserRuleContext {
-		public TerminalNode BOOL() { return getToken(testParser.BOOL, 0); }
+		public TerminalNode BOOL() { return getToken(LogoTomaParser.BOOL, 0); }
 		public BoolContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1656,7 +1656,7 @@ public class testParser extends Parser {
 	}
 
 	public static class DerefContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(testParser.STRING, 0); }
+		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public DerefContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1685,7 +1685,7 @@ public class testParser extends Parser {
 	}
 
 	public static class StringContext extends ParserRuleContext {
-		public TerminalNode STRING() { return getToken(testParser.STRING, 0); }
+		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public StringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -1720,9 +1720,9 @@ public class testParser extends Parser {
 		public LineContext line(int i) {
 			return getRuleContext(LineContext.class,i);
 		}
-		public List<TerminalNode> EOL() { return getTokens(testParser.EOL); }
+		public List<TerminalNode> EOL() { return getTokens(LogoTomaParser.EOL); }
 		public TerminalNode EOL(int i) {
-			return getToken(testParser.EOL, i);
+			return getToken(LogoTomaParser.EOL, i);
 		}
 		public BlockContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1922,9 +1922,9 @@ public class testParser extends Parser {
 	}
 
 	public static class CommentContext extends ParserRuleContext {
-		public List<TerminalNode> STRING() { return getTokens(testParser.STRING); }
+		public List<TerminalNode> STRING() { return getTokens(LogoTomaParser.STRING); }
 		public TerminalNode STRING(int i) {
-			return getToken(testParser.STRING, i);
+			return getToken(LogoTomaParser.STRING, i);
 		}
 		public CommentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
