@@ -221,7 +221,7 @@ STRING
     ;
 
 EOL
-   : '\r'? '\n'+
+   : [\r\n]+
    ;
 
 COMMENT
