@@ -7,7 +7,6 @@ program
 line
     : command comment?
     | comment
-    | expression
     ;
 
 command
@@ -29,15 +28,15 @@ command
     ;
 
 engine
-    : 'engine' ('on' | 'off' | deref | f_call)
+    : 'engine' ('on' | 'off' | logic_expression)
     ;
 
 wheel
-    : 'wheel' ('right' | 'left' | 'off' | deref | f_call)
+    : 'wheel' ('right' | 'left' | 'off' | logic_expression)
     ;
 
 spray
-    : 'spray' ('on' | 'off' | deref | f_call)
+    : 'spray' ('on' | 'off' | logic_expression)
     ;
 
 spray_color
@@ -85,13 +84,6 @@ name
     : STRING
     ;
 
-value
-    : '"' string '"'
-    | logic_expression
-    | expression
-    | color
-    ;
-
 ife
     : 'if' '(' value ')' block
     ;
@@ -108,8 +100,15 @@ elsee
     : 'else' block
     ;
 
+value
+    : '"' string '"'
+    | expression
+    | logic_expression
+    | color
+    ;
+
 signExpression
-   : SIGN_OPERATORS* (integer | floate | deref | f_call | '(' expression ')')
+   : SIGN_OPERATORS? (integer | floate | deref | f_call | '(' expression ')')
    ;
 
 multiplyingExpression
@@ -132,12 +131,16 @@ logic_expression
     : NEGATION_OPERATOR? comparisonExpression (LOGIC_OPERATORS NEGATION_OPERATOR? comparisonExpression)*
     ;
 
+string
+    : STRING
+    ;
+
 integer
-    : SIGN_OPERATORS* NUMBER
+    : NUMBER
     ;
 
 floate
-    : SIGN_OPERATORS* NUMBER '.' NUMBER
+    : NUMBER '.' NUMBER
     ;
 
 bool
@@ -145,10 +148,6 @@ bool
     ;
 
 deref
-    : STRING
-    ;
-
-string
     : STRING
     ;
 
@@ -220,7 +219,7 @@ STRING
     ;
 
 EOL
-   : '\r'? '\n'
+   : '\r'? '\n'+
    ;
 
 COMMENT
