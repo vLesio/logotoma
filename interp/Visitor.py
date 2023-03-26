@@ -53,6 +53,12 @@ class Visitor(LogoTomaVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by LogoTomaParser#sleep.
+    def visitSleep(self, ctx:LogoTomaParser.SleepContext):
+        self.cmd.sleep(self.visit(ctx.expression()))
+        return None
+
+
     # Visit a parse tree produced by LogoTomaParser#cast.
     def visitCast(self, ctx:LogoTomaParser.CastContext):
         return self.visitChildren(ctx)
@@ -115,17 +121,36 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#signExpression.
     def visitSignExpression(self, ctx:LogoTomaParser.SignExpressionContext):
-        return self.visitChildren(ctx)
+        if len(ctx.SIGN_OPERATORS()) > 0 and str(ctx.SIGN_OPERATORS()[-1]) == '-':
+            return self.visitChildren(ctx) * -1
+        else:
+            return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by LogoTomaParser#multiplyingExpression.
     def visitMultiplyingExpression(self, ctx:LogoTomaParser.MultiplyingExpressionContext):
-        return self.visitChildren(ctx)
+        l = self.visit(ctx.signExpression(0))
+        for i, op in enumerate(ctx.MULTIPLYING_OPERATORS()):
+            op = str(op)
+            if op == '*':
+                l = l * self.visit(ctx.signExpression(i+1))
+            elif op == '/':
+                l = l / self.visit(ctx.signExpression(i+1))
+            elif op == '%':
+                l = l % self.visit(ctx.signExpression(i+1))
+        return l
 
 
     # Visit a parse tree produced by LogoTomaParser#expression.
     def visitExpression(self, ctx:LogoTomaParser.ExpressionContext):
-        return self.visitChildren(ctx)
+        l = self.visit(ctx.multiplyingExpression(0))
+        for i, op in enumerate(ctx.SIGN_OPERATORS()):
+            op = str(op)
+            if op == '+':
+                l = l + self.visit(ctx.multiplyingExpression(i+1))
+            elif op == '-':
+                l = l - self.visit(ctx.multiplyingExpression(i+1))
+        return l
 
 
     # Visit a parse tree produced by LogoTomaParser#atomicLogicExpression.
@@ -145,12 +170,12 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#integer.
     def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
-        return self.visitChildren(ctx)
+        return int(ctx.getText())
 
 
     # Visit a parse tree produced by LogoTomaParser#floate.
     def visitFloate(self, ctx:LogoTomaParser.FloateContext):
-        return self.visitChildren(ctx)
+        return float(ctx.getText())
 
 
     # Visit a parse tree produced by LogoTomaParser#bool.

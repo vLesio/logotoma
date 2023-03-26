@@ -80,6 +80,15 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
+    # Enter a parse tree produced by LogoTomaParser#sleep.
+    def enterSleep(self, ctx:LogoTomaParser.SleepContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#sleep.
+    def exitSleep(self, ctx:LogoTomaParser.SleepContext):
+        pass
+
+
     # Enter a parse tree produced by LogoTomaParser#cast.
     def enterCast(self, ctx:LogoTomaParser.CastContext):
         pass
@@ -242,21 +251,21 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#integer.
-    def enterInteger(self, ctx:LogoTomaParser.IntegerContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#integer.
-    def exitInteger(self, ctx:LogoTomaParser.IntegerContext):
-        pass
-
-
     # Enter a parse tree produced by LogoTomaParser#floate.
     def enterFloate(self, ctx:LogoTomaParser.FloateContext):
         pass
 
     # Exit a parse tree produced by LogoTomaParser#floate.
     def exitFloate(self, ctx:LogoTomaParser.FloateContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#integer.
+    def enterInteger(self, ctx:LogoTomaParser.IntegerContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#integer.
+    def exitInteger(self, ctx:LogoTomaParser.IntegerContext):
         pass
 
 

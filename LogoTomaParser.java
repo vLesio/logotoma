@@ -1,4 +1,4 @@
-// Generated from d:\Projects\logotoma\LogoToma.g4 by ANTLR 4.9.2
+// Generated from LogoToma.g4 by ANTLR 4.12.0
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -8,9 +8,9 @@ import java.util.List;
 import java.util.Iterator;
 import java.util.ArrayList;
 
-@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
+@SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast", "CheckReturnValue"})
 public class LogoTomaParser extends Parser {
-	static { RuntimeMetaData.checkVersion("4.9.2", RuntimeMetaData.VERSION); }
+	static { RuntimeMetaData.checkVersion("4.12.0", RuntimeMetaData.VERSION); }
 
 	protected static final DFA[] _decisionToDFA;
 	protected static final PredictionContextCache _sharedContextCache =
@@ -117,6 +117,7 @@ public class LogoTomaParser extends Parser {
 		_interp = new ParserATNSimulator(this,_ATN,_decisionToDFA,_sharedContextCache);
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ProgramContext extends ParserRuleContext {
 		public TerminalNode EOF() { return getToken(LogoTomaParser.EOF, 0); }
 		public List<LineContext> line() {
@@ -133,6 +134,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_program; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterProgram(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitProgram(this);
+		}
 	}
 
 	public final ProgramContext program() throws RecognitionException {
@@ -154,7 +163,7 @@ public class LogoTomaParser extends Parser {
 					setState(75);
 					_errHandler.sync(this);
 					_la = _input.LA(1);
-					if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__13) | (1L << T__14) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__26) | (1L << T__27) | (1L << T__32) | (1L << SIGN_OPERATORS) | (1L << NUMBER) | (1L << STRING) | (1L << COMMENT))) != 0)) {
+					if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 22050823262098L) != 0)) {
 						{
 						setState(74);
 						line();
@@ -194,7 +203,7 @@ public class LogoTomaParser extends Parser {
 			setState(87);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__13) | (1L << T__14) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__26) | (1L << T__27) | (1L << T__32) | (1L << SIGN_OPERATORS) | (1L << NUMBER) | (1L << STRING) | (1L << COMMENT))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 22050823262098L) != 0)) {
 				{
 				setState(86);
 				line();
@@ -216,6 +225,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class LineContext extends ParserRuleContext {
 		public CommandContext command() {
 			return getRuleContext(CommandContext.class,0);
@@ -230,6 +240,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_line; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterLine(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitLine(this);
+		}
 	}
 
 	public final LineContext line() throws RecognitionException {
@@ -283,6 +301,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class CommandContext extends ParserRuleContext {
 		public EngineContext engine() {
 			return getRuleContext(EngineContext.class,0);
@@ -333,6 +352,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_command; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterCommand(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitCommand(this);
+		}
 	}
 
 	public final CommandContext command() throws RecognitionException {
@@ -460,6 +487,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class EngineContext extends ParserRuleContext {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
@@ -471,6 +499,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_engine; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterEngine(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitEngine(this);
+		}
 	}
 
 	public final EngineContext engine() throws RecognitionException {
@@ -522,6 +558,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class WheelContext extends ParserRuleContext {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
@@ -533,6 +570,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_wheel; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterWheel(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitWheel(this);
+		}
 	}
 
 	public final WheelContext wheel() throws RecognitionException {
@@ -590,6 +635,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SprayContext extends ParserRuleContext {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
@@ -601,6 +647,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_spray; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSpray(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSpray(this);
+		}
 	}
 
 	public final SprayContext spray() throws RecognitionException {
@@ -652,6 +706,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Spray_colorContext extends ParserRuleContext {
 		public ColorContext color() {
 			return getRuleContext(ColorContext.class,0);
@@ -666,6 +721,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_spray_color; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSpray_color(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSpray_color(this);
+		}
 	}
 
 	public final Spray_colorContext spray_color() throws RecognitionException {
@@ -711,6 +774,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Spray_sizeContext extends ParserRuleContext {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
@@ -719,6 +783,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_spray_size; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSpray_size(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSpray_size(this);
+		}
 	}
 
 	public final Spray_sizeContext spray_size() throws RecognitionException {
@@ -744,6 +816,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SleepContext extends ParserRuleContext {
 		public ExpressionContext expression() {
 			return getRuleContext(ExpressionContext.class,0);
@@ -752,6 +825,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_sleep; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSleep(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSleep(this);
+		}
 	}
 
 	public final SleepContext sleep() throws RecognitionException {
@@ -777,6 +858,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class CastContext extends ParserRuleContext {
 		public ObjectContext object() {
 			return getRuleContext(ObjectContext.class,0);
@@ -788,6 +870,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_cast; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterCast(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitCast(this);
+		}
 	}
 
 	public final CastContext cast() throws RecognitionException {
@@ -817,6 +907,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ObjectContext extends ParserRuleContext {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
@@ -825,6 +916,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_object; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterObject(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitObject(this);
+		}
 	}
 
 	public final ObjectContext object() throws RecognitionException {
@@ -848,6 +947,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class AssignContext extends ParserRuleContext {
 		public Type_nameContext type_name() {
 			return getRuleContext(Type_nameContext.class,0);
@@ -862,6 +962,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_assign; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterAssign(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitAssign(this);
+		}
 	}
 
 	public final AssignContext assign() throws RecognitionException {
@@ -914,6 +1022,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SaveContext extends ParserRuleContext {
 		public StringContext string() {
 			return getRuleContext(StringContext.class,0);
@@ -922,6 +1031,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_save; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSave(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSave(this);
+		}
 	}
 
 	public final SaveContext save() throws RecognitionException {
@@ -947,6 +1064,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ColorContext extends ParserRuleContext {
 		public List<ValueContext> value() {
 			return getRuleContexts(ValueContext.class);
@@ -958,6 +1076,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_color; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterColor(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitColor(this);
+		}
 	}
 
 	public final ColorContext color() throws RecognitionException {
@@ -993,11 +1119,20 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Type_nameContext extends ParserRuleContext {
 		public Type_nameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_type_name; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterType_name(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitType_name(this);
+		}
 	}
 
 	public final Type_nameContext type_name() throws RecognitionException {
@@ -1009,7 +1144,7 @@ public class LogoTomaParser extends Parser {
 			{
 			setState(179);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21))) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 8126464L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1030,12 +1165,21 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class NameContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public NameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_name; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitName(this);
+		}
 	}
 
 	public final NameContext name() throws RecognitionException {
@@ -1059,6 +1203,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ValueContext extends ParserRuleContext {
 		public StringContext string() {
 			return getRuleContext(StringContext.class,0);
@@ -1076,6 +1221,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_value; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterValue(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitValue(this);
+		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
@@ -1130,6 +1283,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class IfeContext extends ParserRuleContext {
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
@@ -1141,6 +1295,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_ife; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterIfe(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitIfe(this);
+		}
 	}
 
 	public final IfeContext ife() throws RecognitionException {
@@ -1172,6 +1334,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class LoopeContext extends ParserRuleContext {
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
@@ -1183,6 +1346,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_loope; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterLoope(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitLoope(this);
+		}
 	}
 
 	public final LoopeContext loope() throws RecognitionException {
@@ -1212,6 +1383,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class WhileeContext extends ParserRuleContext {
 		public ValueContext value() {
 			return getRuleContext(ValueContext.class,0);
@@ -1223,6 +1395,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_whilee; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterWhilee(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitWhilee(this);
+		}
 	}
 
 	public final WhileeContext whilee() throws RecognitionException {
@@ -1250,6 +1430,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ElseeContext extends ParserRuleContext {
 		public BlockContext block() {
 			return getRuleContext(BlockContext.class,0);
@@ -1258,6 +1439,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_elsee; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterElsee(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitElsee(this);
+		}
 	}
 
 	public final ElseeContext elsee() throws RecognitionException {
@@ -1283,6 +1472,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class SignExpressionContext extends ParserRuleContext {
 		public IntegerContext integer() {
 			return getRuleContext(IntegerContext.class,0);
@@ -1307,6 +1497,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_signExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterSignExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitSignExpression(this);
+		}
 	}
 
 	public final SignExpressionContext signExpression() throws RecognitionException {
@@ -1383,6 +1581,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class MultiplyingExpressionContext extends ParserRuleContext {
 		public List<SignExpressionContext> signExpression() {
 			return getRuleContexts(SignExpressionContext.class);
@@ -1398,6 +1597,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_multiplyingExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterMultiplyingExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitMultiplyingExpression(this);
+		}
 	}
 
 	public final MultiplyingExpressionContext multiplyingExpression() throws RecognitionException {
@@ -1438,6 +1645,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ExpressionContext extends ParserRuleContext {
 		public List<MultiplyingExpressionContext> multiplyingExpression() {
 			return getRuleContexts(MultiplyingExpressionContext.class);
@@ -1453,6 +1661,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_expression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitExpression(this);
+		}
 	}
 
 	public final ExpressionContext expression() throws RecognitionException {
@@ -1495,6 +1711,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class AtomicLogicExpressionContext extends ParserRuleContext {
 		public DerefContext deref() {
 			return getRuleContext(DerefContext.class,0);
@@ -1521,6 +1738,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_atomicLogicExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterAtomicLogicExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitAtomicLogicExpression(this);
+		}
 	}
 
 	public final AtomicLogicExpressionContext atomicLogicExpression() throws RecognitionException {
@@ -1592,6 +1817,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class ComparisonExpressionContext extends ParserRuleContext {
 		public List<AtomicLogicExpressionContext> atomicLogicExpression() {
 			return getRuleContexts(AtomicLogicExpressionContext.class);
@@ -1604,6 +1830,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comparisonExpression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterComparisonExpression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitComparisonExpression(this);
+		}
 	}
 
 	public final ComparisonExpressionContext comparisonExpression() throws RecognitionException {
@@ -1640,6 +1874,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class Logic_expressionContext extends ParserRuleContext {
 		public List<ComparisonExpressionContext> comparisonExpression() {
 			return getRuleContexts(ComparisonExpressionContext.class);
@@ -1659,6 +1894,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_logic_expression; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterLogic_expression(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitLogic_expression(this);
+		}
 	}
 
 	public final Logic_expressionContext logic_expression() throws RecognitionException {
@@ -1719,6 +1962,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class IntegerContext extends ParserRuleContext {
 		public TerminalNode NUMBER() { return getToken(LogoTomaParser.NUMBER, 0); }
 		public List<TerminalNode> SIGN_OPERATORS() { return getTokens(LogoTomaParser.SIGN_OPERATORS); }
@@ -1729,6 +1973,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_integer; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterInteger(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitInteger(this);
+		}
 	}
 
 	public final IntegerContext integer() throws RecognitionException {
@@ -1767,6 +2019,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class FloateContext extends ParserRuleContext {
 		public List<TerminalNode> NUMBER() { return getTokens(LogoTomaParser.NUMBER); }
 		public TerminalNode NUMBER(int i) {
@@ -1780,6 +2033,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_floate; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterFloate(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitFloate(this);
+		}
 	}
 
 	public final FloateContext floate() throws RecognitionException {
@@ -1822,12 +2083,21 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BoolContext extends ParserRuleContext {
 		public TerminalNode BOOL() { return getToken(LogoTomaParser.BOOL, 0); }
 		public BoolContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_bool; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterBool(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitBool(this);
+		}
 	}
 
 	public final BoolContext bool() throws RecognitionException {
@@ -1851,12 +2121,21 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class DerefContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public DerefContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_deref; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterDeref(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitDeref(this);
+		}
 	}
 
 	public final DerefContext deref() throws RecognitionException {
@@ -1880,12 +2159,21 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StringContext extends ParserRuleContext {
 		public TerminalNode STRING() { return getToken(LogoTomaParser.STRING, 0); }
 		public StringContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_string; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterString(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitString(this);
+		}
 	}
 
 	public final StringContext string() throws RecognitionException {
@@ -1909,6 +2197,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class BlockContext extends ParserRuleContext {
 		public List<StatementContext> statement() {
 			return getRuleContexts(StatementContext.class);
@@ -1920,6 +2209,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_block; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterBlock(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitBlock(this);
+		}
 	}
 
 	public final BlockContext block() throws RecognitionException {
@@ -1944,7 +2241,7 @@ public class LogoTomaParser extends Parser {
 				setState(301); 
 				_errHandler.sync(this);
 				_la = _input.LA(1);
-			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__0) | (1L << T__3) | (1L << T__6) | (1L << T__7) | (1L << T__8) | (1L << T__9) | (1L << T__10) | (1L << T__13) | (1L << T__14) | (1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21) | (1L << T__23) | (1L << T__24) | (1L << T__26) | (1L << T__27) | (1L << T__31) | (1L << T__32) | (1L << SIGN_OPERATORS) | (1L << NUMBER) | (1L << STRING) | (1L << COMMENT))) != 0) );
+			} while ( (((_la) & ~0x3f) == 0 && ((1L << _la) & 22055118229394L) != 0) );
 			setState(303);
 			match(T__30);
 			}
@@ -1960,6 +2257,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class StatementContext extends ParserRuleContext {
 		public LineContext line() {
 			return getRuleContext(LineContext.class,0);
@@ -1975,6 +2273,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterStatement(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitStatement(this);
+		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
@@ -2066,6 +2372,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class FunctionContext extends ParserRuleContext {
 		public NameContext name() {
 			return getRuleContext(NameContext.class,0);
@@ -2089,6 +2396,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_function; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterFunction(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitFunction(this);
+		}
 	}
 
 	public final FunctionContext function() throws RecognitionException {
@@ -2101,7 +2416,7 @@ public class LogoTomaParser extends Parser {
 			setState(323);
 			_errHandler.sync(this);
 			_la = _input.LA(1);
-			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & ((1L << T__17) | (1L << T__18) | (1L << T__19) | (1L << T__20) | (1L << T__21))) != 0)) {
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 8126464L) != 0)) {
 				{
 				setState(322);
 				type_name();
@@ -2153,6 +2468,7 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class F_callContext extends ParserRuleContext {
 		public NameContext name() {
 			return getRuleContext(NameContext.class,0);
@@ -2167,6 +2483,14 @@ public class LogoTomaParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_f_call; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterF_call(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitF_call(this);
+		}
 	}
 
 	public final F_callContext f_call() throws RecognitionException {
@@ -2213,12 +2537,21 @@ public class LogoTomaParser extends Parser {
 		return _localctx;
 	}
 
+	@SuppressWarnings("CheckReturnValue")
 	public static class CommentContext extends ParserRuleContext {
 		public TerminalNode COMMENT() { return getToken(LogoTomaParser.COMMENT, 0); }
 		public CommentContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_comment; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).enterComment(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof LogoTomaListener ) ((LogoTomaListener)listener).exitComment(this);
+		}
 	}
 
 	public final CommentContext comment() throws RecognitionException {
@@ -2243,129 +2576,233 @@ public class LogoTomaParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3/\u0167\4\2\t\2\4"+
-		"\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13\t"+
-		"\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\4\24\t\24\4\25\t\25\4\26\t\26\4\27\t\27\4\30\t\30\4\31\t\31"+
-		"\4\32\t\32\4\33\t\33\4\34\t\34\4\35\t\35\4\36\t\36\4\37\t\37\4 \t \4!"+
-		"\t!\4\"\t\"\4#\t#\4$\t$\4%\t%\4&\t&\3\2\5\2N\n\2\3\2\6\2Q\n\2\r\2\16\2"+
-		"R\6\2U\n\2\r\2\16\2V\3\2\5\2Z\n\2\3\2\3\2\3\3\3\3\5\3`\n\3\3\3\3\3\5\3"+
-		"d\n\3\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\3\4\5\4"+
-		"u\n\4\3\5\3\5\3\5\3\5\3\5\5\5|\n\5\3\6\3\6\3\6\3\6\3\6\3\6\5\6\u0084\n"+
-		"\6\3\7\3\7\3\7\3\7\3\7\5\7\u008b\n\7\3\b\3\b\3\b\3\b\5\b\u0091\n\b\3\t"+
-		"\3\t\3\t\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\13\3\f\3\f\3\r\3\r\3\r\3\r"+
-		"\3\r\3\r\3\r\3\r\3\r\5\r\u00a9\n\r\3\16\3\16\3\16\3\17\3\17\3\17\3\17"+
-		"\3\17\3\17\3\17\3\17\3\20\3\20\3\21\3\21\3\22\3\22\3\22\3\22\3\22\3\22"+
-		"\3\22\5\22\u00c1\n\22\3\23\3\23\3\23\3\23\3\23\3\23\3\24\3\24\3\24\3\24"+
-		"\3\24\3\25\3\25\3\25\3\25\3\26\3\26\3\26\3\27\7\27\u00d6\n\27\f\27\16"+
-		"\27\u00d9\13\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\3\27\5\27\u00e3\n\27"+
-		"\3\30\3\30\3\30\7\30\u00e8\n\30\f\30\16\30\u00eb\13\30\3\31\3\31\3\31"+
-		"\7\31\u00f0\n\31\f\31\16\31\u00f3\13\31\3\32\3\32\3\32\3\32\3\32\3\32"+
-		"\3\32\3\32\3\32\3\32\5\32\u00ff\n\32\3\33\3\33\3\33\5\33\u0104\n\33\3"+
-		"\34\5\34\u0107\n\34\3\34\3\34\3\34\5\34\u010c\n\34\3\34\7\34\u010f\n\34"+
-		"\f\34\16\34\u0112\13\34\3\35\7\35\u0115\n\35\f\35\16\35\u0118\13\35\3"+
-		"\35\3\35\3\36\7\36\u011d\n\36\f\36\16\36\u0120\13\36\3\36\3\36\3\36\3"+
-		"\36\3\37\3\37\3 \3 \3!\3!\3\"\3\"\6\"\u012e\n\"\r\"\16\"\u012f\3\"\3\""+
-		"\3#\3#\7#\u0136\n#\f#\16#\u0139\13#\3#\3#\3#\7#\u013e\n#\f#\16#\u0141"+
-		"\13#\5#\u0143\n#\3$\5$\u0146\n$\3$\3$\3$\3$\3$\3$\3$\3$\3$\7$\u0151\n"+
-		"$\f$\16$\u0154\13$\3$\3$\3$\3%\3%\3%\3%\3%\7%\u015e\n%\f%\16%\u0161\13"+
-		"%\3%\3%\3&\3&\3&\2\2\'\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(*,"+
-		".\60\62\64\668:<>@BDFHJ\2\3\3\2\24\30\2\u0180\2T\3\2\2\2\4c\3\2\2\2\6"+
-		"t\3\2\2\2\bv\3\2\2\2\n}\3\2\2\2\f\u0085\3\2\2\2\16\u008c\3\2\2\2\20\u0092"+
-		"\3\2\2\2\22\u0095\3\2\2\2\24\u0098\3\2\2\2\26\u009d\3\2\2\2\30\u00a8\3"+
-		"\2\2\2\32\u00aa\3\2\2\2\34\u00ad\3\2\2\2\36\u00b5\3\2\2\2 \u00b7\3\2\2"+
-		"\2\"\u00c0\3\2\2\2$\u00c2\3\2\2\2&\u00c8\3\2\2\2(\u00cd\3\2\2\2*\u00d1"+
-		"\3\2\2\2,\u00d7\3\2\2\2.\u00e4\3\2\2\2\60\u00ec\3\2\2\2\62\u00fe\3\2\2"+
-		"\2\64\u0100\3\2\2\2\66\u0106\3\2\2\28\u0116\3\2\2\2:\u011e\3\2\2\2<\u0125"+
-		"\3\2\2\2>\u0127\3\2\2\2@\u0129\3\2\2\2B\u012b\3\2\2\2D\u0142\3\2\2\2F"+
-		"\u0145\3\2\2\2H\u0158\3\2\2\2J\u0164\3\2\2\2LN\5\4\3\2ML\3\2\2\2MN\3\2"+
-		"\2\2NP\3\2\2\2OQ\7-\2\2PO\3\2\2\2QR\3\2\2\2RP\3\2\2\2RS\3\2\2\2SU\3\2"+
-		"\2\2TM\3\2\2\2UV\3\2\2\2VT\3\2\2\2VW\3\2\2\2WY\3\2\2\2XZ\5\4\3\2YX\3\2"+
-		"\2\2YZ\3\2\2\2Z[\3\2\2\2[\\\7\2\2\3\\\3\3\2\2\2]_\5\6\4\2^`\5J&\2_^\3"+
-		"\2\2\2_`\3\2\2\2`d\3\2\2\2ad\5J&\2bd\5\60\31\2c]\3\2\2\2ca\3\2\2\2cb\3"+
-		"\2\2\2d\5\3\2\2\2eu\5\b\5\2fu\5\n\6\2gu\5\f\7\2hu\5\16\b\2iu\5\20\t\2"+
-		"ju\5\22\n\2ku\5\24\13\2lu\5F$\2mu\5H%\2nu\5\30\r\2ou\5&\24\2pu\5$\23\2"+
-		"qu\5(\25\2ru\5*\26\2su\5\32\16\2te\3\2\2\2tf\3\2\2\2tg\3\2\2\2th\3\2\2"+
-		"\2ti\3\2\2\2tj\3\2\2\2tk\3\2\2\2tl\3\2\2\2tm\3\2\2\2tn\3\2\2\2to\3\2\2"+
-		"\2tp\3\2\2\2tq\3\2\2\2tr\3\2\2\2ts\3\2\2\2u\7\3\2\2\2v{\7\3\2\2w|\7\4"+
-		"\2\2x|\7\5\2\2y|\5> \2z|\5H%\2{w\3\2\2\2{x\3\2\2\2{y\3\2\2\2{z\3\2\2\2"+
-		"|\t\3\2\2\2}\u0083\7\6\2\2~\u0084\7\7\2\2\177\u0084\7\b\2\2\u0080\u0084"+
-		"\7\5\2\2\u0081\u0084\5> \2\u0082\u0084\5H%\2\u0083~\3\2\2\2\u0083\177"+
-		"\3\2\2\2\u0083\u0080\3\2\2\2\u0083\u0081\3\2\2\2\u0083\u0082\3\2\2\2\u0084"+
-		"\13\3\2\2\2\u0085\u008a\7\t\2\2\u0086\u008b\7\4\2\2\u0087\u008b\7\5\2"+
-		"\2\u0088\u008b\5> \2\u0089\u008b\5H%\2\u008a\u0086\3\2\2\2\u008a\u0087"+
-		"\3\2\2\2\u008a\u0088\3\2\2\2\u008a\u0089\3\2\2\2\u008b\r\3\2\2\2\u008c"+
-		"\u0090\7\n\2\2\u008d\u0091\5\34\17\2\u008e\u0091\5> \2\u008f\u0091\5H"+
-		"%\2\u0090\u008d\3\2\2\2\u0090\u008e\3\2\2\2\u0090\u008f\3\2\2\2\u0091"+
-		"\17\3\2\2\2\u0092\u0093\7\13\2\2\u0093\u0094\5\60\31\2\u0094\21\3\2\2"+
-		"\2\u0095\u0096\7\f\2\2\u0096\u0097\5\60\31\2\u0097\23\3\2\2\2\u0098\u0099"+
-		"\7\r\2\2\u0099\u009a\5\26\f\2\u009a\u009b\7\16\2\2\u009b\u009c\5\36\20"+
-		"\2\u009c\25\3\2\2\2\u009d\u009e\5> \2\u009e\27\3\2\2\2\u009f\u00a0\5\36"+
-		"\20\2\u00a0\u00a1\5> \2\u00a1\u00a2\7\17\2\2\u00a2\u00a3\5\"\22\2\u00a3"+
-		"\u00a9\3\2\2\2\u00a4\u00a5\5> \2\u00a5\u00a6\7\17\2\2\u00a6\u00a7\5\""+
-		"\22\2\u00a7\u00a9\3\2\2\2\u00a8\u009f\3\2\2\2\u00a8\u00a4\3\2\2\2\u00a9"+
-		"\31\3\2\2\2\u00aa\u00ab\7\20\2\2\u00ab\u00ac\5@!\2\u00ac\33\3\2\2\2\u00ad"+
-		"\u00ae\7\21\2\2\u00ae\u00af\5\"\22\2\u00af\u00b0\7\22\2\2\u00b0\u00b1"+
-		"\5\"\22\2\u00b1\u00b2\7\22\2\2\u00b2\u00b3\5\"\22\2\u00b3\u00b4\7\23\2"+
-		"\2\u00b4\35\3\2\2\2\u00b5\u00b6\t\2\2\2\u00b6\37\3\2\2\2\u00b7\u00b8\7"+
-		",\2\2\u00b8!\3\2\2\2\u00b9\u00ba\7\31\2\2\u00ba\u00bb\5@!\2\u00bb\u00bc"+
-		"\7\31\2\2\u00bc\u00c1\3\2\2\2\u00bd\u00c1\5\66\34\2\u00be\u00c1\5\60\31"+
-		"\2\u00bf\u00c1\5\34\17\2\u00c0\u00b9\3\2\2\2\u00c0\u00bd\3\2\2\2\u00c0"+
-		"\u00be\3\2\2\2\u00c0\u00bf\3\2\2\2\u00c1#\3\2\2\2\u00c2\u00c3\7\32\2\2"+
-		"\u00c3\u00c4\7\21\2\2\u00c4\u00c5\5\"\22\2\u00c5\u00c6\7\23\2\2\u00c6"+
-		"\u00c7\5B\"\2\u00c7%\3\2\2\2\u00c8\u00c9\7\33\2\2\u00c9\u00ca\5\"\22\2"+
-		"\u00ca\u00cb\7\34\2\2\u00cb\u00cc\5B\"\2\u00cc\'\3\2\2\2\u00cd\u00ce\7"+
-		"\35\2\2\u00ce\u00cf\5\"\22\2\u00cf\u00d0\5B\"\2\u00d0)\3\2\2\2\u00d1\u00d2"+
-		"\7\36\2\2\u00d2\u00d3\5B\"\2\u00d3+\3\2\2\2\u00d4\u00d6\7$\2\2\u00d5\u00d4"+
-		"\3\2\2\2\u00d6\u00d9\3\2\2\2\u00d7\u00d5\3\2\2\2\u00d7\u00d8\3\2\2\2\u00d8"+
-		"\u00e2\3\2\2\2\u00d9\u00d7\3\2\2\2\u00da\u00e3\58\35\2\u00db\u00e3\5:"+
-		"\36\2\u00dc\u00e3\5> \2\u00dd\u00e3\5H%\2\u00de\u00df\7\21\2\2\u00df\u00e0"+
-		"\5\60\31\2\u00e0\u00e1\7\23\2\2\u00e1\u00e3\3\2\2\2\u00e2\u00da\3\2\2"+
-		"\2\u00e2\u00db\3\2\2\2\u00e2\u00dc\3\2\2\2\u00e2\u00dd\3\2\2\2\u00e2\u00de"+
-		"\3\2\2\2\u00e3-\3\2\2\2\u00e4\u00e9\5,\27\2\u00e5\u00e6\7&\2\2\u00e6\u00e8"+
-		"\5,\27\2\u00e7\u00e5\3\2\2\2\u00e8\u00eb\3\2\2\2\u00e9\u00e7\3\2\2\2\u00e9"+
-		"\u00ea\3\2\2\2\u00ea/\3\2\2\2\u00eb\u00e9\3\2\2\2\u00ec\u00f1\5.\30\2"+
-		"\u00ed\u00ee\7$\2\2\u00ee\u00f0\5.\30\2\u00ef\u00ed\3\2\2\2\u00f0\u00f3"+
-		"\3\2\2\2\u00f1\u00ef\3\2\2\2\u00f1\u00f2\3\2\2\2\u00f2\61\3\2\2\2\u00f3"+
-		"\u00f1\3\2\2\2\u00f4\u00ff\5> \2\u00f5\u00ff\5<\37\2\u00f6\u00ff\58\35"+
-		"\2\u00f7\u00ff\5:\36\2\u00f8\u00ff\5H%\2\u00f9\u00ff\5\60\31\2\u00fa\u00fb"+
-		"\7\21\2\2\u00fb\u00fc\5\66\34\2\u00fc\u00fd\7\23\2\2\u00fd\u00ff\3\2\2"+
-		"\2\u00fe\u00f4\3\2\2\2\u00fe\u00f5\3\2\2\2\u00fe\u00f6\3\2\2\2\u00fe\u00f7"+
-		"\3\2\2\2\u00fe\u00f8\3\2\2\2\u00fe\u00f9\3\2\2\2\u00fe\u00fa\3\2\2\2\u00ff"+
-		"\63\3\2\2\2\u0100\u0103\5\62\32\2\u0101\u0102\7*\2\2\u0102\u0104\5\62"+
-		"\32\2\u0103\u0101\3\2\2\2\u0103\u0104\3\2\2\2\u0104\65\3\2\2\2\u0105\u0107"+
-		"\7(\2\2\u0106\u0105\3\2\2\2\u0106\u0107\3\2\2\2\u0107\u0108\3\2\2\2\u0108"+
-		"\u0110\5\64\33\2\u0109\u010b\7)\2\2\u010a\u010c\7(\2\2\u010b\u010a\3\2"+
-		"\2\2\u010b\u010c\3\2\2\2\u010c\u010d\3\2\2\2\u010d\u010f\5\64\33\2\u010e"+
-		"\u0109\3\2\2\2\u010f\u0112\3\2\2\2\u0110\u010e\3\2\2\2\u0110\u0111\3\2"+
-		"\2\2\u0111\67\3\2\2\2\u0112\u0110\3\2\2\2\u0113\u0115\7$\2\2\u0114\u0113"+
-		"\3\2\2\2\u0115\u0118\3\2\2\2\u0116\u0114\3\2\2\2\u0116\u0117\3\2\2\2\u0117"+
-		"\u0119\3\2\2\2\u0118\u0116\3\2\2\2\u0119\u011a\7%\2\2\u011a9\3\2\2\2\u011b"+
-		"\u011d\7$\2\2\u011c\u011b\3\2\2\2\u011d\u0120\3\2\2\2\u011e\u011c\3\2"+
-		"\2\2\u011e\u011f\3\2\2\2\u011f\u0121\3\2\2\2\u0120\u011e\3\2\2\2\u0121"+
-		"\u0122\7%\2\2\u0122\u0123\7\37\2\2\u0123\u0124\7%\2\2\u0124;\3\2\2\2\u0125"+
-		"\u0126\7+\2\2\u0126=\3\2\2\2\u0127\u0128\7,\2\2\u0128?\3\2\2\2\u0129\u012a"+
-		"\7,\2\2\u012aA\3\2\2\2\u012b\u012d\7 \2\2\u012c\u012e\5D#\2\u012d\u012c"+
-		"\3\2\2\2\u012e\u012f\3\2\2\2\u012f\u012d\3\2\2\2\u012f\u0130\3\2\2\2\u0130"+
-		"\u0131\3\2\2\2\u0131\u0132\7!\2\2\u0132C\3\2\2\2\u0133\u0137\5\4\3\2\u0134"+
-		"\u0136\7-\2\2\u0135\u0134\3\2\2\2\u0136\u0139\3\2\2\2\u0137\u0135\3\2"+
-		"\2\2\u0137\u0138\3\2\2\2\u0138\u0143\3\2\2\2\u0139\u0137\3\2\2\2\u013a"+
-		"\u013b\7\"\2\2\u013b\u013f\5\"\22\2\u013c\u013e\7-\2\2\u013d\u013c\3\2"+
-		"\2\2\u013e\u0141\3\2\2\2\u013f\u013d\3\2\2\2\u013f\u0140\3\2\2\2\u0140"+
-		"\u0143\3\2\2\2\u0141\u013f\3\2\2\2\u0142\u0133\3\2\2\2\u0142\u013a\3\2"+
-		"\2\2\u0143E\3\2\2\2\u0144\u0146\5\36\20\2\u0145\u0144\3\2\2\2\u0145\u0146"+
-		"\3\2\2\2\u0146\u0147\3\2\2\2\u0147\u0148\7#\2\2\u0148\u0149\5 \21\2\u0149"+
-		"\u014a\7\21\2\2\u014a\u014b\5\36\20\2\u014b\u0152\5> \2\u014c\u014d\7"+
-		"\22\2\2\u014d\u014e\5\36\20\2\u014e\u014f\5> \2\u014f\u0151\3\2\2\2\u0150"+
-		"\u014c\3\2\2\2\u0151\u0154\3\2\2\2\u0152\u0150\3\2\2\2\u0152\u0153\3\2"+
-		"\2\2\u0153\u0155\3\2\2\2\u0154\u0152\3\2\2\2\u0155\u0156\7\23\2\2\u0156"+
-		"\u0157\5B\"\2\u0157G\3\2\2\2\u0158\u0159\5 \21\2\u0159\u015a\7\21\2\2"+
-		"\u015a\u015f\5\"\22\2\u015b\u015c\7\22\2\2\u015c\u015e\5\"\22\2\u015d"+
-		"\u015b\3\2\2\2\u015e\u0161\3\2\2\2\u015f\u015d\3\2\2\2\u015f\u0160\3\2"+
-		"\2\2\u0160\u0162\3\2\2\2\u0161\u015f\3\2\2\2\u0162\u0163\7\23\2\2\u0163"+
-		"I\3\2\2\2\u0164\u0165\7.\2\2\u0165K\3\2\2\2!MRVY_ct{\u0083\u008a\u0090"+
-		"\u00a8\u00c0\u00d7\u00e2\u00e9\u00f1\u00fe\u0103\u0106\u010b\u0110\u0116"+
-		"\u011e\u012f\u0137\u013f\u0142\u0145\u0152\u015f";
+		"\u0004\u0001-\u0165\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
+		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
+		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0002\u000b\u0007\u000b\u0002"+
+		"\f\u0007\f\u0002\r\u0007\r\u0002\u000e\u0007\u000e\u0002\u000f\u0007\u000f"+
+		"\u0002\u0010\u0007\u0010\u0002\u0011\u0007\u0011\u0002\u0012\u0007\u0012"+
+		"\u0002\u0013\u0007\u0013\u0002\u0014\u0007\u0014\u0002\u0015\u0007\u0015"+
+		"\u0002\u0016\u0007\u0016\u0002\u0017\u0007\u0017\u0002\u0018\u0007\u0018"+
+		"\u0002\u0019\u0007\u0019\u0002\u001a\u0007\u001a\u0002\u001b\u0007\u001b"+
+		"\u0002\u001c\u0007\u001c\u0002\u001d\u0007\u001d\u0002\u001e\u0007\u001e"+
+		"\u0002\u001f\u0007\u001f\u0002 \u0007 \u0002!\u0007!\u0002\"\u0007\"\u0002"+
+		"#\u0007#\u0002$\u0007$\u0001\u0000\u0003\u0000L\b\u0000\u0001\u0000\u0004"+
+		"\u0000O\b\u0000\u000b\u0000\f\u0000P\u0004\u0000S\b\u0000\u000b\u0000"+
+		"\f\u0000T\u0001\u0000\u0003\u0000X\b\u0000\u0001\u0000\u0001\u0000\u0001"+
+		"\u0001\u0001\u0001\u0003\u0001^\b\u0001\u0001\u0001\u0001\u0001\u0003"+
+		"\u0001b\b\u0001\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001"+
+		"\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001"+
+		"\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0001\u0002\u0003\u0002s\b"+
+		"\u0002\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0001\u0003\u0003"+
+		"\u0003z\b\u0003\u0001\u0004\u0001\u0004\u0001\u0004\u0001\u0004\u0001"+
+		"\u0004\u0001\u0004\u0003\u0004\u0082\b\u0004\u0001\u0005\u0001\u0005\u0001"+
+		"\u0005\u0001\u0005\u0001\u0005\u0003\u0005\u0089\b\u0005\u0001\u0006\u0001"+
+		"\u0006\u0001\u0006\u0001\u0006\u0003\u0006\u008f\b\u0006\u0001\u0007\u0001"+
+		"\u0007\u0001\u0007\u0001\b\u0001\b\u0001\b\u0001\t\u0001\t\u0001\t\u0001"+
+		"\t\u0001\t\u0001\n\u0001\n\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b"+
+		"\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0001\u000b\u0003\u000b"+
+		"\u00a7\b\u000b\u0001\f\u0001\f\u0001\f\u0001\r\u0001\r\u0001\r\u0001\r"+
+		"\u0001\r\u0001\r\u0001\r\u0001\r\u0001\u000e\u0001\u000e\u0001\u000f\u0001"+
+		"\u000f\u0001\u0010\u0001\u0010\u0001\u0010\u0001\u0010\u0001\u0010\u0001"+
+		"\u0010\u0001\u0010\u0003\u0010\u00bf\b\u0010\u0001\u0011\u0001\u0011\u0001"+
+		"\u0011\u0001\u0011\u0001\u0011\u0001\u0011\u0001\u0012\u0001\u0012\u0001"+
+		"\u0012\u0001\u0012\u0001\u0012\u0001\u0013\u0001\u0013\u0001\u0013\u0001"+
+		"\u0013\u0001\u0014\u0001\u0014\u0001\u0014\u0001\u0015\u0005\u0015\u00d4"+
+		"\b\u0015\n\u0015\f\u0015\u00d7\t\u0015\u0001\u0015\u0001\u0015\u0001\u0015"+
+		"\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015\u0001\u0015\u0003\u0015"+
+		"\u00e1\b\u0015\u0001\u0016\u0001\u0016\u0001\u0016\u0005\u0016\u00e6\b"+
+		"\u0016\n\u0016\f\u0016\u00e9\t\u0016\u0001\u0017\u0001\u0017\u0001\u0017"+
+		"\u0005\u0017\u00ee\b\u0017\n\u0017\f\u0017\u00f1\t\u0017\u0001\u0018\u0001"+
+		"\u0018\u0001\u0018\u0001\u0018\u0001\u0018\u0001\u0018\u0001\u0018\u0001"+
+		"\u0018\u0001\u0018\u0001\u0018\u0003\u0018\u00fd\b\u0018\u0001\u0019\u0001"+
+		"\u0019\u0001\u0019\u0003\u0019\u0102\b\u0019\u0001\u001a\u0003\u001a\u0105"+
+		"\b\u001a\u0001\u001a\u0001\u001a\u0001\u001a\u0003\u001a\u010a\b\u001a"+
+		"\u0001\u001a\u0005\u001a\u010d\b\u001a\n\u001a\f\u001a\u0110\t\u001a\u0001"+
+		"\u001b\u0005\u001b\u0113\b\u001b\n\u001b\f\u001b\u0116\t\u001b\u0001\u001b"+
+		"\u0001\u001b\u0001\u001c\u0005\u001c\u011b\b\u001c\n\u001c\f\u001c\u011e"+
+		"\t\u001c\u0001\u001c\u0001\u001c\u0001\u001c\u0001\u001c\u0001\u001d\u0001"+
+		"\u001d\u0001\u001e\u0001\u001e\u0001\u001f\u0001\u001f\u0001 \u0001 \u0004"+
+		" \u012c\b \u000b \f \u012d\u0001 \u0001 \u0001!\u0001!\u0005!\u0134\b"+
+		"!\n!\f!\u0137\t!\u0001!\u0001!\u0001!\u0005!\u013c\b!\n!\f!\u013f\t!\u0003"+
+		"!\u0141\b!\u0001\"\u0003\"\u0144\b\"\u0001\"\u0001\"\u0001\"\u0001\"\u0001"+
+		"\"\u0001\"\u0001\"\u0001\"\u0001\"\u0005\"\u014f\b\"\n\"\f\"\u0152\t\""+
+		"\u0001\"\u0001\"\u0001\"\u0001#\u0001#\u0001#\u0001#\u0001#\u0005#\u015c"+
+		"\b#\n#\f#\u015f\t#\u0001#\u0001#\u0001$\u0001$\u0001$\u0000\u0000%\u0000"+
+		"\u0002\u0004\u0006\b\n\f\u000e\u0010\u0012\u0014\u0016\u0018\u001a\u001c"+
+		"\u001e \"$&(*,.02468:<>@BDFH\u0000\u0001\u0001\u0000\u0012\u0016\u017e"+
+		"\u0000R\u0001\u0000\u0000\u0000\u0002a\u0001\u0000\u0000\u0000\u0004r"+
+		"\u0001\u0000\u0000\u0000\u0006t\u0001\u0000\u0000\u0000\b{\u0001\u0000"+
+		"\u0000\u0000\n\u0083\u0001\u0000\u0000\u0000\f\u008a\u0001\u0000\u0000"+
+		"\u0000\u000e\u0090\u0001\u0000\u0000\u0000\u0010\u0093\u0001\u0000\u0000"+
+		"\u0000\u0012\u0096\u0001\u0000\u0000\u0000\u0014\u009b\u0001\u0000\u0000"+
+		"\u0000\u0016\u00a6\u0001\u0000\u0000\u0000\u0018\u00a8\u0001\u0000\u0000"+
+		"\u0000\u001a\u00ab\u0001\u0000\u0000\u0000\u001c\u00b3\u0001\u0000\u0000"+
+		"\u0000\u001e\u00b5\u0001\u0000\u0000\u0000 \u00be\u0001\u0000\u0000\u0000"+
+		"\"\u00c0\u0001\u0000\u0000\u0000$\u00c6\u0001\u0000\u0000\u0000&\u00cb"+
+		"\u0001\u0000\u0000\u0000(\u00cf\u0001\u0000\u0000\u0000*\u00d5\u0001\u0000"+
+		"\u0000\u0000,\u00e2\u0001\u0000\u0000\u0000.\u00ea\u0001\u0000\u0000\u0000"+
+		"0\u00fc\u0001\u0000\u0000\u00002\u00fe\u0001\u0000\u0000\u00004\u0104"+
+		"\u0001\u0000\u0000\u00006\u0114\u0001\u0000\u0000\u00008\u011c\u0001\u0000"+
+		"\u0000\u0000:\u0123\u0001\u0000\u0000\u0000<\u0125\u0001\u0000\u0000\u0000"+
+		">\u0127\u0001\u0000\u0000\u0000@\u0129\u0001\u0000\u0000\u0000B\u0140"+
+		"\u0001\u0000\u0000\u0000D\u0143\u0001\u0000\u0000\u0000F\u0156\u0001\u0000"+
+		"\u0000\u0000H\u0162\u0001\u0000\u0000\u0000JL\u0003\u0002\u0001\u0000"+
+		"KJ\u0001\u0000\u0000\u0000KL\u0001\u0000\u0000\u0000LN\u0001\u0000\u0000"+
+		"\u0000MO\u0005+\u0000\u0000NM\u0001\u0000\u0000\u0000OP\u0001\u0000\u0000"+
+		"\u0000PN\u0001\u0000\u0000\u0000PQ\u0001\u0000\u0000\u0000QS\u0001\u0000"+
+		"\u0000\u0000RK\u0001\u0000\u0000\u0000ST\u0001\u0000\u0000\u0000TR\u0001"+
+		"\u0000\u0000\u0000TU\u0001\u0000\u0000\u0000UW\u0001\u0000\u0000\u0000"+
+		"VX\u0003\u0002\u0001\u0000WV\u0001\u0000\u0000\u0000WX\u0001\u0000\u0000"+
+		"\u0000XY\u0001\u0000\u0000\u0000YZ\u0005\u0000\u0000\u0001Z\u0001\u0001"+
+		"\u0000\u0000\u0000[]\u0003\u0004\u0002\u0000\\^\u0003H$\u0000]\\\u0001"+
+		"\u0000\u0000\u0000]^\u0001\u0000\u0000\u0000^b\u0001\u0000\u0000\u0000"+
+		"_b\u0003H$\u0000`b\u0003.\u0017\u0000a[\u0001\u0000\u0000\u0000a_\u0001"+
+		"\u0000\u0000\u0000a`\u0001\u0000\u0000\u0000b\u0003\u0001\u0000\u0000"+
+		"\u0000cs\u0003\u0006\u0003\u0000ds\u0003\b\u0004\u0000es\u0003\n\u0005"+
+		"\u0000fs\u0003\f\u0006\u0000gs\u0003\u000e\u0007\u0000hs\u0003\u0010\b"+
+		"\u0000is\u0003\u0012\t\u0000js\u0003D\"\u0000ks\u0003F#\u0000ls\u0003"+
+		"\u0016\u000b\u0000ms\u0003$\u0012\u0000ns\u0003\"\u0011\u0000os\u0003"+
+		"&\u0013\u0000ps\u0003(\u0014\u0000qs\u0003\u0018\f\u0000rc\u0001\u0000"+
+		"\u0000\u0000rd\u0001\u0000\u0000\u0000re\u0001\u0000\u0000\u0000rf\u0001"+
+		"\u0000\u0000\u0000rg\u0001\u0000\u0000\u0000rh\u0001\u0000\u0000\u0000"+
+		"ri\u0001\u0000\u0000\u0000rj\u0001\u0000\u0000\u0000rk\u0001\u0000\u0000"+
+		"\u0000rl\u0001\u0000\u0000\u0000rm\u0001\u0000\u0000\u0000rn\u0001\u0000"+
+		"\u0000\u0000ro\u0001\u0000\u0000\u0000rp\u0001\u0000\u0000\u0000rq\u0001"+
+		"\u0000\u0000\u0000s\u0005\u0001\u0000\u0000\u0000ty\u0005\u0001\u0000"+
+		"\u0000uz\u0005\u0002\u0000\u0000vz\u0005\u0003\u0000\u0000wz\u0003<\u001e"+
+		"\u0000xz\u0003F#\u0000yu\u0001\u0000\u0000\u0000yv\u0001\u0000\u0000\u0000"+
+		"yw\u0001\u0000\u0000\u0000yx\u0001\u0000\u0000\u0000z\u0007\u0001\u0000"+
+		"\u0000\u0000{\u0081\u0005\u0004\u0000\u0000|\u0082\u0005\u0005\u0000\u0000"+
+		"}\u0082\u0005\u0006\u0000\u0000~\u0082\u0005\u0003\u0000\u0000\u007f\u0082"+
+		"\u0003<\u001e\u0000\u0080\u0082\u0003F#\u0000\u0081|\u0001\u0000\u0000"+
+		"\u0000\u0081}\u0001\u0000\u0000\u0000\u0081~\u0001\u0000\u0000\u0000\u0081"+
+		"\u007f\u0001\u0000\u0000\u0000\u0081\u0080\u0001\u0000\u0000\u0000\u0082"+
+		"\t\u0001\u0000\u0000\u0000\u0083\u0088\u0005\u0007\u0000\u0000\u0084\u0089"+
+		"\u0005\u0002\u0000\u0000\u0085\u0089\u0005\u0003\u0000\u0000\u0086\u0089"+
+		"\u0003<\u001e\u0000\u0087\u0089\u0003F#\u0000\u0088\u0084\u0001\u0000"+
+		"\u0000\u0000\u0088\u0085\u0001\u0000\u0000\u0000\u0088\u0086\u0001\u0000"+
+		"\u0000\u0000\u0088\u0087\u0001\u0000\u0000\u0000\u0089\u000b\u0001\u0000"+
+		"\u0000\u0000\u008a\u008e\u0005\b\u0000\u0000\u008b\u008f\u0003\u001a\r"+
+		"\u0000\u008c\u008f\u0003<\u001e\u0000\u008d\u008f\u0003F#\u0000\u008e"+
+		"\u008b\u0001\u0000\u0000\u0000\u008e\u008c\u0001\u0000\u0000\u0000\u008e"+
+		"\u008d\u0001\u0000\u0000\u0000\u008f\r\u0001\u0000\u0000\u0000\u0090\u0091"+
+		"\u0005\t\u0000\u0000\u0091\u0092\u0003.\u0017\u0000\u0092\u000f\u0001"+
+		"\u0000\u0000\u0000\u0093\u0094\u0005\n\u0000\u0000\u0094\u0095\u0003."+
+		"\u0017\u0000\u0095\u0011\u0001\u0000\u0000\u0000\u0096\u0097\u0005\u000b"+
+		"\u0000\u0000\u0097\u0098\u0003\u0014\n\u0000\u0098\u0099\u0005\f\u0000"+
+		"\u0000\u0099\u009a\u0003\u001c\u000e\u0000\u009a\u0013\u0001\u0000\u0000"+
+		"\u0000\u009b\u009c\u0003<\u001e\u0000\u009c\u0015\u0001\u0000\u0000\u0000"+
+		"\u009d\u009e\u0003\u001c\u000e\u0000\u009e\u009f\u0003<\u001e\u0000\u009f"+
+		"\u00a0\u0005\r\u0000\u0000\u00a0\u00a1\u0003 \u0010\u0000\u00a1\u00a7"+
+		"\u0001\u0000\u0000\u0000\u00a2\u00a3\u0003<\u001e\u0000\u00a3\u00a4\u0005"+
+		"\r\u0000\u0000\u00a4\u00a5\u0003 \u0010\u0000\u00a5\u00a7\u0001\u0000"+
+		"\u0000\u0000\u00a6\u009d\u0001\u0000\u0000\u0000\u00a6\u00a2\u0001\u0000"+
+		"\u0000\u0000\u00a7\u0017\u0001\u0000\u0000\u0000\u00a8\u00a9\u0005\u000e"+
+		"\u0000\u0000\u00a9\u00aa\u0003>\u001f\u0000\u00aa\u0019\u0001\u0000\u0000"+
+		"\u0000\u00ab\u00ac\u0005\u000f\u0000\u0000\u00ac\u00ad\u0003 \u0010\u0000"+
+		"\u00ad\u00ae\u0005\u0010\u0000\u0000\u00ae\u00af\u0003 \u0010\u0000\u00af"+
+		"\u00b0\u0005\u0010\u0000\u0000\u00b0\u00b1\u0003 \u0010\u0000\u00b1\u00b2"+
+		"\u0005\u0011\u0000\u0000\u00b2\u001b\u0001\u0000\u0000\u0000\u00b3\u00b4"+
+		"\u0007\u0000\u0000\u0000\u00b4\u001d\u0001\u0000\u0000\u0000\u00b5\u00b6"+
+		"\u0005*\u0000\u0000\u00b6\u001f\u0001\u0000\u0000\u0000\u00b7\u00b8\u0005"+
+		"\u0017\u0000\u0000\u00b8\u00b9\u0003>\u001f\u0000\u00b9\u00ba\u0005\u0017"+
+		"\u0000\u0000\u00ba\u00bf\u0001\u0000\u0000\u0000\u00bb\u00bf\u00034\u001a"+
+		"\u0000\u00bc\u00bf\u0003.\u0017\u0000\u00bd\u00bf\u0003\u001a\r\u0000"+
+		"\u00be\u00b7\u0001\u0000\u0000\u0000\u00be\u00bb\u0001\u0000\u0000\u0000"+
+		"\u00be\u00bc\u0001\u0000\u0000\u0000\u00be\u00bd\u0001\u0000\u0000\u0000"+
+		"\u00bf!\u0001\u0000\u0000\u0000\u00c0\u00c1\u0005\u0018\u0000\u0000\u00c1"+
+		"\u00c2\u0005\u000f\u0000\u0000\u00c2\u00c3\u0003 \u0010\u0000\u00c3\u00c4"+
+		"\u0005\u0011\u0000\u0000\u00c4\u00c5\u0003@ \u0000\u00c5#\u0001\u0000"+
+		"\u0000\u0000\u00c6\u00c7\u0005\u0019\u0000\u0000\u00c7\u00c8\u0003 \u0010"+
+		"\u0000\u00c8\u00c9\u0005\u001a\u0000\u0000\u00c9\u00ca\u0003@ \u0000\u00ca"+
+		"%\u0001\u0000\u0000\u0000\u00cb\u00cc\u0005\u001b\u0000\u0000\u00cc\u00cd"+
+		"\u0003 \u0010\u0000\u00cd\u00ce\u0003@ \u0000\u00ce\'\u0001\u0000\u0000"+
+		"\u0000\u00cf\u00d0\u0005\u001c\u0000\u0000\u00d0\u00d1\u0003@ \u0000\u00d1"+
+		")\u0001\u0000\u0000\u0000\u00d2\u00d4\u0005\"\u0000\u0000\u00d3\u00d2"+
+		"\u0001\u0000\u0000\u0000\u00d4\u00d7\u0001\u0000\u0000\u0000\u00d5\u00d3"+
+		"\u0001\u0000\u0000\u0000\u00d5\u00d6\u0001\u0000\u0000\u0000\u00d6\u00e0"+
+		"\u0001\u0000\u0000\u0000\u00d7\u00d5\u0001\u0000\u0000\u0000\u00d8\u00e1"+
+		"\u00036\u001b\u0000\u00d9\u00e1\u00038\u001c\u0000\u00da\u00e1\u0003<"+
+		"\u001e\u0000\u00db\u00e1\u0003F#\u0000\u00dc\u00dd\u0005\u000f\u0000\u0000"+
+		"\u00dd\u00de\u0003.\u0017\u0000\u00de\u00df\u0005\u0011\u0000\u0000\u00df"+
+		"\u00e1\u0001\u0000\u0000\u0000\u00e0\u00d8\u0001\u0000\u0000\u0000\u00e0"+
+		"\u00d9\u0001\u0000\u0000\u0000\u00e0\u00da\u0001\u0000\u0000\u0000\u00e0"+
+		"\u00db\u0001\u0000\u0000\u0000\u00e0\u00dc\u0001\u0000\u0000\u0000\u00e1"+
+		"+\u0001\u0000\u0000\u0000\u00e2\u00e7\u0003*\u0015\u0000\u00e3\u00e4\u0005"+
+		"$\u0000\u0000\u00e4\u00e6\u0003*\u0015\u0000\u00e5\u00e3\u0001\u0000\u0000"+
+		"\u0000\u00e6\u00e9\u0001\u0000\u0000\u0000\u00e7\u00e5\u0001\u0000\u0000"+
+		"\u0000\u00e7\u00e8\u0001\u0000\u0000\u0000\u00e8-\u0001\u0000\u0000\u0000"+
+		"\u00e9\u00e7\u0001\u0000\u0000\u0000\u00ea\u00ef\u0003,\u0016\u0000\u00eb"+
+		"\u00ec\u0005\"\u0000\u0000\u00ec\u00ee\u0003,\u0016\u0000\u00ed\u00eb"+
+		"\u0001\u0000\u0000\u0000\u00ee\u00f1\u0001\u0000\u0000\u0000\u00ef\u00ed"+
+		"\u0001\u0000\u0000\u0000\u00ef\u00f0\u0001\u0000\u0000\u0000\u00f0/\u0001"+
+		"\u0000\u0000\u0000\u00f1\u00ef\u0001\u0000\u0000\u0000\u00f2\u00fd\u0003"+
+		"<\u001e\u0000\u00f3\u00fd\u0003:\u001d\u0000\u00f4\u00fd\u00036\u001b"+
+		"\u0000\u00f5\u00fd\u00038\u001c\u0000\u00f6\u00fd\u0003F#\u0000\u00f7"+
+		"\u00fd\u0003.\u0017\u0000\u00f8\u00f9\u0005\u000f\u0000\u0000\u00f9\u00fa"+
+		"\u00034\u001a\u0000\u00fa\u00fb\u0005\u0011\u0000\u0000\u00fb\u00fd\u0001"+
+		"\u0000\u0000\u0000\u00fc\u00f2\u0001\u0000\u0000\u0000\u00fc\u00f3\u0001"+
+		"\u0000\u0000\u0000\u00fc\u00f4\u0001\u0000\u0000\u0000\u00fc\u00f5\u0001"+
+		"\u0000\u0000\u0000\u00fc\u00f6\u0001\u0000\u0000\u0000\u00fc\u00f7\u0001"+
+		"\u0000\u0000\u0000\u00fc\u00f8\u0001\u0000\u0000\u0000\u00fd1\u0001\u0000"+
+		"\u0000\u0000\u00fe\u0101\u00030\u0018\u0000\u00ff\u0100\u0005(\u0000\u0000"+
+		"\u0100\u0102\u00030\u0018\u0000\u0101\u00ff\u0001\u0000\u0000\u0000\u0101"+
+		"\u0102\u0001\u0000\u0000\u0000\u01023\u0001\u0000\u0000\u0000\u0103\u0105"+
+		"\u0005&\u0000\u0000\u0104\u0103\u0001\u0000\u0000\u0000\u0104\u0105\u0001"+
+		"\u0000\u0000\u0000\u0105\u0106\u0001\u0000\u0000\u0000\u0106\u010e\u0003"+
+		"2\u0019\u0000\u0107\u0109\u0005\'\u0000\u0000\u0108\u010a\u0005&\u0000"+
+		"\u0000\u0109\u0108\u0001\u0000\u0000\u0000\u0109\u010a\u0001\u0000\u0000"+
+		"\u0000\u010a\u010b\u0001\u0000\u0000\u0000\u010b\u010d\u00032\u0019\u0000"+
+		"\u010c\u0107\u0001\u0000\u0000\u0000\u010d\u0110\u0001\u0000\u0000\u0000"+
+		"\u010e\u010c\u0001\u0000\u0000\u0000\u010e\u010f\u0001\u0000\u0000\u0000"+
+		"\u010f5\u0001\u0000\u0000\u0000\u0110\u010e\u0001\u0000\u0000\u0000\u0111"+
+		"\u0113\u0005\"\u0000\u0000\u0112\u0111\u0001\u0000\u0000\u0000\u0113\u0116"+
+		"\u0001\u0000\u0000\u0000\u0114\u0112\u0001\u0000\u0000\u0000\u0114\u0115"+
+		"\u0001\u0000\u0000\u0000\u0115\u0117\u0001\u0000\u0000\u0000\u0116\u0114"+
+		"\u0001\u0000\u0000\u0000\u0117\u0118\u0005#\u0000\u0000\u01187\u0001\u0000"+
+		"\u0000\u0000\u0119\u011b\u0005\"\u0000\u0000\u011a\u0119\u0001\u0000\u0000"+
+		"\u0000\u011b\u011e\u0001\u0000\u0000\u0000\u011c\u011a\u0001\u0000\u0000"+
+		"\u0000\u011c\u011d\u0001\u0000\u0000\u0000\u011d\u011f\u0001\u0000\u0000"+
+		"\u0000\u011e\u011c\u0001\u0000\u0000\u0000\u011f\u0120\u0005#\u0000\u0000"+
+		"\u0120\u0121\u0005\u001d\u0000\u0000\u0121\u0122\u0005#\u0000\u0000\u0122"+
+		"9\u0001\u0000\u0000\u0000\u0123\u0124\u0005)\u0000\u0000\u0124;\u0001"+
+		"\u0000\u0000\u0000\u0125\u0126\u0005*\u0000\u0000\u0126=\u0001\u0000\u0000"+
+		"\u0000\u0127\u0128\u0005*\u0000\u0000\u0128?\u0001\u0000\u0000\u0000\u0129"+
+		"\u012b\u0005\u001e\u0000\u0000\u012a\u012c\u0003B!\u0000\u012b\u012a\u0001"+
+		"\u0000\u0000\u0000\u012c\u012d\u0001\u0000\u0000\u0000\u012d\u012b\u0001"+
+		"\u0000\u0000\u0000\u012d\u012e\u0001\u0000\u0000\u0000\u012e\u012f\u0001"+
+		"\u0000\u0000\u0000\u012f\u0130\u0005\u001f\u0000\u0000\u0130A\u0001\u0000"+
+		"\u0000\u0000\u0131\u0135\u0003\u0002\u0001\u0000\u0132\u0134\u0005+\u0000"+
+		"\u0000\u0133\u0132\u0001\u0000\u0000\u0000\u0134\u0137\u0001\u0000\u0000"+
+		"\u0000\u0135\u0133\u0001\u0000\u0000\u0000\u0135\u0136\u0001\u0000\u0000"+
+		"\u0000\u0136\u0141\u0001\u0000\u0000\u0000\u0137\u0135\u0001\u0000\u0000"+
+		"\u0000\u0138\u0139\u0005 \u0000\u0000\u0139\u013d\u0003 \u0010\u0000\u013a"+
+		"\u013c\u0005+\u0000\u0000\u013b\u013a\u0001\u0000\u0000\u0000\u013c\u013f"+
+		"\u0001\u0000\u0000\u0000\u013d\u013b\u0001\u0000\u0000\u0000\u013d\u013e"+
+		"\u0001\u0000\u0000\u0000\u013e\u0141\u0001\u0000\u0000\u0000\u013f\u013d"+
+		"\u0001\u0000\u0000\u0000\u0140\u0131\u0001\u0000\u0000\u0000\u0140\u0138"+
+		"\u0001\u0000\u0000\u0000\u0141C\u0001\u0000\u0000\u0000\u0142\u0144\u0003"+
+		"\u001c\u000e\u0000\u0143\u0142\u0001\u0000\u0000\u0000\u0143\u0144\u0001"+
+		"\u0000\u0000\u0000\u0144\u0145\u0001\u0000\u0000\u0000\u0145\u0146\u0005"+
+		"!\u0000\u0000\u0146\u0147\u0003\u001e\u000f\u0000\u0147\u0148\u0005\u000f"+
+		"\u0000\u0000\u0148\u0149\u0003\u001c\u000e\u0000\u0149\u0150\u0003<\u001e"+
+		"\u0000\u014a\u014b\u0005\u0010\u0000\u0000\u014b\u014c\u0003\u001c\u000e"+
+		"\u0000\u014c\u014d\u0003<\u001e\u0000\u014d\u014f\u0001\u0000\u0000\u0000"+
+		"\u014e\u014a\u0001\u0000\u0000\u0000\u014f\u0152\u0001\u0000\u0000\u0000"+
+		"\u0150\u014e\u0001\u0000\u0000\u0000\u0150\u0151\u0001\u0000\u0000\u0000"+
+		"\u0151\u0153\u0001\u0000\u0000\u0000\u0152\u0150\u0001\u0000\u0000\u0000"+
+		"\u0153\u0154\u0005\u0011\u0000\u0000\u0154\u0155\u0003@ \u0000\u0155E"+
+		"\u0001\u0000\u0000\u0000\u0156\u0157\u0003\u001e\u000f\u0000\u0157\u0158"+
+		"\u0005\u000f\u0000\u0000\u0158\u015d\u0003 \u0010\u0000\u0159\u015a\u0005"+
+		"\u0010\u0000\u0000\u015a\u015c\u0003 \u0010\u0000\u015b\u0159\u0001\u0000"+
+		"\u0000\u0000\u015c\u015f\u0001\u0000\u0000\u0000\u015d\u015b\u0001\u0000"+
+		"\u0000\u0000\u015d\u015e\u0001\u0000\u0000\u0000\u015e\u0160\u0001\u0000"+
+		"\u0000\u0000\u015f\u015d\u0001\u0000\u0000\u0000\u0160\u0161\u0005\u0011"+
+		"\u0000\u0000\u0161G\u0001\u0000\u0000\u0000\u0162\u0163\u0005,\u0000\u0000"+
+		"\u0163I\u0001\u0000\u0000\u0000\u001fKPTW]ary\u0081\u0088\u008e\u00a6"+
+		"\u00be\u00d5\u00e0\u00e7\u00ef\u00fc\u0101\u0104\u0109\u010e\u0114\u011c"+
+		"\u012d\u0135\u013d\u0140\u0143\u0150\u015d";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

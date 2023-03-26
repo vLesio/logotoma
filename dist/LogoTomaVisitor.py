@@ -49,6 +49,11 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by LogoTomaParser#sleep.
+    def visitSleep(self, ctx:LogoTomaParser.SleepContext):
+        return self.visitChildren(ctx)
+
+
     # Visit a parse tree produced by LogoTomaParser#cast.
     def visitCast(self, ctx:LogoTomaParser.CastContext):
         return self.visitChildren(ctx)
@@ -139,13 +144,13 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#integer.
-    def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
+    # Visit a parse tree produced by LogoTomaParser#floate.
+    def visitFloate(self, ctx:LogoTomaParser.FloateContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#floate.
-    def visitFloate(self, ctx:LogoTomaParser.FloateContext):
+    # Visit a parse tree produced by LogoTomaParser#integer.
+    def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
         return self.visitChildren(ctx)
 
 
