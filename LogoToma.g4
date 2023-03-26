@@ -7,6 +7,7 @@ program
 line
     : command comment?
     | comment
+    | expression
     ;
 
 command
@@ -15,6 +16,7 @@ command
     | spray
     | spray_color
     | spray_size
+    | sleep
     | cast
     | function
     | f_call
@@ -27,23 +29,27 @@ command
     ;
 
 engine
-    : 'engine' ('on' | 'off')
+    : 'engine' ('on' | 'off' | deref | f_call)
     ;
 
 wheel
-    : 'wheel' ('right' | 'left' | 'off')
+    : 'wheel' ('right' | 'left' | 'off' | deref | f_call)
     ;
 
 spray
-    : 'spray' ('on' | 'off')
+    : 'spray' ('on' | 'off' | deref | f_call)
     ;
 
 spray_color
-    : 'spray color' color
+    : 'spray color' (color | deref | f_call)
     ;
 
 spray_size
-    : 'spray size' value
+    : 'spray size' expression
+    ;
+
+sleep
+    : 'sleep' expression
     ;
 
 cast
@@ -80,9 +86,9 @@ name
     ;
 
 value
-    : logic_expression
+    : '"' string '"'
+    | logic_expression
     | expression
-    | '"' string '"'
     | color
     ;
 
@@ -103,7 +109,7 @@ elsee
     ;
 
 signExpression
-   : (('+' | '-'))* (integer | floate | deref | f_call | '(' expression ')')
+   : SIGN_OPERATORS* (integer | floate | deref | f_call | '(' expression ')')
    ;
 
 multiplyingExpression
@@ -111,11 +117,11 @@ multiplyingExpression
    ;
 
 expression
-   : multiplyingExpression (SUM_OPERATORS multiplyingExpression)*
+   : multiplyingExpression (SIGN_OPERATORS multiplyingExpression)*
    ;
 
 atomicLogicExpression
-    : (expression | deref | bool | integer | floate | f_call | '(' logic_expression ')')
+    : (deref | bool | integer | floate | f_call | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
@@ -152,11 +158,11 @@ block
 
 statement
     : line EOL*
-    | 'return' expression EOL*
+    | 'return' value EOL*
     ;
 
 function
-    : type_name 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
+    : type_name? 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
     ;
 
 f_call
@@ -164,7 +170,7 @@ f_call
     ;
 
 comment
-    : '#' STRING*
+    : COMMENT
     ;
 
 SIGN_OPERATORS
@@ -215,6 +221,10 @@ STRING
 
 EOL
    : '\r'? '\n'
+   ;
+
+COMMENT
+   : '#' ~ [\r\n]*
    ;
 
 WS
