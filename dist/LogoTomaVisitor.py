@@ -24,8 +24,38 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#move.
-    def visitMove(self, ctx:LogoTomaParser.MoveContext):
+    # Visit a parse tree produced by LogoTomaParser#engine.
+    def visitEngine(self, ctx:LogoTomaParser.EngineContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#wheel.
+    def visitWheel(self, ctx:LogoTomaParser.WheelContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#spray.
+    def visitSpray(self, ctx:LogoTomaParser.SprayContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#spray_color.
+    def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#spray_size.
+    def visitSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#cast.
+    def visitCast(self, ctx:LogoTomaParser.CastContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#object.
+    def visitObject(self, ctx:LogoTomaParser.ObjectContext):
         return self.visitChildren(ctx)
 
 
@@ -34,38 +64,8 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#paint.
-    def visitPaint(self, ctx:LogoTomaParser.PaintContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by LogoTomaParser#save.
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#brush_shape.
-    def visitBrush_shape(self, ctx:LogoTomaParser.Brush_shapeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#brush_color.
-    def visitBrush_color(self, ctx:LogoTomaParser.Brush_colorContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#brush_size.
-    def visitBrush_size(self, ctx:LogoTomaParser.Brush_sizeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#linee.
-    def visitLinee(self, ctx:LogoTomaParser.LineeContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#circle.
-    def visitCircle(self, ctx:LogoTomaParser.CircleContext):
         return self.visitChildren(ctx)
 
 
@@ -119,13 +119,18 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#nestedExpression.
-    def visitNestedExpression(self, ctx:LogoTomaParser.NestedExpressionContext):
+    # Visit a parse tree produced by LogoTomaParser#expression.
+    def visitExpression(self, ctx:LogoTomaParser.ExpressionContext):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#expression.
-    def visitExpression(self, ctx:LogoTomaParser.ExpressionContext):
+    # Visit a parse tree produced by LogoTomaParser#atomicLogicExpression.
+    def visitAtomicLogicExpression(self, ctx:LogoTomaParser.AtomicLogicExpressionContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#comparisonExpression.
+    def visitComparisonExpression(self, ctx:LogoTomaParser.ComparisonExpressionContext):
         return self.visitChildren(ctx)
 
 
@@ -134,8 +139,13 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#number.
-    def visitNumber(self, ctx:LogoTomaParser.NumberContext):
+    # Visit a parse tree produced by LogoTomaParser#integer.
+    def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#floate.
+    def visitFloate(self, ctx:LogoTomaParser.FloateContext):
         return self.visitChildren(ctx)
 
 
@@ -156,6 +166,11 @@ class LogoTomaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#statement.
+    def visitStatement(self, ctx:LogoTomaParser.StatementContext):
         return self.visitChildren(ctx)
 
 
