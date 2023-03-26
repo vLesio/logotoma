@@ -29,19 +29,19 @@ command
     ;
 
 engine
-    : 'engine' ('on' | 'off' | deref | f_call)
+    : 'engine' ('on' | 'off' | indentifier | f_call)
     ;
 
 wheel
-    : 'wheel' ('right' | 'left' | 'off' | deref | f_call)
+    : 'wheel' ('right' | 'left' | 'off' | indentifier | f_call)
     ;
 
 spray
-    : 'spray' ('on' | 'off' | deref | f_call)
+    : 'spray' ('on' | 'off' | indentifier | f_call)
     ;
 
 spray_color
-    : 'spray color' (color | deref | f_call)
+    : 'spray color' (color | indentifier | f_call)
     ;
 
 spray_size
@@ -57,12 +57,12 @@ cast
     ;
 
 object
-    : deref
+    : indentifier
     ;
 
 assign
-    : type_name deref '=' value
-    | deref '=' value
+    : type_name indentifier '=' value
+    | indentifier '=' value
     ;
 
 save
@@ -79,14 +79,11 @@ type_name
     | 'int'
     | 'float'
     | 'string'
-    ;
-
-name
-    : STRING
+    | 'void'
     ;
 
 value
-    : '"' string '"'
+    : '"' string '"' 
     | logic_expression
     | expression
     | color
@@ -109,7 +106,7 @@ elsee
     ;
 
 signExpression
-   : SIGN_OPERATORS* (integer | floate | deref | f_call | '(' expression ')')
+   : SIGN_OPERATORS* (integer | floate | indentifier | f_call | '(' expression ')')
    ;
 
 multiplyingExpression
@@ -121,7 +118,7 @@ expression
    ;
 
 atomicLogicExpression
-    : (deref | bool | integer | floate | f_call | expression | '(' logic_expression ')')
+    : (indentifier | bool | integer | floate | f_call | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
@@ -144,10 +141,6 @@ bool
     : BOOL
     ;
 
-deref
-    : STRING
-    ;
-
 string
     : STRING
     ;
@@ -162,15 +155,24 @@ statement
     ;
 
 function
-    : type_name? 'pattern' name '(' type_name deref (',' type_name deref)* ')' block
+    : (type_name) 'pattern' indentifier '(' type_name indentifier (',' type_name indentifier)* ')' block
     ;
 
 f_call
-    : name '(' value (',' value)* ')'
+    : indentifier '(' value (',' value)* ')'
     ;
 
 comment
     : COMMENT
+    ;
+
+indentifier
+    : IDENTIFIER
+    ;
+
+IDENTIFIER
+    : [a-zA-Z][a-zA-Z0-9_\-]*
+    | [_\-][a-zA-Z0-9_\-]+
     ;
 
 SIGN_OPERATORS

@@ -1,7 +1,10 @@
 int x = 12
 int y = 24
 int z = 30
-string pattern on_or_off(int a, int b){
+if(a > b){
+    return "onn"
+}
+int pattern onnoroff(int a, int b){
     if(a > b){
         return "onn"
     }
@@ -17,17 +20,17 @@ spray off
 engine on
 sleep 5
 engine off
-spray on_or_off(x, y)
+spray onnoroff(x, y)
 wheel left
 sleep 360
 wheel off
 sleep 10
-spray on_or_off(2 * x, y)
+spray onnoroff(2 * x, y)
 wheel left
 sleep 360
 wheel off
 sleep 10
-spray on_or_off((2 - y + 14 * x % 3), z)
+spray onnoroff((2 - y + 14 * x % 3), z)
 wheel left
 sleep 360
 wheel off
