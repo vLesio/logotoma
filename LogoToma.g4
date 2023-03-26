@@ -40,7 +40,7 @@ spray
     ;
 
 spray_color
-    : 'spray color' (color | indentifier | f_call)
+    : 'spray color' (color | identifier | f_call)
     ;
 
 spray_size
@@ -56,12 +56,12 @@ cast
     ;
 
 object
-    : indentifier
+    : identifier
     ;
 
 assign
-    : type_name indentifier '=' value
-    | indentifier '=' value
+    : type_name identifier '=' value
+    | identifier '=' value
     ;
 
 save
@@ -105,7 +105,7 @@ value
     ;
 
 signExpression
-   : SIGN_OPERATORS? (integer | floate | deref | f_call | '(' expression ')')
+   : SIGN_OPERATORS? (integer | floate | identifier | f_call | '(' expression ')')
    ;
 
 multiplyingExpression
@@ -117,7 +117,7 @@ expression
    ;
 
 atomicLogicExpression
-    : (indentifier | bool | integer | floate | f_call | expression | '(' logic_expression ')')
+    : (identifier | bool | integer | floate | f_call | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
@@ -154,18 +154,18 @@ statement
     ;
 
 function
-    : (type_name) 'pattern' indentifier '(' type_name indentifier (',' type_name indentifier)* ')' block
+    : (type_name) 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' block
     ;
 
 f_call
-    : indentifier '(' value (',' value)* ')'
+    : identifier '(' value (',' value)* ')'
     ;
 
 comment
     : COMMENT
     ;
 
-indentifier
+identifier
     : IDENTIFIER
     ;
 
