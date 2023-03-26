@@ -1,0 +1,25 @@
+color pattern color_of_spray(int color1, int color2, int color3, int option){
+    if(option == 1){
+        return (color1, color2, color3)
+    }
+    if(option > 2 & option <= 5){
+        return (color2, color3, color1) 
+    }
+    else{
+        return (color3, color2, color1)
+    }
+}
+spray off
+engine on
+sleep 100
+engine off
+float i = 1
+cast i -> int
+loop while (i < 10){
+    spray color color_of_spray(0, 255, 255, i)
+    spray on
+    sleep 100
+    spray off
+    sleep 100
+    i = i + 1
+}

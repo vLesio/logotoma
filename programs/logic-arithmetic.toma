@@ -1,0 +1,42 @@
+int x = 12
+int y = 24
+int z = 30
+string pattern on_or_off(int a, int b){
+    if(a > b){
+        return "onn"
+    }
+    if(a == b){
+        return "offf"
+    }
+    else{
+        return "onn"
+    }
+}
+spray color(0, 255, 0)
+spray off
+engine on
+sleep 5
+engine off
+spray on_or_off(x, y)
+wheel left
+sleep 360
+wheel off
+sleep 10
+spray on_or_off(2 * x, y)
+wheel left
+sleep 360
+wheel off
+sleep 10
+spray on_or_off((2 - y + 14 * x % 3), z)
+wheel left
+sleep 360
+wheel off
+sleep 10
+if(((a > b) & (b > c)) | ((b > a) & (b > c))){
+    spray color(255, 0, 0)
+    sleep 50
+}
+if((c > a) & (c > b) & !(a < b)){
+    spray_color(0, 0, 255)
+    sleep 50
+}
