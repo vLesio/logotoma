@@ -29,13 +29,19 @@ class Visitor(LogoTomaVisitor):
             self.cmd.makolot.enable_engine()
         elif str(ctx.children[1]) == 'off':
             self.cmd.makolot.disable_engine()
-        self.cmd.sleep(500)
-        return 0
 
 
     # Visit a parse tree produced by LogoTomaParser#wheel.
     def visitWheel(self, ctx:LogoTomaParser.WheelContext):
-        return self.visitChildren(ctx)
+        if str(ctx.children[1]) == 'right':
+            print('setting right')
+            self.cmd.makolot.set_wheel_state('right')
+        elif str(ctx.children[1]) == 'left':
+            print('setting left')
+            self.cmd.makolot.set_wheel_state('left')
+        elif str(ctx.children[1]) == 'off':
+            print('turning off')
+            self.cmd.makolot.set_wheel_state('off')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray.
@@ -56,7 +62,6 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#sleep.
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
         self.cmd.sleep(self.visit(ctx.expression()))
-        return None
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
