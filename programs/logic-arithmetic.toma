@@ -1,18 +1,15 @@
 int x = 12
 int y = 24
 int z = 30
-if(a > b){
-    return "onn"
-}
-int pattern onnoroff(int a, int b){
+void pattern onoroff(int a, int b){
     if(a > b){
-        return "onn"
+        return "on"
     }
     if(a == b){
-        return "offf"
+        return "off"
     }
     else{
-        return "onn"
+        return "on"
     }
 }
 spray color(0, 255, 0)

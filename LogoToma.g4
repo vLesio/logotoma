@@ -27,6 +27,13 @@ command
     | save
     ;
 
+value
+    : string
+    | expression
+    | logic_expression
+    | color
+    ;
+
 engine
     : 'engine' ('on' | 'off' | logic_expression)
     ;
@@ -97,13 +104,6 @@ elsee
     : 'else' block
     ;
 
-value
-    : '"' string '"'
-    | expression
-    | logic_expression
-    | color
-    ;
-
 signExpression
    : SIGN_OPERATORS? (integer | floate | identifier | f_call | '(' expression ')')
    ;
@@ -126,22 +126,6 @@ comparisonExpression
 
 logic_expression
     : NEGATION_OPERATOR? comparisonExpression (LOGIC_OPERATORS NEGATION_OPERATOR? comparisonExpression)*
-    ;
-
-string
-    : STRING
-    ;
-
-integer
-    : NUMBER
-    ;
-
-floate
-    : NUMBER '.' NUMBER
-    ;
-
-bool
-    : BOOL
     ;
 
 block
@@ -167,6 +151,22 @@ comment
 
 identifier
     : IDENTIFIER
+    ;
+
+integer
+    : NUMBER
+    ;
+
+floate
+    : NUMBER '.' NUMBER
+    ;
+
+bool
+    : BOOL
+    ;
+
+string
+    : STRING
     ;
 
 IDENTIFIER
@@ -217,7 +217,7 @@ BOOL
     ;
 
 STRING
-    : [a-zA-Z_.0-9]+
+    : '"' ( ~('"' | '\\') )* '"' 
     ;
 
 EOL
