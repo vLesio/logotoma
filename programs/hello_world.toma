@@ -1,0 +1,56 @@
+# Linia w prawo
+wheel right
+sleep 1
+wheel off
+engine on
+sleep 10
+engine off
+wheel left
+sleep 2
+wheel off
+sleep 20
+engine on
+sleep 10
+engine off
+# Linia do góry
+wheel right
+sleep 1
+wheel off
+engine on
+sleep 10
+engine off
+wheel left
+sleep 2
+wheel off
+sleep 20
+engine on
+sleep 10
+engine off
+# Linia w prawo
+wheel right
+sleep 1
+wheel off
+engine on
+sleep 10
+engine off
+wheel left
+sleep 2
+wheel off
+sleep 20
+engine on
+sleep 10
+engine off
+# Linia do góry
+wheel right
+sleep 1
+wheel off
+engine on
+sleep 10
+engine off
+wheel left
+sleep 2
+wheel off
+sleep 20
+engine on
+sleep 10
+engine off

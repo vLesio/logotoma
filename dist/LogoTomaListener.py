@@ -35,12 +35,75 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#move.
-    def enterMove(self, ctx:LogoTomaParser.MoveContext):
+    # Enter a parse tree produced by LogoTomaParser#engine.
+    def enterEngine(self, ctx:LogoTomaParser.EngineContext):
         pass
 
-    # Exit a parse tree produced by LogoTomaParser#move.
-    def exitMove(self, ctx:LogoTomaParser.MoveContext):
+    # Exit a parse tree produced by LogoTomaParser#engine.
+    def exitEngine(self, ctx:LogoTomaParser.EngineContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#wheel.
+    def enterWheel(self, ctx:LogoTomaParser.WheelContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#wheel.
+    def exitWheel(self, ctx:LogoTomaParser.WheelContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#spray.
+    def enterSpray(self, ctx:LogoTomaParser.SprayContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#spray.
+    def exitSpray(self, ctx:LogoTomaParser.SprayContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#spray_color.
+    def enterSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#spray_color.
+    def exitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#spray_size.
+    def enterSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#spray_size.
+    def exitSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#sleep.
+    def enterSleep(self, ctx:LogoTomaParser.SleepContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#sleep.
+    def exitSleep(self, ctx:LogoTomaParser.SleepContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#cast.
+    def enterCast(self, ctx:LogoTomaParser.CastContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#cast.
+    def exitCast(self, ctx:LogoTomaParser.CastContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#object.
+    def enterObject(self, ctx:LogoTomaParser.ObjectContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#object.
+    def exitObject(self, ctx:LogoTomaParser.ObjectContext):
         pass
 
 
@@ -53,66 +116,12 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#paint.
-    def enterPaint(self, ctx:LogoTomaParser.PaintContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#paint.
-    def exitPaint(self, ctx:LogoTomaParser.PaintContext):
-        pass
-
-
     # Enter a parse tree produced by LogoTomaParser#save.
     def enterSave(self, ctx:LogoTomaParser.SaveContext):
         pass
 
     # Exit a parse tree produced by LogoTomaParser#save.
     def exitSave(self, ctx:LogoTomaParser.SaveContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#brush_shape.
-    def enterBrush_shape(self, ctx:LogoTomaParser.Brush_shapeContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#brush_shape.
-    def exitBrush_shape(self, ctx:LogoTomaParser.Brush_shapeContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#brush_color.
-    def enterBrush_color(self, ctx:LogoTomaParser.Brush_colorContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#brush_color.
-    def exitBrush_color(self, ctx:LogoTomaParser.Brush_colorContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#brush_size.
-    def enterBrush_size(self, ctx:LogoTomaParser.Brush_sizeContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#brush_size.
-    def exitBrush_size(self, ctx:LogoTomaParser.Brush_sizeContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#linee.
-    def enterLinee(self, ctx:LogoTomaParser.LineeContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#linee.
-    def exitLinee(self, ctx:LogoTomaParser.LineeContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#circle.
-    def enterCircle(self, ctx:LogoTomaParser.CircleContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#circle.
-    def exitCircle(self, ctx:LogoTomaParser.CircleContext):
         pass
 
 
@@ -206,21 +215,30 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#nestedExpression.
-    def enterNestedExpression(self, ctx:LogoTomaParser.NestedExpressionContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#nestedExpression.
-    def exitNestedExpression(self, ctx:LogoTomaParser.NestedExpressionContext):
-        pass
-
-
     # Enter a parse tree produced by LogoTomaParser#expression.
     def enterExpression(self, ctx:LogoTomaParser.ExpressionContext):
         pass
 
     # Exit a parse tree produced by LogoTomaParser#expression.
     def exitExpression(self, ctx:LogoTomaParser.ExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#atomicLogicExpression.
+    def enterAtomicLogicExpression(self, ctx:LogoTomaParser.AtomicLogicExpressionContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#atomicLogicExpression.
+    def exitAtomicLogicExpression(self, ctx:LogoTomaParser.AtomicLogicExpressionContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#comparisonExpression.
+    def enterComparisonExpression(self, ctx:LogoTomaParser.ComparisonExpressionContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#comparisonExpression.
+    def exitComparisonExpression(self, ctx:LogoTomaParser.ComparisonExpressionContext):
         pass
 
 
@@ -233,12 +251,21 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#number.
-    def enterNumber(self, ctx:LogoTomaParser.NumberContext):
+    # Enter a parse tree produced by LogoTomaParser#floate.
+    def enterFloate(self, ctx:LogoTomaParser.FloateContext):
         pass
 
-    # Exit a parse tree produced by LogoTomaParser#number.
-    def exitNumber(self, ctx:LogoTomaParser.NumberContext):
+    # Exit a parse tree produced by LogoTomaParser#floate.
+    def exitFloate(self, ctx:LogoTomaParser.FloateContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#integer.
+    def enterInteger(self, ctx:LogoTomaParser.IntegerContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#integer.
+    def exitInteger(self, ctx:LogoTomaParser.IntegerContext):
         pass
 
 
@@ -275,6 +302,15 @@ class LogoTomaListener(ParseTreeListener):
 
     # Exit a parse tree produced by LogoTomaParser#block.
     def exitBlock(self, ctx:LogoTomaParser.BlockContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#statement.
+    def enterStatement(self, ctx:LogoTomaParser.StatementContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#statement.
+    def exitStatement(self, ctx:LogoTomaParser.StatementContext):
         pass
 
 
