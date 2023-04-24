@@ -189,10 +189,7 @@ class Visitor(LogoTomaVisitor):
     def visitBool(self, ctx:LogoTomaParser.BoolContext):
         return self.visitChildren(ctx)
 
-<<<<<<< Updated upstream:interp/Visitor.py
 
-=======
->>>>>>> Stashed changes:interp/visitor.py
     # Visit a parse tree produced by LogoTomaParser#string.
     def visitString(self, ctx:LogoTomaParser.StringContext):
         return self.visitChildren(ctx)

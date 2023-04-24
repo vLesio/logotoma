@@ -1,2 +1,4 @@
-
-interp/__pycache__/
+.antlr
+__pycache__
+dist
+*$*
