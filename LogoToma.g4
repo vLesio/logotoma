@@ -116,12 +116,12 @@ expression
    : multiplyingExpression (SIGN_OPERATORS multiplyingExpression)*
    ;
 
-atomicLogicExpression
-    : NEGATION_OPERATOR? (identifier | bool | f_call | expression | '(' logic_expression ')')
+logicBit
+    : NEGATION_OPERATOR? ( bool | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
-    : atomicLogicExpression (COMPARISON_OPERATORS atomicLogicExpression)?
+    : logicBit (COMPARISON_OPERATORS logicBit)?
     ;
 
 logic_expression
