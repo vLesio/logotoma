@@ -1,6 +1,7 @@
 import pygame
 import time
 from interp.canvas import Canvas
+from interp.environment import Environment
 
 from interp.makolot import Makolot
 
@@ -14,7 +15,7 @@ class KosmoToma:
         pygame.init()
         pygame.display.set_caption(self.window_name)
         self.screen = pygame.display.set_mode((800, 600))
-
+        self.env = Environment()
         self.canvas = Canvas(self.screen)
         self.makolot = Makolot(self.screen)
 

@@ -94,11 +94,6 @@ class Visitor(LogoTomaVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#name.
-    def visitName(self, ctx:LogoTomaParser.NameContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by LogoTomaParser#value.
     def visitValue(self, ctx:LogoTomaParser.ValueContext):
         return self.visitChildren(ctx)
@@ -126,7 +121,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#signExpression.
     def visitSignExpression(self, ctx:LogoTomaParser.SignExpressionContext):
-        if len(ctx.SIGN_OPERATORS()) > 0 and str(ctx.SIGN_OPERATORS()[-1]) == '-':
+        if ctx.SIGN_OPERATORS() is not None and str(ctx.SIGN_OPERATORS()[-1]) == '-':
             return self.visitChildren(ctx) * -1
         else:
             return self.visitChildren(ctx)
@@ -185,11 +180,6 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#bool.
     def visitBool(self, ctx:LogoTomaParser.BoolContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#deref.
-    def visitDeref(self, ctx:LogoTomaParser.DerefContext):
         return self.visitChildren(ctx)
 
 
