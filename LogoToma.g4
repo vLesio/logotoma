@@ -117,7 +117,7 @@ expression
    ;
 
 atomicLogicExpression
-    : (identifier | bool | integer | floate | f_call | expression | '(' logic_expression ')')
+    : (identifier | bool | f_call | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
