@@ -101,8 +101,10 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#ife.
     def visitIfe(self, ctx:LogoTomaParser.IfeContext):
-        return self.visitChildren(ctx)
-
+        if self.visit(ctx.logic_expression()):
+            self.visit(ctx.block())
+        elif ctx.elsee() is not None:
+            self.visit(ctx.elsee()) 
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
@@ -116,7 +118,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
     def visitElsee(self, ctx:LogoTomaParser.ElseeContext):
-        return self.visitChildren(ctx)
+        self.visit(ctx.block())
 
 
     # Visit a parse tree produced by LogoTomaParser#signExpression.
@@ -135,9 +137,13 @@ class Visitor(LogoTomaVisitor):
             if op == '*':
                 l = l * self.visit(ctx.signExpression(i+1))
             elif op == '/':
-                l = l / self.visit(ctx.signExpression(i+1))
+                if type(l) == type(1) and type(self.visit(ctx.signExpression(i+1))) == type(1):
+                    l = l // self.visit(ctx.signExpression(i+1))
+                else:
+                    l = l / self.visit(ctx.signExpression(i+1))
             elif op == '%':
                 l = l % self.visit(ctx.signExpression(i+1))
+        print(l)
         return l
 
 
@@ -150,6 +156,7 @@ class Visitor(LogoTomaVisitor):
                 l = l + self.visit(ctx.multiplyingExpression(i+1))
             elif op == '-':
                 l = l - self.visit(ctx.multiplyingExpression(i+1))
+        print(l)
         return l
 
 
@@ -182,7 +189,10 @@ class Visitor(LogoTomaVisitor):
     def visitBool(self, ctx:LogoTomaParser.BoolContext):
         return self.visitChildren(ctx)
 
+<<<<<<< Updated upstream:interp/Visitor.py
 
+=======
+>>>>>>> Stashed changes:interp/visitor.py
     # Visit a parse tree produced by LogoTomaParser#string.
     def visitString(self, ctx:LogoTomaParser.StringContext):
         return self.visitChildren(ctx)

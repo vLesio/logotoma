@@ -1,4 +1,4 @@
-# Generated from .\LogoToma.g4 by ANTLR 4.12.0
+# Generated from LogoToma.g4 by ANTLR 4.12.0
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .LogoTomaParser import LogoTomaParser
@@ -32,6 +32,15 @@ class LogoTomaListener(ParseTreeListener):
 
     # Exit a parse tree produced by LogoTomaParser#command.
     def exitCommand(self, ctx:LogoTomaParser.CommandContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#value.
+    def enterValue(self, ctx:LogoTomaParser.ValueContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#value.
+    def exitValue(self, ctx:LogoTomaParser.ValueContext):
         pass
 
 
@@ -143,33 +152,6 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#name.
-    def enterName(self, ctx:LogoTomaParser.NameContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#name.
-    def exitName(self, ctx:LogoTomaParser.NameContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#value.
-    def enterValue(self, ctx:LogoTomaParser.ValueContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#value.
-    def exitValue(self, ctx:LogoTomaParser.ValueContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#ife.
-    def enterIfe(self, ctx:LogoTomaParser.IfeContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#ife.
-    def exitIfe(self, ctx:LogoTomaParser.IfeContext):
-        pass
-
-
     # Enter a parse tree produced by LogoTomaParser#loope.
     def enterLoope(self, ctx:LogoTomaParser.LoopeContext):
         pass
@@ -185,6 +167,15 @@ class LogoTomaListener(ParseTreeListener):
 
     # Exit a parse tree produced by LogoTomaParser#whilee.
     def exitWhilee(self, ctx:LogoTomaParser.WhileeContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#ife.
+    def enterIfe(self, ctx:LogoTomaParser.IfeContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#ife.
+    def exitIfe(self, ctx:LogoTomaParser.IfeContext):
         pass
 
 
@@ -251,51 +242,6 @@ class LogoTomaListener(ParseTreeListener):
         pass
 
 
-    # Enter a parse tree produced by LogoTomaParser#floate.
-    def enterFloate(self, ctx:LogoTomaParser.FloateContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#floate.
-    def exitFloate(self, ctx:LogoTomaParser.FloateContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#integer.
-    def enterInteger(self, ctx:LogoTomaParser.IntegerContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#integer.
-    def exitInteger(self, ctx:LogoTomaParser.IntegerContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#bool.
-    def enterBool(self, ctx:LogoTomaParser.BoolContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#bool.
-    def exitBool(self, ctx:LogoTomaParser.BoolContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#deref.
-    def enterDeref(self, ctx:LogoTomaParser.DerefContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#deref.
-    def exitDeref(self, ctx:LogoTomaParser.DerefContext):
-        pass
-
-
-    # Enter a parse tree produced by LogoTomaParser#string.
-    def enterString(self, ctx:LogoTomaParser.StringContext):
-        pass
-
-    # Exit a parse tree produced by LogoTomaParser#string.
-    def exitString(self, ctx:LogoTomaParser.StringContext):
-        pass
-
-
     # Enter a parse tree produced by LogoTomaParser#block.
     def enterBlock(self, ctx:LogoTomaParser.BlockContext):
         pass
@@ -338,6 +284,51 @@ class LogoTomaListener(ParseTreeListener):
 
     # Exit a parse tree produced by LogoTomaParser#comment.
     def exitComment(self, ctx:LogoTomaParser.CommentContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#identifier.
+    def enterIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#identifier.
+    def exitIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#integer.
+    def enterInteger(self, ctx:LogoTomaParser.IntegerContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#integer.
+    def exitInteger(self, ctx:LogoTomaParser.IntegerContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#floate.
+    def enterFloate(self, ctx:LogoTomaParser.FloateContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#floate.
+    def exitFloate(self, ctx:LogoTomaParser.FloateContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#bool.
+    def enterBool(self, ctx:LogoTomaParser.BoolContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#bool.
+    def exitBool(self, ctx:LogoTomaParser.BoolContext):
+        pass
+
+
+    # Enter a parse tree produced by LogoTomaParser#string.
+    def enterString(self, ctx:LogoTomaParser.StringContext):
+        pass
+
+    # Exit a parse tree produced by LogoTomaParser#string.
+    def exitString(self, ctx:LogoTomaParser.StringContext):
         pass
 
 

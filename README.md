@@ -10,6 +10,7 @@ Aby zbudować interpreter, należy w głównym folderze wykonać
 
 ```
 .\antlr4.bat -Dlanguage=Python3 .\LogoToma.g4 -visitor -o dist
+antlr4 -Dlanguage=Python3 LogoToma.g4 -visitor -o dist
 ```
 
 Uruchamiamy go poleceniem

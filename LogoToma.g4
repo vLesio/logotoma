@@ -23,8 +23,8 @@ command
     | loope
     | ife
     | whilee
-    | elsee
     | save
+    | value
     ;
 
 value
@@ -88,16 +88,16 @@ type_name
     | 'void'
     ;
 
-ife
-    : 'if' '(' value ')' block
-    ;
-
 loope
     : 'loop' value 'times' block
     ;
 
 whilee
     : 'loop while' value  block
+    ;
+
+ife
+    : 'if' '(' logic_expression ')' block elsee?
     ;
 
 elsee
@@ -129,7 +129,7 @@ logic_expression
     ;
 
 block
-    : '{' statement+ '}'
+    : EOL* '{' statement+ '}' EOL*
     ;
 
 statement

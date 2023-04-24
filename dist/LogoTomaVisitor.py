@@ -1,4 +1,4 @@
-# Generated from .\LogoToma.g4 by ANTLR 4.12.0
+# Generated from LogoToma.g4 by ANTLR 4.12.0
 from antlr4 import *
 if __name__ is not None and "." in __name__:
     from .LogoTomaParser import LogoTomaParser
@@ -21,6 +21,11 @@ class LogoTomaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#command.
     def visitCommand(self, ctx:LogoTomaParser.CommandContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#value.
+    def visitValue(self, ctx:LogoTomaParser.ValueContext):
         return self.visitChildren(ctx)
 
 
@@ -84,21 +89,6 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#name.
-    def visitName(self, ctx:LogoTomaParser.NameContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#value.
-    def visitValue(self, ctx:LogoTomaParser.ValueContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#ife.
-    def visitIfe(self, ctx:LogoTomaParser.IfeContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
         return self.visitChildren(ctx)
@@ -106,6 +96,11 @@ class LogoTomaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#whilee.
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#ife.
+    def visitIfe(self, ctx:LogoTomaParser.IfeContext):
         return self.visitChildren(ctx)
 
 
@@ -144,31 +139,6 @@ class LogoTomaVisitor(ParseTreeVisitor):
         return self.visitChildren(ctx)
 
 
-    # Visit a parse tree produced by LogoTomaParser#floate.
-    def visitFloate(self, ctx:LogoTomaParser.FloateContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#integer.
-    def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#bool.
-    def visitBool(self, ctx:LogoTomaParser.BoolContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#deref.
-    def visitDeref(self, ctx:LogoTomaParser.DerefContext):
-        return self.visitChildren(ctx)
-
-
-    # Visit a parse tree produced by LogoTomaParser#string.
-    def visitString(self, ctx:LogoTomaParser.StringContext):
-        return self.visitChildren(ctx)
-
-
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
         return self.visitChildren(ctx)
@@ -191,6 +161,31 @@ class LogoTomaVisitor(ParseTreeVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#comment.
     def visitComment(self, ctx:LogoTomaParser.CommentContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#identifier.
+    def visitIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#integer.
+    def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#floate.
+    def visitFloate(self, ctx:LogoTomaParser.FloateContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#bool.
+    def visitBool(self, ctx:LogoTomaParser.BoolContext):
+        return self.visitChildren(ctx)
+
+
+    # Visit a parse tree produced by LogoTomaParser#string.
+    def visitString(self, ctx:LogoTomaParser.StringContext):
         return self.visitChildren(ctx)
 
 
