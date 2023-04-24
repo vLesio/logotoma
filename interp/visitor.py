@@ -160,8 +160,8 @@ class Visitor(LogoTomaVisitor):
         return l
 
 
-    # Visit a parse tree produced by LogoTomaParser#atomicLogicExpression.
-    def visitAtomicLogicExpression(self, ctx:LogoTomaParser.AtomicLogicExpressionContext):
+    # Visit a parse tree produced by LogoTomaParser#logicBit.
+    def visitLogicBit(self, ctx:LogoTomaParser.LogicBitContext):
         return self.visitChildren(ctx)
 
 
