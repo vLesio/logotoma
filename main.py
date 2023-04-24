@@ -23,8 +23,14 @@ if __name__ == "__main__":
     stream = CommonTokenStream(lexer)
     parser = LogoTomaParser(stream)
     tree = parser.program()
+
+    # First run
     output = ParseTreeWalker().walk(Listener(cmd), tree)
+
+    # Print whatever
+    print(cmd.env.global_scope)
+
+    # Second run
     output = Visitor(cmd).visit(tree)
 
-    print(cmd.env.scope_stack)
     print(output)

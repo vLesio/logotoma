@@ -71,6 +71,10 @@ assign
     | identifier '=' value
     ;
 
+deref
+    : identifier
+    ;
+
 save
     : 'save' string
     ;
@@ -105,7 +109,7 @@ elsee
     ;
 
 signExpression
-   : SIGN_OPERATORS? (integer | floate | identifier | f_call | '(' expression ')')
+   : SIGN_OPERATORS? (integer | floate | deref | f_call | '(' expression ')')
    ;
 
 multiplyingExpression

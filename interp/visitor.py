@@ -76,7 +76,11 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#assign.
     def visitAssign(self, ctx:LogoTomaParser.AssignContext):
-        return self.visitChildren(ctx)
+        self.cmd.env.set_global_variable(ctx.identifier().getText(), self.visit(ctx.value()))
+
+    # Visit a parse tree produced by LogoTomaParser#deref.
+    def visitDeref(self, ctx:LogoTomaParser.DerefContext):
+        return self.cmd.env.get_global_value(self.visit(ctx.identifier()))
 
 
     # Visit a parse tree produced by LogoTomaParser#save.
@@ -143,7 +147,6 @@ class Visitor(LogoTomaVisitor):
                     l = l / self.visit(ctx.signExpression(i+1))
             elif op == '%':
                 l = l % self.visit(ctx.signExpression(i+1))
-        print(l)
         return l
 
 
@@ -156,7 +159,7 @@ class Visitor(LogoTomaVisitor):
                 l = l + self.visit(ctx.multiplyingExpression(i+1))
             elif op == '-':
                 l = l - self.visit(ctx.multiplyingExpression(i+1))
-        print(l)
+        print(f'Expression: {l}')
         return l
 
 
@@ -192,7 +195,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#string.
     def visitString(self, ctx:LogoTomaParser.StringContext):
-        return self.visitChildren(ctx)
+        return ctx.STRING().getText()
 
 
     # Visit a parse tree produced by LogoTomaParser#block.
@@ -218,3 +221,7 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#comment.
     def visitComment(self, ctx:LogoTomaParser.CommentContext):
         return self.visitChildren(ctx)
+    
+    # Visit a parse tree produced by LogoTomaParser#identifier.
+    def visitIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
+        return ctx.IDENTIFIER().getText()
