@@ -117,7 +117,7 @@ expression
    ;
 
 atomicLogicExpression
-    : (identifier | bool | f_call | expression | '(' logic_expression ')')
+    : NEGATION_OPERATOR? (identifier | bool | f_call | expression | '(' logic_expression ')')
     ;
 
 comparisonExpression
@@ -125,7 +125,7 @@ comparisonExpression
     ;
 
 logic_expression
-    : NEGATION_OPERATOR? comparisonExpression (LOGIC_OPERATORS NEGATION_OPERATOR? comparisonExpression)*
+    : comparisonExpression (LOGIC_OPERATORS comparisonExpression)*
     ;
 
 block
