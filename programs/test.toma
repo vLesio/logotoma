@@ -1,3 +1,2 @@
-float x = 3.4
+int x = 4
 x
-x + "siema"
