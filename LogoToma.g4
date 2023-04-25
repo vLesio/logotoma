@@ -116,13 +116,15 @@ multiplyingExpression
    : signExpression (MULTIPLYING_OPERATORS signExpression)*
    ;
 
+logicBit
+    : NEGATION_OPERATOR? bool
+    | NEGATION_OPERATOR? expression
+    | NEGATION_OPERATOR? '(' logic_expression ')'
+    ;
+
 expression
    : multiplyingExpression (SIGN_OPERATORS multiplyingExpression)*
    ;
-
-logicBit
-    : NEGATION_OPERATOR? ( bool | expression | '(' logic_expression ')')
-    ;
 
 comparisonExpression
     : logicBit (COMPARISON_OPERATORS logicBit)?
@@ -158,15 +160,11 @@ identifier
     ;
 
 integer
-    : NUMBER
+    :  NUMBER
     ;
 
 floate
     : NUMBER '.' NUMBER
-    ;
-
-bool
-    : BOOL
     ;
 
 string
@@ -175,12 +173,12 @@ string
 
 IDENTIFIER
     : [a-zA-Z][a-zA-Z0-9_\-]*
-    | [_\-][a-zA-Z0-9_\-]+
+    | [_][a-zA-Z0-9_\-]+
     ;
 
 SIGN_OPERATORS
-    : '+'
-    | '-'
+    : '-'
+    | '+'
     ;
 
 NUMBER
@@ -234,4 +232,8 @@ COMMENT
 
 WS
     : [ \t\r\n]+ -> skip
+    ;
+
+bool
+    : BOOL
     ;
