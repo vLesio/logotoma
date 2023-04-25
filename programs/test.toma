@@ -1,3 +1,13 @@
-if (False){
-    int x = 10
+if(False){
+    wheel right
+    sleep 1
+    wheel off
+}else{
+    wheel left
+    sleep 1
+    wheel off
 }
+engine on
+sleep 10
+engine off
+sleep 100
