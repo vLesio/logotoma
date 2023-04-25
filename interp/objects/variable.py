@@ -13,5 +13,5 @@ class Variable():
 
     def setValue(self, value: Value_):
         if self.type != value.type:
-            raise Exception(f"Type mismatch: {self.type} != {value.type}")
+            raise Exception(f"Cannot set value of type '{value.type}' to variable of type '{self.type}'")
         self.value = value

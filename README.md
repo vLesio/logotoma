@@ -2,9 +2,11 @@
 
 Aby uruchomić interpreter, potrzebne jest środowisko, w którym znajdują się nastepujące zależności:
 
-ANTLR4 runtime for python: `pip install antlr4-python3-runtime`
+**Python 3.10** lub nowszy.
 
-Pygame: `conda install -c cogsci pygame`, lub `pip install pygame` jeśli poprzednie nie zadziała.
+**ANTLR4 runtime for python**: `pip install antlr4-python3-runtime`.
+
+**Pygame**: `conda install -c cogsci pygame`, lub `pip install pygame` jeśli poprzednie nie zadziała.
 
 Aby zbudować interpreter, należy w głównym folderze wykonać
 

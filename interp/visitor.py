@@ -1,5 +1,6 @@
 from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
+from interp.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
 
 from interp.debugger import debug
@@ -16,6 +17,7 @@ class Visitor(LogoTomaVisitor):
         self.cmd = cmd
 
     # Visit a parse tree produced by LogoTomaParser#program.
+    @handle_exception
     def visitProgram(self, ctx:LogoTomaParser.ProgramContext):
         return self.visitChildren(ctx)
 
@@ -73,7 +75,7 @@ class Visitor(LogoTomaVisitor):
             assert isinstance(sleep_time, Integer_)
             self.cmd.sleep(sleep_time())
         except AssertionError:
-            raise Exception('Sleep time must be an integer')
+            raise Exception('Sleep time must be an integer.')
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
@@ -119,7 +121,7 @@ class Visitor(LogoTomaVisitor):
     def visitIfe(self, ctx:LogoTomaParser.IfeContext):
         # There has to be '()' at the end of the visit to the logic_expression because it will
         # return bool value of Bool_ object instead of the Bool_ object itself
-        val = self.visit(ctx.logic_expression())()
+        val = self.visit(ctx.logic_expression())
         if val:
             self.visit(ctx.block())
         elif ctx.elsee() is not None:
@@ -148,8 +150,8 @@ class Visitor(LogoTomaVisitor):
         else:
             value = self.visitChildren(ctx)
 
-        if ctx.SIGN_OPERATORS() is not None and str(ctx.SIGN_OPERATORS()[-1]) == '-':
-            return value * -1
+        if ctx.SIGN_OPERATORS() is not None and str(ctx.SIGN_OPERATORS().getText()) == '-':
+            return value * Integer_(-1)
         else:
             return value
 
@@ -168,8 +170,6 @@ class Visitor(LogoTomaVisitor):
                     l = l / self.visit(ctx.signExpression(index+1))
             elif operator == '%':
                 l = l % self.visit(ctx.signExpression(index+1))
-        # print()
-        # print(l)
         return l
 
 
@@ -196,19 +196,19 @@ class Visitor(LogoTomaVisitor):
         if ctx.logic_expression() is not None:
             value = self.visit(ctx.logic_expression())
             if negate:
-                return not value
+                return value * Integer_(-1)
             else:
                 return value
         elif ctx.expression() is not None:
             value = self.visit(ctx.expression())
             if negate:
-                return value * -1
+                return value * Integer_(-1)
             else:
                 return value
         elif ctx.bool_() is not None:
             value = self.visit(ctx.bool_())
             if negate:
-                return not value
+                return value * Integer_(-1)
             else:
                 return value
         
@@ -231,6 +231,8 @@ class Visitor(LogoTomaVisitor):
             condition = self.visit(ctx.logicBit(0)) < self.visit(ctx.logicBit(1))
         elif op == '==':
             condition = self.visit(ctx.logicBit(0)) == self.visit(ctx.logicBit(1))
+        elif op == '!=':
+            condition = self.visit(ctx.logicBit(0)) != self.visit(ctx.logicBit(1))
         return condition
 
 
@@ -244,7 +246,6 @@ class Visitor(LogoTomaVisitor):
                     value = value | self.visit(i)
                 elif operator == '&':
                     value = value & self.visit(i)
-        debug.log(f'LogicExpression: {value} type: {type(value)}')
         return value
     
 

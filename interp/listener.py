@@ -2,6 +2,8 @@ from dist.LogoTomaListener import LogoTomaListener
 from dist.LogoTomaParser import LogoTomaParser
 from interp.kosmotoma import KosmoToma
 
+from interp.exception_handler import handle_exception
+
 class Listener(LogoTomaListener):
 
     def __init__(self, cmd: KosmoToma):
@@ -10,6 +12,7 @@ class Listener(LogoTomaListener):
     
 
     # Enter a parse tree produced by LogoTomaParser#assign.
+    @handle_exception
     def enterAssign(self, ctx:LogoTomaParser.AssignContext):
         if ctx.type_name() is not None:
             self.cmd.env.add_global_variable(ctx.identifier().getText(), ctx.type_name().getText())

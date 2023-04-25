@@ -1,3 +1,5 @@
+from interp.objects.types import bool
+
 types = ['bool', 'int', 'float', 'string', 'color']
 
 class Value_():
@@ -18,20 +20,20 @@ class Value_():
     
     
     def __lt__(self, other):
-        return self.value < other.value
+        return bool.Bool_(self.value < other.value)
     
     def __le__(self, other):
-        return self.value <= other.value
+        return bool.Bool_(self.value <= other.value)
     
     def __eq__(self, other):
-        return self.value == other.value
+        return bool.Bool_(self.value == other.value)
     
     def __ne__(self, other):
-        return self.value != other.value
+        return bool.Bool_(self.value != other.value)
     
     def __gt__(self, other):
-        return self.value > other.value
+        return bool.Bool_(self.value > other.value)
     
     def __ge__(self, other):
-        return self.value >= other.value
+        return bool.Bool_(self.value >= other.value)
     

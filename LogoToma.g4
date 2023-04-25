@@ -215,6 +215,7 @@ LOGIC_OPERATORS
 
 COMPARISON_OPERATORS
     : '=='
+    | '!='
     | '<'
     | '>'
     | '<='
