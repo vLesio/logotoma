@@ -11,7 +11,27 @@ class Value_():
         self.value = value
 
     def __str__(self):
-        return f'Type: {self.type}, Value: {self.value}'
+        return f'{self.value}'
     
     def __call__(self):
         return self.value
+    
+    
+    def __lt__(self, other):
+        return self.value < other.value
+    
+    def __le__(self, other):
+        return self.value <= other.value
+    
+    def __eq__(self, other):
+        return self.value == other.value
+    
+    def __ne__(self, other):
+        return self.value != other.value
+    
+    def __gt__(self, other):
+        return self.value > other.value
+    
+    def __ge__(self, other):
+        return self.value >= other.value
+    

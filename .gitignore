@@ -2,3 +2,7 @@
 __pycache__
 dist
 *$*
+*.class
+*.java
+*.tokens
+*.interp
