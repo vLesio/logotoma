@@ -68,7 +68,12 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#sleep.
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
-        self.cmd.sleep(self.visit(ctx.expression()))
+        sleep_time = self.visit(ctx.expression())
+        try:
+            assert isinstance(sleep_time, Integer_)
+            self.cmd.sleep(sleep_time())
+        except AssertionError:
+            raise Exception('Sleep time must be an integer')
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
@@ -175,13 +180,11 @@ class Visitor(LogoTomaVisitor):
                 l = l + self.visit(ctx.multiplyingExpression(i+1))
             elif op == '-':
                 l = l - self.visit(ctx.multiplyingExpression(i+1))
-        debug.log("Expression: " + str(l))
         return l
 
 
     # Visit a parse tree produced by LogoTomaParser#logicBit.
     def visitLogicBit(self, ctx:LogoTomaParser.LogicBitContext):
-        debug.log(f'LogicBit Enter')
         negate = False 
         value = None
 
@@ -189,25 +192,19 @@ class Visitor(LogoTomaVisitor):
             negate = True
 
         if ctx.logic_expression() is not None:
-            debug.log(f'LogicBit: LogicExpression')
             value = self.visit(ctx.logic_expression())
             if negate:
                 return not value
             else:
                 return value
         elif ctx.expression() is not None:
-            debug.log(f'LogicBit: Expression')
-            # for i in ctx.expression():
-                # debug.log(f'LogicBit: Expression {str(i)}')
             value = self.visit(ctx.expression())
             if negate:
                 return value*-1
             else:
                 return value
         elif ctx.bool_() is not None:
-            debug.log(f'LogicBit: Bool')
             value = self.visit(ctx.bool_())
-            debug.log(f'LogicBit: Bool {value} and Type: {type(value)}')
             if negate:
                 return not value
             else:
@@ -217,12 +214,10 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#comparisonExpression.
     def visitComparisonExpression(self, ctx:LogoTomaParser.ComparisonExpressionContext):
-        debug.log(f'ComparisonExpression Enter')
         op = str(ctx.COMPARISON_OPERATORS())
         condition = None
         
         if ctx.COMPARISON_OPERATORS() is None:
-            debug.log(f'ComparisonExpression: None')
             condition = self.visit(ctx.logicBit(0))
         elif op == '>=':
             condition = self.visit(ctx.logicBit(0)) >= self.visit(ctx.logicBit(1))
@@ -234,7 +229,6 @@ class Visitor(LogoTomaVisitor):
             condition = self.visit(ctx.logicBit(0)) < self.visit(ctx.logicBit(1))
         elif op == '==':
             condition = self.visit(ctx.logicBit(0)) == self.visit(ctx.logicBit(1))
-        debug.log(f'ComparisonExpression: {condition} | {type(condition)}')
         return condition
 
 
@@ -248,7 +242,6 @@ class Visitor(LogoTomaVisitor):
                     value = value or bool(self.visit(i))
                 elif operator == '&':
                     value = value and bool(self.visit(i))
-        debug.log(f'Logic expression: {value} | {type(value)}')
         return value
     
 
