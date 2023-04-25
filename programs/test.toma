@@ -1,2 +1,37 @@
-int x = 5
-print y
+<<<<<<< Updated upstream
+int x = "5"
+if(gonwo){
+    sleep 10
+}
+#y = 10
+if(Truee){
+    sleep 20
+}else{
+    sleep 1
+}
+=======
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+>>>>>>> Stashed changes
