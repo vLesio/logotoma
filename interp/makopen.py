@@ -1,15 +1,16 @@
 import pygame
 from copy import deepcopy
+from interp.debugger import debug
 
 class Makopen:
 
-    def __init__(self, screen: pygame.Surface, position: tuple) -> None:
+    def __init__(self, screen: pygame.Surface, canvas, position: tuple) -> None:
         self.screen: pygame.Surface = screen
         self.screen_size: tuple = screen.get_size()
-
-        self.last_position = deepcopy(position)
+        self.canvas = canvas
 
         self.color = (0,0,0)
+        self.width = 1
 
         self.isDrawing = True
 
@@ -17,9 +18,14 @@ class Makopen:
         self.color = color
 
     def draw(self, position: tuple) -> None:
+        pos = deepcopy(position)
+
+        debug.log(pos)
         if self.isDrawing:
-            pygame.draw.line(self.screen, self.color, self.last_position, position)
-        self.last_position = deepcopy(position)
+            self.canvas.addDot(pos, self.color, self.width)
+    
+    def setWidth(self, width) -> None:
+        self.width = width
 
     def setDrawingState(self, isDrawing: bool) -> None:
         self.isDrawing = isDrawing
