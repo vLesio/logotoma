@@ -1,10 +1,5 @@
-types = {
-    "bool": bool,
-    "int": int,
-    "float": float,
-    "string": str,
-    "color": tuple
-}
+from interp.objects.types.types import types
+from interp.objects.types.value import Value_
 
 class Variable():
     type: str
@@ -16,7 +11,7 @@ class Variable():
         self.type = type
         self.value = None
 
-    def setValue(self, value: any):
-        if type(value) is not types[self.type]:
-            raise Exception(f"Type mismatch: {self.type} != {type(value)}")
+    def setValue(self, value: Value_):
+        if self.type != value.type:
+            raise Exception(f"Type mismatch: {self.type} != {value.type}")
         self.value = value

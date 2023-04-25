@@ -2,6 +2,10 @@ from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
 from interp.kosmotoma import KosmoToma
 
+from interp.debugger import debug
+
+from interp.objects.types.integer import Integer_
+
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -159,7 +163,8 @@ class Visitor(LogoTomaVisitor):
                 l = l + self.visit(ctx.multiplyingExpression(i+1))
             elif op == '-':
                 l = l - self.visit(ctx.multiplyingExpression(i+1))
-        print(f'Expression: {l}')
+        debug.log(f'Expression: {l+1}')
+        debug.log(f'ExprType: {type(l)}')
         return l
 
 
@@ -219,7 +224,8 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#integer.
     def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
-        return int(ctx.getText())
+        # return int(ctx.getText())
+        return Integer_('int', ctx.getText())
 
 
     # Visit a parse tree produced by LogoTomaParser#floate.
