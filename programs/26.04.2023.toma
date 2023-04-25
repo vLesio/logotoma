@@ -22,7 +22,7 @@ sleep 50
 if(a == 1 & True & b & !c){
     engine on
 }
-sleep 10
+sleep 5
 engine off
 
 sleep 50
@@ -43,22 +43,28 @@ engine on
 sleep 10
 engine off
 
-sleep 50
+sleep 35
 
 #
 # Breaking
 #
-wheel left 45
+wheel left
 sleep 45
 wheel off
 
-engine on 
-sleep 10
+sleep 5
+
+engine on
+sleep 5
 engine off
 
+sleep 15
+
 wheel right
-sleep 90
+sleep 135
 wheel off
+
+sleep 5
 
 engine on
 sleep 10
