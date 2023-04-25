@@ -1,0 +1,69 @@
+#
+# If int works it should be equal to one at the end
+#
+int a = 0
+
+a = a + 2
+
+a = a - 1
+
+a = a * 2
+
+a = a / 2
+
+bool b = True
+bool c = False
+
+sleep 50
+
+#
+# If bool expression works makolot will start
+#
+if(a == 1 & True & b & !c){
+    engine on
+}
+sleep 10
+engine off
+
+sleep 50
+
+#
+# Turning left
+#
+wheel left
+sleep 45
+wheel off
+
+sleep 50
+
+#
+# Flying on diagonal
+#
+engine on
+sleep 10
+engine off
+
+sleep 50
+
+#
+# Breaking
+#
+wheel left 45
+sleep 45
+wheel off
+
+engine on 
+sleep 10
+engine off
+
+wheel right
+sleep 90
+wheel off
+
+engine on
+sleep 10
+engine off
+
+sleep 50
+
+
