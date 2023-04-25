@@ -5,6 +5,7 @@ from dist.LogoTomaParser import LogoTomaParser
 from interp.listener import Listener
 from interp.visitor import Visitor
 from interp.kosmotoma import KosmoToma
+from interp.debugger import debug
 
 import pygame
 
@@ -28,9 +29,9 @@ if __name__ == "__main__":
     output = ParseTreeWalker().walk(Listener(cmd), tree)
 
     # Print whatever
-    print(cmd.env.global_scope)
+    debug.log(f'Global scope: {cmd.env.global_scope}')
 
     # Second run
     output = Visitor(cmd).visit(tree)
 
-    print(output)
+    debug.log(f"Output: {output}")
