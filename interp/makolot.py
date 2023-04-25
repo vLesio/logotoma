@@ -1,7 +1,8 @@
 import pygame
+from interp.makopen import Makopen
+from copy import deepcopy
 
 class Makolot:
-
     def __init__(self, screen: pygame.Surface) -> None:
         self.screen: pygame.Surface = screen
         self.screen_size: tuple = screen.get_size()
@@ -15,6 +16,7 @@ class Makolot:
         self.is_engine_enabled: bool = False
         self.velocity: tuple = (0, 0)
         self.wheel_status: int = 0
+        self.makopen = Makopen(screen, deepcopy(self.position))
 
     def nextFrame(self) -> None:
         self.rotate()
@@ -22,6 +24,7 @@ class Makolot:
 
         rotated_image = pygame.transform.rotate(self.makolot, -self.rotation)
         self.move(self.velocity[0], self.velocity[1])
+        self.makopen.draw(self.position)
 
         self.screen.blit(rotated_image, self.position)
 
