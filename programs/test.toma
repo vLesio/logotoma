@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 int x = "5"
 if(gonwo){
     sleep 10
@@ -8,3 +9,29 @@ if(Truee){
 }else{
     sleep 1
 }
+=======
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 50
+engine off
+wheel left
+sleep 45
+wheel off
+>>>>>>> Stashed changes

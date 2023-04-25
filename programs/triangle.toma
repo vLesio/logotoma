@@ -1,0 +1,14 @@
+engine on
+sleep 20
+engine off
+wheel left
+sleep 60
+wheel off
+engine on
+sleep 20
+engine off
+wheel left
+sleep 60
+wheel off
+engine on
+sleep 100

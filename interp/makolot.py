@@ -1,4 +1,5 @@
 import pygame
+import math
 from interp.makopen import Makopen
 
 class Makolot:
@@ -10,7 +11,7 @@ class Makolot:
 
         self.position: tuple = (self.screen_size[0]/2 - self.img_size[0]/2,
                                 self.screen_size[1]/2 - self.img_size[1]/2)
-        self.rotation: int = 0
+        self.rotation: int = 90
 
         self.is_engine_enabled: bool = False
         self.velocity: tuple = (0, 0)
@@ -29,22 +30,33 @@ class Makolot:
 
     def rotate(self):
         self.rotation += self.wheel_status * 2
-        if self.rotation < 0:
-            self.rotation += 360
-        elif self.rotation > 359:
-            self.rotation -= 360
+        self.rotation %= 360
 
     def accelerate(self):
         if not self.is_engine_enabled:
             return
-        if self.rotation == 0:
-            self.velocity = (self.velocity[0], self.velocity[1] + 1)
-        elif self.rotation == 90:
-            self.velocity = (self.velocity[0] + 1, self.velocity[1])
-        elif self.rotation == 180:
-            self.velocity = (self.velocity[0], self.velocity[1] - 1)
-        elif self.rotation == 270:
-            self.velocity = (self.velocity[0] - 1, self.velocity[1])
+            
+        # Convert rotation to radians
+        theta = math.radians(self.rotation)
+
+        # Calculate x and y components of velocity
+        x_vel = math.sin(theta)
+        y_vel = math.cos(theta)
+
+        # Scale velocity by a constant factor
+        velocity_scale = 3
+        self.velocity = (x_vel * velocity_scale, y_vel * velocity_scale)
+
+        # if not self.is_engine_enabled:
+        #     return
+        # if self.rotation == 0:
+        #     self.velocity = (self.velocity[0], self.velocity[1] + 1)
+        # elif self.rotation == 90:
+        #     self.velocity = (self.velocity[0] + 1, self.velocity[1])
+        # elif self.rotation == 180:
+        #     self.velocity = (self.velocity[0], self.velocity[1] - 1)
+        # elif self.rotation == 270:
+        #     self.velocity = (self.velocity[0] - 1, self.velocity[1])
 
     def move(self, right: int, up: int):
         self.position = (self.position[0] + right, self.position[1] - up)
