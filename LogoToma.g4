@@ -71,6 +71,10 @@ assign
     | identifier '=' value
     ;
 
+bool
+    : BOOL
+    ;
+
 deref
     : identifier
     ;
@@ -120,6 +124,10 @@ logicBit
     : NEGATION_OPERATOR? bool
     | NEGATION_OPERATOR? expression
     | NEGATION_OPERATOR? '(' logic_expression ')'
+    ;
+
+BOOL
+    : ('True' | 'False')
     ;
 
 expression
@@ -213,11 +221,6 @@ COMPARISON_OPERATORS
     | '>='
     ;
 
-BOOL
-    : 'True'
-    | 'False'
-    ;
-
 STRING
     : '"' ( ~('"' | '\\') )* '"' 
     ;
@@ -232,8 +235,4 @@ COMMENT
 
 WS
     : [ \t\r\n]+ -> skip
-    ;
-
-bool
-    : BOOL
     ;
