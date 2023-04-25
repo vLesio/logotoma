@@ -17,6 +17,7 @@ command
     | spray_size
     | sleep
     | cast
+    | print
     | function
     | f_call
     | assign
@@ -60,6 +61,10 @@ sleep
 
 cast
     : 'cast' object '->' type_name
+    ;
+
+print
+    : 'print' value
     ;
 
 object
@@ -113,7 +118,7 @@ elsee
     ;
 
 signExpression
-   : SIGN_OPERATORS? (integer | floate | deref | f_call | '(' expression ')')
+   : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | '(' expression ')')
    ;
 
 multiplyingExpression

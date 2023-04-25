@@ -20,7 +20,6 @@ class Makopen:
     def draw(self, position: tuple) -> None:
         pos = deepcopy(position)
 
-        debug.log(pos)
         if self.isDrawing:
             self.canvas.addDot(pos, self.color, self.width)
     
