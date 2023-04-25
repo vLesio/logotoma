@@ -1,11 +1,11 @@
 import pygame
+from interp.makopen import Makopen
 
 class Makolot:
-
-    def __init__(self, screen: pygame.Surface) -> None:
+    def __init__(self, screen: pygame.Surface, canvas) -> None:
         self.screen: pygame.Surface = screen
         self.screen_size: tuple = screen.get_size()
-        self.makolot = pygame.image.load('./interp/assets/makolot.png').convert_alpha()
+        self.makolot = pygame.image.load('./interp/assets/makolot2.png').convert_alpha()
         self.img_size = (32, 32)
 
         self.position: tuple = (self.screen_size[0]/2 - self.img_size[0]/2,
@@ -15,6 +15,7 @@ class Makolot:
         self.is_engine_enabled: bool = False
         self.velocity: tuple = (0, 0)
         self.wheel_status: int = 0
+        self.makopen = Makopen(screen, canvas, self.get_center_position())
 
     def nextFrame(self) -> None:
         self.rotate()
@@ -22,11 +23,12 @@ class Makolot:
 
         rotated_image = pygame.transform.rotate(self.makolot, -self.rotation)
         self.move(self.velocity[0], self.velocity[1])
+        self.makopen.draw(self.get_center_position())
 
         self.screen.blit(rotated_image, self.position)
 
     def rotate(self):
-        self.rotation += self.wheel_status * 90
+        self.rotation += self.wheel_status * 2
         if self.rotation < 0:
             self.rotation += 360
         elif self.rotation > 359:
@@ -68,4 +70,7 @@ class Makolot:
             self.wheel_status = 1
         else:
             self.wheel_status = 0
+    
+    def get_center_position(self) -> tuple:
+        return (self.position[0] + self.img_size[0]/2, self.position[1] + self.img_size[1]/2)
         

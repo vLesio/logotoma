@@ -17,7 +17,7 @@ class KosmoToma:
         self.screen = pygame.display.set_mode((800, 600))
         self.env = Environment()
         self.canvas = Canvas(self.screen)
-        self.makolot = Makolot(self.screen)
+        self.makolot = Makolot(self.screen, self.canvas)
 
     def nextFrame(self) -> None:
             self.screen.fill(self.default_color)
