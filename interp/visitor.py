@@ -117,7 +117,9 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#ife.
     def visitIfe(self, ctx:LogoTomaParser.IfeContext):
-        val = self.visit(ctx.logic_expression())
+        # There has to be '()' at the end of the visit to the logic_expression because it will
+        # return bool value of Bool_ object instead of the Bool_ object itself
+        val = self.visit(ctx.logic_expression())()
         if val:
             self.visit(ctx.block())
         elif ctx.elsee() is not None:
@@ -200,7 +202,7 @@ class Visitor(LogoTomaVisitor):
         elif ctx.expression() is not None:
             value = self.visit(ctx.expression())
             if negate:
-                return value*-1
+                return value * -1
             else:
                 return value
         elif ctx.bool_() is not None:
@@ -234,14 +236,15 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#logic_expression.
     def visitLogic_expression(self, ctx:LogoTomaParser.Logic_expressionContext):
-        value = bool(self.visit(ctx.comparisonExpression()[0]))
+        value = self.visit(ctx.comparisonExpression(0))
         if len(ctx.comparisonExpression()) > 1:
             for index, i in enumerate(ctx.comparisonExpression()[1:]):
-                operator = self.visit(ctx.LOGIC_OPERATORS(index))
+                operator = ctx.LOGIC_OPERATORS(index).getText()
                 if operator == '|':
-                    value = value or bool(self.visit(i))
+                    value = value | self.visit(i)
                 elif operator == '&':
-                    value = value and bool(self.visit(i))
+                    value = value & self.visit(i)
+        debug.log(f'LogicExpression: {value} type: {type(value)}')
         return value
     
 

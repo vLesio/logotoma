@@ -1,13 +1,14 @@
 
+from interp.debugger import debug
 from interp.objects.types.value import Value_
 
 
 class Bool_(Value_):
     def __init__(self, value: str):
         try:
-            if value in ['True']:
+            if value in ['True', True]:
                 value = True
-            elif value in ['False']:
+            elif value in ['False', False]:
                 value = False
             else:
                 raise ValueError
@@ -27,6 +28,7 @@ class Bool_(Value_):
         o_Type = type(other)
         match o_Type.__qualname__:
             case Bool_.__qualname__:
+                debug.log(f'Comparing {type(self)} with {o_Type}: {self.value or other.value}.')
                 return Bool_(self.value or other.value)
             case _:
                 raise Exception(f"Cannot or {type(self)} with {o_Type}.")

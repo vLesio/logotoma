@@ -1,4 +1,4 @@
-if(False){
+if(False | True){
     wheel right
     sleep 1
     wheel off
@@ -10,4 +10,4 @@ if(False){
 engine on
 sleep 10
 engine off
-sleep 100
+sleep 10
