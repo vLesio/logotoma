@@ -1,6 +1,5 @@
 import pygame
 from interp.makopen import Makopen
-from copy import deepcopy
 
 class Makolot:
     def __init__(self, screen: pygame.Surface) -> None:
@@ -16,7 +15,7 @@ class Makolot:
         self.is_engine_enabled: bool = False
         self.velocity: tuple = (0, 0)
         self.wheel_status: int = 0
-        self.makopen = Makopen(screen, deepcopy(self.position))
+        self.makopen = Makopen(screen, self.position)
 
     def nextFrame(self) -> None:
         self.rotate()

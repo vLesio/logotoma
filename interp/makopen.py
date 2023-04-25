@@ -1,4 +1,5 @@
 import pygame
+from copy import deepcopy
 
 class Makopen:
 
@@ -6,7 +7,7 @@ class Makopen:
         self.screen: pygame.Surface = screen
         self.screen_size: tuple = screen.get_size()
 
-        self.last_position = position
+        self.last_position = deepcopy(position)
 
         self.color = (0,0,0)
 
@@ -18,7 +19,7 @@ class Makopen:
     def draw(self, position: tuple) -> None:
         if self.isDrawing:
             pygame.draw.line(self.screen, self.color, self.last_position, position)
-        self.last_position = position
+        self.last_position = deepcopy(position)
 
     def setDrawingState(self, isDrawing: bool) -> None:
         self.isDrawing = isDrawing
