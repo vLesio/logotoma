@@ -150,17 +150,19 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#multiplyingExpression.
     def visitMultiplyingExpression(self, ctx:LogoTomaParser.MultiplyingExpressionContext):
         l = self.visit(ctx.signExpression(0))
-        for i, op in enumerate(ctx.MULTIPLYING_OPERATORS()):
-            op = str(op)
-            if op == '*':
-                l = l * self.visit(ctx.signExpression(i+1))
-            elif op == '/':
-                if type(l) == type(1) and type(self.visit(ctx.signExpression(i+1))) == type(1):
-                    l = l // self.visit(ctx.signExpression(i+1))
+        for index, i in enumerate(ctx.MULTIPLYING_OPERATORS()):
+            operator = str(i)
+            if operator == '*':
+                l = l * self.visit(ctx.signExpression(index+1))
+            elif operator == '/':
+                if type(l) == type(1) and type(self.visit(ctx.signExpression(index+1))) == type(1):
+                    l = l // self.visit(ctx.signExpression(index+1))
                 else:
-                    l = l / self.visit(ctx.signExpression(i+1))
-            elif op == '%':
-                l = l % self.visit(ctx.signExpression(i+1))
+                    l = l / self.visit(ctx.signExpression(index+1))
+            elif operator == '%':
+                l = l % self.visit(ctx.signExpression(index+1))
+        # print()
+        # print(l)
         return l
 
 
@@ -179,6 +181,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#logicBit.
     def visitLogicBit(self, ctx:LogoTomaParser.LogicBitContext):
+
         negate = False
         value = None
 
@@ -223,10 +226,10 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#logic_expression.
     def visitLogic_expression(self, ctx:LogoTomaParser.Logic_expressionContext):
-        value = bool(self.visit(ctx.comparisonExpression(0)))
+        value = bool(self.visit(ctx.comparisonExpression()[0]))
         if len(ctx.comparisonExpression()) > 1:
             for index, i in enumerate(ctx.comparisonExpression()[1:]):
-                operator = self.visit(ctx.LOGIC_OPERATORS(index - 1))
+                operator = self.visit(ctx.LOGIC_OPERATORS(index))
                 if operator == '|':
                     value = value or bool(self.visit(i))
                 elif operator == '&':
@@ -250,7 +253,6 @@ class Visitor(LogoTomaVisitor):
     def visitBool(self, ctx:LogoTomaParser.BoolContext):
         # return self.visitChildren(ctx)
         return Bool_(ctx.BOOL().getText())
-
 
     # Visit a parse tree produced by LogoTomaParser#string.
     def visitString(self, ctx:LogoTomaParser.StringContext):
