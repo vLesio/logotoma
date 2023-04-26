@@ -14,7 +14,7 @@ a = a / 2
 bool b = True
 bool c = False
 
-sleep 50
+sleep 150
 
 #
 # If bool expression works makolot will start
@@ -22,54 +22,54 @@ sleep 50
 if(a == 1 & True & b & !c){
     engine on
 }
-sleep 5
+sleep 15
 engine off
 
-sleep 50
+sleep 250
 
 #
 # Turning left
 #
 wheel left
-sleep 45
+sleep 90
 wheel off
 
-sleep 50
+sleep 250
 
 #
 # Flying on diagonal
 #
 engine on
-sleep 10
+sleep 15
 engine off
 
-sleep 35
+sleep 175
 
 #
 # Breaking
 #
 wheel left
-sleep 45
+sleep 90
 wheel off
 
-sleep 5
+sleep 75
 
 engine on
-sleep 5
+sleep 15
 engine off
 
-sleep 15
+sleep 75
 
 wheel right
-sleep 135
+sleep 270
 wheel off
 
-sleep 5
+sleep 25
 
 engine on
-sleep 10
+sleep 15
 engine off
 
-sleep 50
+sleep 50 * 5
 
 

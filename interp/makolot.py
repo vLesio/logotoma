@@ -19,6 +19,7 @@ class Makolot:
         self.makopen = Makopen(screen, canvas, self.get_center_position())
 
     def nextFrame(self) -> None:
+        print(self.rotation)
         self.rotate()
         self.accelerate()
 
@@ -43,7 +44,7 @@ class Makolot:
         y_vel = math.cos(theta)
 
         # Scale velocity by a constant factor
-        velocity_scale = 0.05
+        velocity_scale = 0.2
         self.velocity = (self.velocity[0] + x_vel * velocity_scale, self.velocity[1] + y_vel * velocity_scale)
 
     def move(self, right: int, up: int):
