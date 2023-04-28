@@ -19,14 +19,12 @@ class Makolot:
         self.makopen = Makopen(screen, canvas, self.get_center_position())
 
     def nextFrame(self) -> None:
-        print(self.rotation)
         self.rotate()
         self.accelerate()
-
+        
         rotated_image = pygame.transform.rotate(self.makolot, -self.rotation)
         self.move(self.velocity[0], self.velocity[1])
         self.makopen.draw(self.get_center_position())
-
         self.screen.blit(rotated_image, self.position)
 
     def rotate(self):

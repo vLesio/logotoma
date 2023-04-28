@@ -10,8 +10,7 @@ class Makopen:
         self.canvas = canvas
 
         self.color = (0,0,0)
-        self.width = 1
-
+        self.width = 1 
         self.isDrawing = True
 
     def setColor(self, color: tuple) -> None:
@@ -19,15 +18,14 @@ class Makopen:
 
     def draw(self, position: tuple) -> None:
         pos = deepcopy(position)
-
         if self.isDrawing:
             self.canvas.addDot(pos, self.color, self.width)
     
     def setWidth(self, width) -> None:
         self.width = width
 
-    def setDrawingState(self, isDrawing: bool) -> None:
-        self.isDrawing = isDrawing
+    # def setDrawingState(self, isDrawing: bool) -> None:
+    #     self.isDrawing = isDrawing
     
     def switchDrawingState(self) -> None:
         self.isDrawing = not self.isDrawing

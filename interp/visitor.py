@@ -2,6 +2,7 @@ from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
 from interp.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
+from interp.makopen import Makopen
 
 from interp.debugger import debug
 from interp.objects.types.float import Float_
@@ -17,7 +18,7 @@ class Visitor(LogoTomaVisitor):
         self.cmd = cmd
 
     # Visit a parse tree produced by LogoTomaParser#program.
-    @handle_exception
+    # @handle_exception
     def visitProgram(self, ctx:LogoTomaParser.ProgramContext):
         return self.visitChildren(ctx)
 
@@ -55,18 +56,35 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#spray.
     def visitSpray(self, ctx:LogoTomaParser.SprayContext):
-        return self.visitChildren(ctx)
+        if ctx.logic_expression() is not None:
+            value = self.visit(ctx.logic_expression())
+            if not value:
+                self.cmd.makolot.makopen.turnOffDrawing()
+            elif value:
+                self.cmd.makolot.makopen.turnOnDrawing()
+        elif str(ctx.children[1]) == 'on':
+                self.cmd.makolot.makopen.turnOnDrawing()
+        elif str(ctx.children[1]) == 'off':
+                self.cmd.makolot.makopen.turnOffDrawing()
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_color.
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
-        return self.visitChildren(ctx)
+        if ctx.color() is not None:
+            r, g, b = self.visitColor(ctx.color())
+            print(r,g, b)
+            print(type(r))
+            self.cmd.makolot.makopen.setColor((r(), g(), b()))
+        elif ctx.identifier() is not None:
+            debug.log('identifier')
+        elif ctx.f_call() is not None:
+            debug.log('f_call')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_size.
     def visitSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
-        return self.visitChildren(ctx)
-
+        value = self.visit(ctx.expression())
+        self.cmd.makolot.makopen.setWidth(value())
 
     # Visit a parse tree produced by LogoTomaParser#sleep.
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
@@ -109,8 +127,8 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#color.
     def visitColor(self, ctx:LogoTomaParser.ColorContext):
-        return self.visitChildren(ctx)
-
+        r, g, b = [self.visitChildren(value) for value in ctx.value()]
+        return r, g, b
 
     # Visit a parse tree produced by LogoTomaParser#type_name.
     def visitType_name(self, ctx:LogoTomaParser.Type_nameContext):
