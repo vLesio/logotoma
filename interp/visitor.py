@@ -83,6 +83,11 @@ class Visitor(LogoTomaVisitor):
         return self.visitChildren(ctx)
 
 
+    # Visit a parse tree produced by LogoTomaParser#print.
+    def visitPrint(self, ctx:LogoTomaParser.PrintContext):
+        print(f'[PROGRAM]: {self.visit(ctx.value())}')
+    
+
     # Visit a parse tree produced by LogoTomaParser#object.
     def visitObject(self, ctx:LogoTomaParser.ObjectContext):
         return self.visitChildren(ctx)
@@ -122,7 +127,7 @@ class Visitor(LogoTomaVisitor):
         # There has to be '()' at the end of the visit to the logic_expression because it will
         # return bool value of Bool_ object instead of the Bool_ object itself
         val = self.visit(ctx.logic_expression())
-        if val:
+        if val():
             self.visit(ctx.block())
         elif ctx.elsee() is not None:
             self.visit(ctx.elsee()) 

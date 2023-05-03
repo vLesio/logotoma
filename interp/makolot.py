@@ -4,6 +4,7 @@ from interp.makopen import Makopen
 
 class Makolot:
     def __init__(self, screen: pygame.Surface, canvas) -> None:
+        self.velocity_value = 0
         self.screen: pygame.Surface = screen
         self.screen_size: tuple = screen.get_size()
         self.makolot = pygame.image.load('./interp/assets/makolot2.png').convert_alpha()
@@ -12,7 +13,6 @@ class Makolot:
         self.position: tuple = (self.screen_size[0]/2 - self.img_size[0]/2,
                                 self.screen_size[1]/2 - self.img_size[1]/2)
         self.rotation: int = 90
-
         self.is_engine_enabled: bool = False
         self.velocity: tuple = (0, 0)
         self.wheel_status: int = 0
@@ -29,13 +29,12 @@ class Makolot:
         self.screen.blit(rotated_image, self.position)
 
     def rotate(self):
-        self.rotation += self.wheel_status * 2
+        self.rotation += self.wheel_status * 1
         self.rotation %= 360
 
     def accelerate(self):
         if not self.is_engine_enabled:
             return
-            
         # Convert rotation to radians
         theta = math.radians(self.rotation)
 
@@ -44,19 +43,8 @@ class Makolot:
         y_vel = math.cos(theta)
 
         # Scale velocity by a constant factor
-        velocity_scale = 3
-        self.velocity = (x_vel * velocity_scale, y_vel * velocity_scale)
-
-        # if not self.is_engine_enabled:
-        #     return
-        # if self.rotation == 0:
-        #     self.velocity = (self.velocity[0], self.velocity[1] + 1)
-        # elif self.rotation == 90:
-        #     self.velocity = (self.velocity[0] + 1, self.velocity[1])
-        # elif self.rotation == 180:
-        #     self.velocity = (self.velocity[0], self.velocity[1] - 1)
-        # elif self.rotation == 270:
-        #     self.velocity = (self.velocity[0] - 1, self.velocity[1])
+        velocity_scale = 0.05
+        self.velocity = (self.velocity[0] + x_vel * velocity_scale, self.velocity[1] + y_vel * velocity_scale)
 
     def move(self, right: int, up: int):
         self.position = (self.position[0] + right, self.position[1] - up)
