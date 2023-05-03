@@ -1,4 +1,5 @@
 from interp.objects.variable import Variable
+from interp.objects.function.function import Function_
 
 
 class Environment():
@@ -6,6 +7,11 @@ class Environment():
     def __init__(self) -> None:
         self.global_scope = {}
         self.scope_stack = [{}]
+        self.functions = {}
+
+# =================================================================================================
+# ======================================== SCOPES ==============================================
+# =================================================================================================
 
     def add_scope(self):
         self.scope_stack.append({})
@@ -16,6 +22,9 @@ class Environment():
     def remove_scope(self):
         self.scope_stack.pop()
 
+# =================================================================================================
+# ======================================== VARIABLES ===========================================
+# =================================================================================================
     
     def add_variable(self, name, type):
         if name in self.get_scope():
@@ -39,6 +48,10 @@ class Environment():
         raise Exception(f"Variable '{name}' not found.")
     
     # PO CO MY TO ROBIMY???
+
+# =================================================================================================
+# ======================================== GLOBAL VARIABLES ===========================================
+# =================================================================================================
     
     def add_global_variable(self, name, type):
         if name in self.global_scope:
@@ -59,3 +72,22 @@ class Environment():
             self.global_scope[name].setValue(value)
             return
         raise Exception(f"Variable '{name}' not found.")
+
+# =================================================================================================
+# ======================================== FUNCTIONS ===========================================
+# =================================================================================================
+
+    def add_function(self, name: str, function: Function_):
+        if name in self.functions:
+            raise Exception(f"Function '{name}' already exists.")
+        self.functions[name] = function
+
+    def get_function(self, name: str):
+        if name in self.functions:
+            return self.functions[name]
+        raise Exception(f"Function '{name}' not found.")
+    
+    def call_function(self, name: str, *args):
+        if name in self.functions:
+            return self.functions[name](*args)
+        raise Exception(f"Function '{name}' not found."

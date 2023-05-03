@@ -9,6 +9,7 @@ from interp.objects.types.float import Float_
 from interp.objects.types.integer import Integer_
 from interp.objects.types.string import String_
 from interp.objects.types.bool import Bool_
+from interp.objects.function.function import Function_
 
 class Visitor(LogoTomaVisitor):
 
@@ -289,8 +290,13 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#function.
     def visitFunction(self, ctx:LogoTomaParser.FunctionContext):
-        return self.visitChildren(ctx)
-
+        f_name = self.visit(ctx.identifier(0))
+        f_type_name = self.visit(ctx.type_name(0))
+        args = []
+        if len(ctx.identifier()) > 1:
+            args = [ (self.visit(ctx.type_name(i)), self.visit(ctx.identifier(i))) for i in len(1, ctx.identifier()[1:])]
+        
+        new_function = Function_(f_name, f_type_name, args, self.visit(ctx.block()))
 
     # Visit a parse tree produced by LogoTomaParser#f_call.
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
