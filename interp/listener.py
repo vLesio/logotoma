@@ -2,7 +2,7 @@ from dist.LogoTomaListener import LogoTomaListener
 from dist.LogoTomaParser import LogoTomaParser
 from interp.kosmotoma import KosmoToma
 
-from interp.exception_handler import handle_exception
+from interp.error_handling.exception_handler import handle_exception
 
 class Listener(LogoTomaListener):
 

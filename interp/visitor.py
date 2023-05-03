@@ -1,6 +1,6 @@
 from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
-from interp.exception_handler import handle_exception
+from interp.error_handling.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
 
 from interp.debugger import debug
