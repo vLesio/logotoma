@@ -28,4 +28,4 @@ class KosmoToma:
     def sleep(self, frames: int):
          for _ in range(frames):
               self.nextFrame()
-              time.sleep(0.05)
+              time.sleep(0.01)

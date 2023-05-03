@@ -1,0 +1,7 @@
+loop 5 times {
+    engine on
+    sleep 80
+    engine off
+    sleep 80
+    print "Dzialam"
+}
