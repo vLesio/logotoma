@@ -134,13 +134,13 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
-        for __ in range(self.visit(ctx.value())):
+        for __ in range(self.visit(ctx.value())()):
             self.visit(ctx.block())
 
 
     # Visit a parse tree produced by LogoTomaParser#whilee.
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
-        while self.visit(ctx.value()):
+        while self.visit(ctx.value())():
             self.visit(ctx.block())
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
