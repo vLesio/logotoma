@@ -1,0 +1,25 @@
+sleep 100
+
+int i = 3
+
+loop i times {
+    print "Loop Dziala"
+    engine on
+    sleep 20
+    engine off
+    sleep 120
+}
+
+wheel left
+sleep 180
+wheel off
+
+loop while i > 0 {
+    print "While Dziala"
+    engine on
+    sleep 20
+    engine off
+    sleep 120
+
+    i = i - 1
+}

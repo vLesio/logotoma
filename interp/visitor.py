@@ -1,6 +1,6 @@
 from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
-from interp.exception_handler import handle_exception
+from interp.error_handling.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
 from interp.makopen import Makopen
 
@@ -152,13 +152,14 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
-        return self.visitChildren(ctx)
+        for __ in range(self.visit(ctx.value())()):
+            self.visit(ctx.block())
 
 
     # Visit a parse tree produced by LogoTomaParser#whilee.
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
-        return self.visitChildren(ctx)
-
+        while self.visit(ctx.value())():
+            self.visit(ctx.block())
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
     def visitElsee(self, ctx:LogoTomaParser.ElseeContext):
