@@ -11,6 +11,8 @@ from interp.objects.types.string import String_
 from interp.objects.types.bool import Bool_
 from interp.objects.function.function import Function_
 
+from copy import deepcopy
+
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -296,11 +298,25 @@ class Visitor(LogoTomaVisitor):
         if len(ctx.identifier()) > 1:
             args = [ (self.visit(ctx.type_name(i)), self.visit(ctx.identifier(i))) for i in len(1, ctx.identifier()[1:])]
         
-        new_function = Function_(f_name, f_type_name, args, self.visit(ctx.block()))
+        # TEMP
+        debug.log(f'new function: \n\tname: {f_name} \n\ttype: {f_type_name} \n\targs: {args}')
+        
+        new_function = Function_(f_name, f_type_name, args, deepcopy(ctx.block()))
+        
+        self.cmd.env.add_function(f_name, new_function)
 
     # Visit a parse tree produced by LogoTomaParser#f_call.
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
-        return self.visitChildren(ctx)
+        f_name = self.visit(ctx.identifier())
+        args = [self.visit(i) for i in ctx.value()]
+        
+        f_instance =  self.cmd.env.get_function(f_name, args)
+        
+        if f_instance.is_void_type():
+            self.visit(f_instance())
+            return
+        
+        return self.visit(f_instance())
 
 
     # Visit a parse tree produced by LogoTomaParser#comment.
