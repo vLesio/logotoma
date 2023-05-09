@@ -284,18 +284,46 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
         for statement in ctx.statement():
+            if self.visit(statement) is not None:
+                self.visit(statement)
+
+
+    # Visit a parse tree produced by LogoTomaParser#statement.
+    def visitStatement(self, ctx:LogoTomaParser.StatementContext):
+        self.visit(ctx.line())
+        
+    # Visit a parse tree produced by LogoTomaParser#function_block.
+    def visitFunction_block(self, ctx:LogoTomaParser.Function_blockContext):
+        for statement in ctx.function_statement():
             if statement.getText().startswith('return'):
                 if statement.value() is not None:
                     return self.visit(statement.value())
             elif self.visit(statement) is not None:
                 self.visit(statement)
 
-
-    # Visit a parse tree produced by LogoTomaParser#statement.
-    def visitStatement(self, ctx:LogoTomaParser.StatementContext):
+    # Visit a parse tree produced by LogoTomaParser#function_statement.
+    def visitFunction_statement(self, ctx:LogoTomaParser.Function_statementContext):
         if ctx.value() is not None:
             return self.visit(ctx.value())
         self.visit(ctx.line())
+
+
+    # Visit a parse tree produced by LogoTomaParser#void_function.
+    def visitVoid_function(self, ctx:LogoTomaParser.Void_functionContext):
+        f_name = self.visit(ctx.identifier(0))
+        f_type_name = 'void'
+        debug.log(f_type_name)
+        args = []
+        print(len(ctx.identifier()))
+        if len(ctx.identifier()) > 1:
+            args = [ (self.visit(ctx.type_name(i - 1)), self.visit(ctx.identifier(i))) for i in range(1, len(ctx.identifier()[1:]) + 1)]
+        
+        # TEMP
+        debug.log(f'new function: \n\tname: {f_name} \n\ttype: {f_type_name} \n\targs: {args}')
+        
+        new_function = Function_(f_name, f_type_name, args, ctx.block, self.cmd.env)
+        
+        self.cmd.env.add_function(f_name, new_function)
 
 
     # Visit a parse tree produced by LogoTomaParser#function.
@@ -310,11 +338,11 @@ class Visitor(LogoTomaVisitor):
         # TEMP
         debug.log(f'new function: \n\tname: {f_name} \n\ttype: {f_type_name} \n\targs: {args}')
         
-        new_function = Function_(f_name, f_type_name, args, ctx.block, self.cmd.env)
+        new_function = Function_(f_name, f_type_name, args, ctx.function_block, self.cmd.env)
         
         self.cmd.env.add_function(f_name, new_function)
-
-
+        
+    
     # Visit a parse tree produced by LogoTomaParser#f_call.
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
         f_name = self.visit(ctx.identifier())
@@ -322,15 +350,14 @@ class Visitor(LogoTomaVisitor):
         f_instance =  self.cmd.env.get_function(f_name)
         # f_instance =  self.cmd.env.call_function(f_name, *args)
         print(f_instance.is_void_type())
-        if f_instance.is_void_type():
-            self.visit(f_instance(*args)())
+        if not f_instance.is_void_type():
+            value = self.visit(f_instance(*args)())
             f_instance.remove_vars_from_global_scope()
-            return
+            return value
         
-        value = self.visit(f_instance(*args)())
+        self.visit(f_instance(*args)())
         f_instance.remove_vars_from_global_scope()
-        return value
-
+        
 
     # Visit a parse tree produced by LogoTomaParser#comment.
     def visitComment(self, ctx:LogoTomaParser.CommentContext):

@@ -18,6 +18,7 @@ command
     | sleep
     | cast
     | print
+    | void_function
     | function
     | f_call
     | assign
@@ -98,7 +99,6 @@ type_name
     | 'int'
     | 'float'
     | 'string'
-    | 'void'
     ;
 
 loope
@@ -118,12 +118,12 @@ elsee
     ;
 
 signExpression
-   : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | '(' expression ')')
-   ;
+    : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | '(' expression ')')
+    ;
 
 multiplyingExpression
-   : signExpression (MULTIPLYING_OPERATORS signExpression)*
-   ;
+    : signExpression (MULTIPLYING_OPERATORS signExpression)*
+    ;
 
 logicBit
     : NEGATION_OPERATOR? bool
@@ -153,11 +153,23 @@ block
 
 statement
     : line EOL*
+    ;
+
+function_block
+    : EOL* '{' function_statement+ '}' EOL*
+    ;
+
+function_statement
+    : line EOL*
     | 'return' value EOL*
     ;
 
+void_function
+    : 'void' 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' block
+    ;
+
 function
-    : (type_name) 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' block
+    : (type_name) 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' function_block
     ;
 
 f_call
