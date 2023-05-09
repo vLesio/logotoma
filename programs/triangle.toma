@@ -1,14 +1,33 @@
+bool pattern onn(int a){
+    return True
+}
+
+bool pattern offf(int b){
+    return False
+}
+
+bool c = offf(-1)
+print c
+spray offf(-1)
 engine on
-sleep 20
+sleep 25
 engine off
-wheel left
-sleep 60
-wheel off
-engine on
+spray color (255, 255, 0)
+spray size 5
+spray onn(2)
+
+loop 3 times{
+    wheel left
+    sleep 120
+    wheel off
+    engine on
+    sleep 65
+    engine off
+}
+wheel right
 sleep 20
-engine off
-wheel left
-sleep 60
-wheel off
 engine on
-sleep 100
+sleep 10
+engine off
+spray offf(0)
+sleep 50

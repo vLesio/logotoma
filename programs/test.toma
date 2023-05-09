@@ -1,1 +1,36 @@
-print -"5"
+bool pattern switch_off(int a){
+    return False
+}
+
+bool pattern switch_on(int c){
+    return True
+}
+int r = 128
+int g = 128
+int b = 128
+bool x = False
+spray x
+engine True
+sleep 20
+engine off
+x = switch_on(1)
+spray x
+
+loop 127 times{
+    engine on
+    wheel left
+    sleep 10
+    engine off
+    wheel off
+    r = r + 1
+    b = b - 1
+    spray color (r, g, b)
+    if(r % 2 == 0){
+       spray size 1
+    }
+    else{
+       spray size 2 
+    }
+}
+spray switch_off(0)
+sleep 1500
