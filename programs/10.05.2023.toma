@@ -1,6 +1,12 @@
 sleep 100
 
+#
+# LOOP TEST
+#
+
 int i = 3
+
+# FOR
 
 loop i times {
     print "Loop Dziala"
@@ -14,6 +20,8 @@ wheel left
 sleep 180
 wheel off
 
+# WHILE
+
 loop while i > 0 {
     print "While Dziala"
     engine on
@@ -23,3 +31,17 @@ loop while i > 0 {
 
     i = i - 1
 }
+
+#
+# FUNCTIONS
+#
+
+int pattern summing(int a, int b){
+    return a + b
+}
+
+int first = 1
+int second = 10
+
+print summing(100, 1000)
+print summing(first, second)
