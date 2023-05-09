@@ -136,8 +136,8 @@ BOOL
     ;
 
 expression
-   : multiplyingExpression (SIGN_OPERATORS multiplyingExpression)*
-   ;
+    : multiplyingExpression (SIGN_OPERATORS multiplyingExpression)*
+    ;
 
 comparisonExpression
     : logicBit (COMPARISON_OPERATORS logicBit)?

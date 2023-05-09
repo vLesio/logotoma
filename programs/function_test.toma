@@ -1,0 +1,14 @@
+#
+# FUNCTIONS
+#
+
+void pattern summing(int a, int b){
+    a = 2
+    return True
+}
+
+int first = 1
+int second = 10
+
+print summing(200, 1000)
+print summing(first, second)

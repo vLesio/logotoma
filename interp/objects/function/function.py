@@ -1,7 +1,8 @@
 from interp.objects.variable import Variable
-from interp.environment import Environment
+from interp.objects.types.types import types
+
 class Function_:
-    def __init__(self, name, return_type, args:list[tuple], body, global_scope:Environment = None):
+    def __init__(self, name, return_type, args:list[tuple], body, global_scope = None):
         self.name = name
         self.return_type = return_type
         self.args = args
@@ -34,19 +35,19 @@ class Function_:
     
     def _add_vars_to_global_scope(self, *args):
         for arg, arg_type in zip(args, self.args):
-            self.global_scope.add_global_variable(arg_type[0], arg_type[1])
-            self.global_scope.set_global_variable(arg_type[0], arg)
+            self.global_scope.add_global_variable(arg_type[1], arg_type[0])
+            self.global_scope.set_global_variable(arg_type[1], arg)
             
-    def remove_vars_from_global_scope(self, *args):
-        for arg, arg_type in zip(args, self.args):
-            self.global_scope.remove_global_variable(arg_type[0])
+    def remove_vars_from_global_scope(self):
+        for arg_type in self.args:
+            self.global_scope.remove_global_variable(arg_type[1])
     
-    # TODO: check if this is works
+    # TODO: check if this works
     def _check_input_integrity(self, *args):
         if len(args) != len(self.args):
             raise Exception(f"Wrong number of arguments for function '{self.name}'. Expected {len(self.args)}, got {len(args)}.")
         for i, (arg, arg_type) in enumerate(zip(args, self.args)):
             # Does qualname work?
-            if arg_type[0].__qualname__ != type(arg).__qualname__:
+            if type[arg_type[0]].__qualname__ != type[type(arg)].__qualname__:
                 raise Exception(f"Wrong type of argument {i} for function '{self.name}'. Expected {arg_type[0]}, got {type(arg)}.")
         return True

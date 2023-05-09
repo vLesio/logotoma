@@ -59,7 +59,7 @@ class Environment():
         self.global_scope[name] = Variable(type)
 
     def get_global_variable(self, name):
-        print(self.global_scope.keys())
+        # print(self.global_scope.keys())
         if name in self.global_scope.keys():
             return self.global_scope[name]
         raise Exception(f"Variable '{name}' not found.")
@@ -78,6 +78,7 @@ class Environment():
             raise Exception(f"Variable '{name}' already not exists.")
         self.global_scope.pop(name)
 
+
 # =================================================================================================
 # ======================================== FUNCTIONS ===========================================
 # =================================================================================================
@@ -92,10 +93,10 @@ class Environment():
             return self.functions[name]
         raise Exception(f"Function '{name}' not found.")
     
-    # def call_function(self, name: str, *args):
-    #     if name in self.functions:
-    #         return self.functions[name](*args)
-    #     raise Exception(f"Function '{name}' not found.")
+    def call_function(self, name: str, *args):
+        if name in self.functions:
+            return self.functions[name](*args)
+        raise Exception(f"Function '{name}' not found.")
     
     def set_function(self, name: str, function: Function_):
         if name in self.functions:

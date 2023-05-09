@@ -1,6 +1,6 @@
 from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
-from interp.error_handling.exception_handler import handle_exception
+# from interp.error_handling.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
 
 from interp.debugger import debug
@@ -10,6 +10,7 @@ from interp.objects.types.integer import Integer_
 from interp.objects.types.string import String_
 from interp.objects.types.bool import Bool_
 from interp.objects.function.function import Function_
+from interp.objects.types.types import types
 
 from copy import deepcopy
 
@@ -20,7 +21,7 @@ class Visitor(LogoTomaVisitor):
         self.cmd = cmd
 
     # Visit a parse tree produced by LogoTomaParser#program.
-    @handle_exception
+    # @handle_exception
     def visitProgram(self, ctx:LogoTomaParser.ProgramContext):
         return self.visitChildren(ctx)
 
@@ -117,7 +118,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#type_name.
     def visitType_name(self, ctx:LogoTomaParser.Type_nameContext):
-        return self.visitChildren(ctx)
+        return ctx.getText()
 
 
     # Visit a parse tree produced by LogoTomaParser#value.
@@ -282,41 +283,53 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
-        return self.visitChildren(ctx)
+        for statement in ctx.statement():
+            if statement.getText().startswith('return'):
+                if statement.value() is not None:
+                    return self.visit(statement.value())
+            elif self.visit(statement) is not None:
+                self.visit(statement)
 
 
     # Visit a parse tree produced by LogoTomaParser#statement.
     def visitStatement(self, ctx:LogoTomaParser.StatementContext):
-        return self.visitChildren(ctx)
+        if ctx.value() is not None:
+            return self.visit(ctx.value())
+        self.visit(ctx.line())
 
 
     # Visit a parse tree produced by LogoTomaParser#function.
     def visitFunction(self, ctx:LogoTomaParser.FunctionContext):
         f_name = self.visit(ctx.identifier(0))
         f_type_name = self.visit(ctx.type_name(0))
+        debug.log(f_type_name)
         args = []
         if len(ctx.identifier()) > 1:
-            args = [ (self.visit(ctx.type_name(i)), self.visit(ctx.identifier(i))) for i in len(1, ctx.identifier()[1:])]
+            args = [ (self.visit(ctx.type_name(i)), self.visit(ctx.identifier(i))) for i in range(1, len(ctx.identifier()[1:]) + 1)]
         
         # TEMP
         debug.log(f'new function: \n\tname: {f_name} \n\ttype: {f_type_name} \n\targs: {args}')
         
-        new_function = Function_(f_name, f_type_name, args, deepcopy(ctx.block()))
+        new_function = Function_(f_name, f_type_name, args, ctx.block, self.cmd.env)
         
         self.cmd.env.add_function(f_name, new_function)
+
 
     # Visit a parse tree produced by LogoTomaParser#f_call.
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
         f_name = self.visit(ctx.identifier())
         args = [self.visit(i) for i in ctx.value()]
-        
-        f_instance =  self.cmd.env.get_function(f_name, args)
-        
+        f_instance =  self.cmd.env.get_function(f_name)
+        # f_instance =  self.cmd.env.call_function(f_name, *args)
+        print(f_instance.is_void_type())
         if f_instance.is_void_type():
-            self.visit(f_instance())
+            self.visit(f_instance(*args)())
+            f_instance.remove_vars_from_global_scope()
             return
         
-        return self.visit(f_instance())
+        value = self.visit(f_instance(*args)())
+        f_instance.remove_vars_from_global_scope()
+        return value
 
 
     # Visit a parse tree produced by LogoTomaParser#comment.
