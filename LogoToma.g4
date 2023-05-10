@@ -18,7 +18,6 @@ command
     | sleep
     | cast
     | print
-    | void_function
     | function
     | f_call
     | assign
@@ -99,6 +98,7 @@ type_name
     | 'int'
     | 'float'
     | 'string'
+    | 'void'
     ;
 
 loope
@@ -153,27 +153,16 @@ block
 
 statement
     : line EOL*
-    ;
-
-function_block
-    : EOL* '{' function_statement+ '}' EOL*
-    ;
-
-function_statement
-    : line EOL*
     | 'return' value EOL*
     ;
 
-void_function
-    : 'void' 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' block
-    ;
-
 function
-    : (type_name) 'pattern' identifier '(' type_name identifier (',' type_name identifier)* ')' function_block
+    : (type_name) 'pattern' identifier '(' ((type_name identifier)? | ((type_name identifier) (',' type_name identifier)*)) ')' block
     ;
 
 f_call
     : identifier '(' value (',' value)* ')'
+    | identifier '(' ')'
     ;
 
 comment
