@@ -12,6 +12,9 @@ class Integer_(Value_):
         except ValueError:
             raise Exception(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('int', value)
+        
+    def __repr__(self) -> str:
+        return super().__repr__()
 
     def __add__(self, other):
         o_Type = type(other)

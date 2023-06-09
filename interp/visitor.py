@@ -13,8 +13,6 @@ from interp.objects.types.bool import Bool_
 from interp.objects.function.function import Function_
 from interp.objects.types.types import types
 
-from copy import deepcopy
-
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -48,13 +46,13 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#wheel.
     def visitWheel(self, ctx:LogoTomaParser.WheelContext):
         if str(ctx.children[1]) == 'right':
-            print('setting right')
+            # print('setting right')
             self.cmd.makolot.set_wheel_state('right')
         elif str(ctx.children[1]) == 'left':
-            print('setting left')
+            # print('setting left')
             self.cmd.makolot.set_wheel_state('left')
         elif str(ctx.children[1]) == 'off':
-            print('turning off')
+            # print('turning off')
             self.cmd.makolot.set_wheel_state('off')
 
 
@@ -76,9 +74,7 @@ class Visitor(LogoTomaVisitor):
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
         if ctx.color() is not None:
             r, g, b = self.visitColor(ctx.color())
-            print(r,g, b)
-            print(type(r))
-            self.cmd.makolot.makopen.setColor((r(), g(), b()))
+            self.cmd.makolot.makopen.setColor((abs(r())%256, abs(g())%256, abs(b())%256))
         elif ctx.identifier() is not None:
             debug.log('identifier')
         elif ctx.f_call() is not None:
@@ -102,7 +98,9 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#cast.
     def visitCast(self, ctx:LogoTomaParser.CastContext):
-        return self.visitChildren(ctx)
+        type_to_cast = self.visit(ctx.type_name())
+        object_to_cast = self.visit(ctx.object_())
+        self.cmd.env.cast_global_variable(object_to_cast, type_to_cast)
 
 
     # Visit a parse tree produced by LogoTomaParser#print.

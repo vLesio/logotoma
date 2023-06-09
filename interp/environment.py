@@ -1,3 +1,7 @@
+from interp.objects.types.bool import Bool_
+from interp.objects.types.float import Float_
+from interp.objects.types.integer import Integer_
+from interp.objects.types.string import String_
 from interp.objects.variable import Variable
 from interp.objects.function.function import Function_
 
@@ -47,7 +51,22 @@ class Environment():
                 return
         raise Exception(f"Variable '{name}' not found.")
     
-    # PO CO MY TO ROBIMY???
+    def remove_variable(self, name):
+        if name not in self.global_scope:
+            raise Exception(f"Variable '{name}' already not exists.")
+        self.get_scope().pop(name)
+    
+    def cast_variable(self, name, type):
+        if name not in self.get_scope():
+            raise Exception(f"Variable '{name}' does not exist")
+
+        variable = self.get_variable(name)
+        casted_value = variable.castValue(type)
+
+        self.remove_variable(name)
+        self.add_variable(name, type)
+        self.set_variable(name, casted_value) 
+    
 
 # =================================================================================================
 # ======================================== GLOBAL VARIABLES ===========================================
@@ -77,6 +96,17 @@ class Environment():
         if name not in self.global_scope:
             raise Exception(f"Variable '{name}' already not exists.")
         self.global_scope.pop(name)
+        
+    def cast_global_variable(self, name, type):
+        if name not in self.global_scope:
+            raise Exception(f"Variable '{name}' does not exist")
+
+        variable = self.get_global_variable(name)
+        casted_value = variable.castValue(type)
+
+        self.remove_global_variable(name)
+        self.add_global_variable(name, type)
+        self.set_global_variable(name, casted_value)       
 
 
 # =================================================================================================
