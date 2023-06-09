@@ -6,13 +6,14 @@ from interp.objects.types import float
 from interp.objects.types import integer
 from interp.objects.types import color
 
+from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError
 
 class String_(Value_):
     def __init__(self, value: str):
         try:
             value = str(value)
         except ValueError:
-            raise Exception(f"Value {value} cannot be parsed to {type(self)}.")
+            raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('string', value)
 
     def __add__(self, other):
@@ -27,7 +28,7 @@ class String_(Value_):
             case color.Color_.__qualname__:
                 return String_(self.value + str(other.value))
             case _:
-                raise Exception(f"Cannot add {o_Type} to {type(self)}.")
+                raise LogoTomaLogicError(f"Cannot add {o_Type} to {type(self)}.")
             
     def __mul__(self, other):
         o_Type = type(other)
@@ -35,6 +36,6 @@ class String_(Value_):
             case integer.Integer_.__qualname__:
                 return String_(self.value * other.value)
             case _:
-                raise Exception(f"Cannot multiply {type(self)} by {o_Type}.")
+                raise LogoTomaLogicError(f"Cannot multiply {type(self)} by {o_Type}.")
     
 

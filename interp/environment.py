@@ -1,5 +1,6 @@
 from interp.objects.variable import Variable
 from interp.objects.function.function import Function_
+from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError, LogoTomaSemanticError
 
 
 class Environment():
@@ -28,14 +29,14 @@ class Environment():
     
     def add_variable(self, name, type):
         if name in self.get_scope():
-            raise Exception(f"Variable '{name}' already exists.")
+            raise LogoTomaLogicError(f"Variable '{name}' already exists.")
         self.get_scope()[name] = Variable(type)
 
     def get_variable(self, name):
         for scope in reversed(self.scope_stack):
             if name in scope:
                 return scope[name]
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def get_value(self, name):
         return self.get_variable(name).value
@@ -45,7 +46,7 @@ class Environment():
             if name in scope:
                 scope[name].setValue(value)
                 return
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     # PO CO MY TO ROBIMY???
 
@@ -55,14 +56,14 @@ class Environment():
     
     def add_global_variable(self, name, type):
         if name in self.global_scope:
-            raise Exception(f"Variable '{name}' already exists.")
+            raise LogoTomaLogicError(f"Variable '{name}' already exists.")
         self.global_scope[name] = Variable(type)
 
     def get_global_variable(self, name):
         # print(self.global_scope.keys())
         if name in self.global_scope.keys():
             return self.global_scope[name]
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def get_global_value(self, name):
         return self.get_global_variable(name).value
@@ -71,11 +72,11 @@ class Environment():
         if name in self.global_scope:
             self.global_scope[name].setValue(value)
             return
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def remove_global_variable(self, name):
         if name not in self.global_scope:
-            raise Exception(f"Variable '{name}' already not exists.")
+            raise LogoTomaLogicError(f"Variable '{name}' already not exists.")
         self.global_scope.pop(name)
 
 
@@ -85,22 +86,22 @@ class Environment():
 
     def add_function(self, name: str, function: Function_):
         if name in self.functions:
-            raise Exception(f"Function '{name}' already exists.")
+            raise LogoTomaLogicError(f"Function '{name}' already exists.")
         self.functions[name] = function
 
     def get_function(self, name: str) -> Function_:
         if name in self.functions:
             return self.functions[name]
-        raise Exception(f"Function '{name}' not found.")
+        raise LogoTomaSemanticError(f"Function '{name}' not found.")
     
     def call_function(self, name: str, *args):
         if name in self.functions:
             return self.functions[name](*args)
-        raise Exception(f"Function '{name}' not found.")
+        raise LogoTomaSemanticError(f"Function '{name}' not found.")
     
     def set_function(self, name: str, function: Function_):
         if name in self.functions:
             self.functions[name] = function
             return
-        raise Exception(f"Function '{name}' not found.")
+        raise LogoTomaSemanticError(f"Function '{name}' not found.")
     

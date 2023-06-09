@@ -1,6 +1,6 @@
 from dist.LogoTomaVisitor import LogoTomaVisitor
 from dist.LogoTomaParser import LogoTomaParser
-# from interp.error_handling.exception_handler import handle_exception
+from interp.exception_handler import handle_exception
 from interp.kosmotoma import KosmoToma
 from interp.makopen import Makopen
 
@@ -12,9 +12,22 @@ from interp.objects.types.string import String_
 from interp.objects.types.bool import Bool_
 from interp.objects.function.function import Function_
 from interp.objects.types.types import types
+from interp.error_handling.exceptions import LogoTomaValueError
 
 from copy import deepcopy
 
+
+def for_all_methods(decorator):
+    def decorate(cls):
+        for attr in cls.__dict__: # there's propably a better way to do this
+            if callable(getattr(cls, attr)):
+                setattr(cls, attr, decorator(getattr(cls, attr)))
+        return cls
+    return decorate
+
+
+
+@for_all_methods(handle_exception)
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -22,7 +35,6 @@ class Visitor(LogoTomaVisitor):
         self.cmd = cmd
 
     # Visit a parse tree produced by LogoTomaParser#program.
-    # @handle_exception
     def visitProgram(self, ctx:LogoTomaParser.ProgramContext):
         return self.visitChildren(ctx)
 
@@ -97,7 +109,7 @@ class Visitor(LogoTomaVisitor):
             assert isinstance(sleep_time, Integer_)
             self.cmd.sleep(sleep_time())
         except AssertionError:
-            raise Exception('Sleep time must be an integer.')
+            raise LogoTomaValueError('Sleep time must be an integer.')
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
@@ -111,6 +123,7 @@ class Visitor(LogoTomaVisitor):
     
 
     # Visit a parse tree produced by LogoTomaParser#object.
+    @handle_exception
     def visitObject(self, ctx:LogoTomaParser.ObjectContext):
         return self.visitChildren(ctx)
 
@@ -356,3 +369,4 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#identifier.
     def visitIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
         return ctx.IDENTIFIER().getText()
+    

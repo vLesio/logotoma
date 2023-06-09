@@ -1,5 +1,6 @@
 from interp.objects.variable import Variable
 from interp.objects.types.types import types
+from interp.error_handling.exceptions import LogoTomaSyntaxError
 
 class Function_:
     def __init__(self, name, return_type, args:list[tuple], body, global_scope = None):
@@ -23,7 +24,7 @@ class Function_:
             
             return self.body
         
-        raise Exception(f"Wrong input for function '{self.name}'.")
+        raise LogoTomaSyntaxError(f"Wrong input for function '{self.name}'.")
     
     # def _add_vars_to_scope(self, *args):
     #     for arg, arg_type in zip(args, self.args):
