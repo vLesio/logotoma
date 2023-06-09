@@ -11,6 +11,9 @@ class Variable():
         self.type = type
         self.value = None
 
+    def __repr__(self):
+        return f"<Variable {self.type} : {self.value}>"
+
     def setValue(self, value: Value_):
         if self.type != value.type:
             raise Exception(f"Cannot set value of type '{value.type}' to variable of type '{self.type}'")
