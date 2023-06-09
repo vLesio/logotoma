@@ -28,9 +28,6 @@ if __name__ == "__main__":
     # First run
     # output = ParseTreeWalker().walk(Listener(cmd), tree)
 
-    # Print whatever
-    debug.log(f'Global scope: {cmd.env.global_scope}')
-
     # Second run
     output = Visitor(cmd).visit(tree)
 

@@ -1,8 +1,12 @@
 int pattern fun(int a){
+    int a = 7
     int b = 5
     print "Funkcja fun:" + 5
 }
+
 int c = 5
-print "Pre Function " + c
+if(True){
+    print "Pre Function " + c
+}
 
 fun(c)
