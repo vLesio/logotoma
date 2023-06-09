@@ -2,13 +2,13 @@ from interp.objects.variable import Variable
 from interp.objects.types.types import types
 
 class Function_:
-    def __init__(self, name, return_type, args:list[tuple], body, global_scope = None):
+    def __init__(self, name, return_type, args:list[tuple], body, env = None):
         self.name = name
         self.return_type = return_type
         self.args = args
         self.body = body
         self.scope = {}
-        self.global_scope = global_scope
+        self.env = env
 
     def __repr__(self):
         return f"<Function {self.name} {self.args} {self.body}>"
@@ -19,7 +19,7 @@ class Function_:
     def __call__(self, *args):
         if self._check_input_integrity(*args):
             # TODO: temporary solution (without local scope)
-            self._add_vars_to_global_scope(*args)
+            self._add_vars_to_scope(*args)
             
             return self.body
         
@@ -33,14 +33,14 @@ class Function_:
         # TODO: to implement return void type
         return self.return_type == "void"
     
-    def _add_vars_to_global_scope(self, *args):
+    def _add_vars_to_scope(self, *args):
         for arg, arg_type in zip(args, self.args):
-            self.global_scope.add_global_variable(arg_type[1], arg_type[0])
-            self.global_scope.set_global_variable(arg_type[1], arg)
+            self.env.add_variable(arg_type[1], arg_type[0])
+            self.env.set_variable(arg_type[1], arg)
             
-    def remove_vars_from_global_scope(self):
+    def remove_vars_from_scope(self):
         for arg_type in self.args:
-            self.global_scope.remove_global_variable(arg_type[1])
+            self.env.remove_variable(arg_type[1])
     
     # TODO: check if this works
     def _check_input_integrity(self, *args):

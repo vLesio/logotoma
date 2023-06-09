@@ -1,0 +1,8 @@
+int pattern fun(int a){
+    int b = 5
+    print "Funkcja fun:" + 5
+}
+int c = 5
+print "Pre Function " + c
+
+fun(c)

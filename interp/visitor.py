@@ -117,11 +117,13 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#assign.
     def visitAssign(self, ctx:LogoTomaParser.AssignContext):
-        self.cmd.env.set_global_variable(ctx.identifier().getText(), self.visit(ctx.value()))
+        if ctx.type_name() is not None:
+            self.cmd.env.add_variable(ctx.identifier().getText(), ctx.type_name().getText())
+        self.cmd.env.set_variable(ctx.identifier().getText(), self.visit(ctx.value()))
 
     # Visit a parse tree produced by LogoTomaParser#deref.
     def visitDeref(self, ctx:LogoTomaParser.DerefContext):
-        return self.cmd.env.get_global_value(self.visit(ctx.identifier()))
+        return self.cmd.env.get_value(self.visit(ctx.identifier()))
 
 
     # Visit a parse tree produced by LogoTomaParser#save.
@@ -301,12 +303,15 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
+        self.cmd.env.add_scope()
         for statement in ctx.statement():
             if statement.getText().startswith('return'):
                 if statement.value() is not None:
+                    self.cmd.env.remove_scope()
                     return self.visit(statement.value())
             elif self.visit(statement) is not None:
                 self.visit(statement)
+        self.cmd.env.remove_scope()
 
 
     # Visit a parse tree produced by LogoTomaParser#statement.
@@ -337,16 +342,19 @@ class Visitor(LogoTomaVisitor):
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
         f_name = self.visit(ctx.identifier())
         args = [self.visit(i) for i in ctx.value()]
+        self.cmd.env.add_scope(fun_scope=True)
         f_instance =  self.cmd.env.get_function(f_name)
         # f_instance =  self.cmd.env.call_function(f_name, *args)
         print(f_instance.is_void_type())
         if not f_instance.is_void_type():
             value = self.visit(f_instance(*args)())
-            f_instance.remove_vars_from_global_scope()
+            # f_instance.remove_vars_from_global_scope()
+            self.cmd.env.remove_scope()
             return value
         
         self.visit(f_instance(*args)())
-        f_instance.remove_vars_from_global_scope()
+        self.cmd.env.remove_scope()
+        # f_instance.remove_vars_from_global_scope()
         
 
     # Visit a parse tree produced by LogoTomaParser#comment.
