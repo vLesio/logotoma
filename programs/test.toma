@@ -6,7 +6,7 @@ bool pattern switch_on(){
 }
 
 int r = 128
-int g = 128
+int g = 0
 int b = 128
 bool x = False
 spray x
@@ -16,7 +16,7 @@ engine off
 x = switch_on()
 spray x
 float spray_size = 2.0
-loop 127 times{
+loop 425 times{
     engine on
     wheel left
     sleep 10
@@ -34,4 +34,4 @@ loop 127 times{
     spray size spray_size
 }
 spray switch_off()
-sleep 500
+sleep 250

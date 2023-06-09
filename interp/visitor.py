@@ -13,8 +13,6 @@ from interp.objects.types.bool import Bool_
 from interp.objects.function.function import Function_
 from interp.objects.types.types import types
 
-from copy import deepcopy
-
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -48,13 +46,13 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#wheel.
     def visitWheel(self, ctx:LogoTomaParser.WheelContext):
         if str(ctx.children[1]) == 'right':
-            print('setting right')
+            # print('setting right')
             self.cmd.makolot.set_wheel_state('right')
         elif str(ctx.children[1]) == 'left':
-            print('setting left')
+            # print('setting left')
             self.cmd.makolot.set_wheel_state('left')
         elif str(ctx.children[1]) == 'off':
-            print('turning off')
+            # print('turning off')
             self.cmd.makolot.set_wheel_state('off')
 
 
@@ -76,9 +74,7 @@ class Visitor(LogoTomaVisitor):
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
         if ctx.color() is not None:
             r, g, b = self.visitColor(ctx.color())
-            print(r,g, b)
-            print(type(r))
-            self.cmd.makolot.makopen.setColor((r(), g(), b()))
+            self.cmd.makolot.makopen.setColor((abs(r())%256, abs(g())%256, abs(b())%256))
         elif ctx.identifier() is not None:
             debug.log('identifier')
         elif ctx.f_call() is not None:
@@ -90,6 +86,7 @@ class Visitor(LogoTomaVisitor):
         value = self.visit(ctx.expression())
         self.cmd.makolot.makopen.setWidth(value())
 
+
     # Visit a parse tree produced by LogoTomaParser#sleep.
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
         sleep_time = self.visit(ctx.expression())
@@ -98,11 +95,40 @@ class Visitor(LogoTomaVisitor):
             self.cmd.sleep(sleep_time())
         except AssertionError:
             raise Exception('Sleep time must be an integer.')
+        
+        
+    # Visit a parse tree produced by LogoTomaParser#hide.
+    def visitHide(self, ctx:LogoTomaParser.HideContext):
+        if ctx.logic_expression() is not None:
+            value = self.visit(ctx.logic_expression())
+            if not value:
+                self.cmd.makolot.hide()
+            elif value:
+                self.cmd.makolot.show()
+        elif str(ctx.children[1]) == 'on':
+            self.cmd.makolot.show()
+        elif str(ctx.children[1]) == 'off':
+            self.cmd.makolot.hide()
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
     def visitCast(self, ctx:LogoTomaParser.CastContext):
-        return self.visitChildren(ctx)
+        type_to_cast = self.visit(ctx.type_name())
+        value_to_cast = str(self.visit(ctx.value()))
+        
+        if type_to_cast == 'int':
+            return Integer_.cast(self, value_to_cast)
+        elif type_to_cast == 'float':
+            return Float_.cast(self, value_to_cast)
+        elif type_to_cast == 'string':
+            return String_.cast(self, value_to_cast)
+        elif type_to_cast == 'bool':
+            return Bool_.cast(self, value_to_cast)
+        elif type_to_cast == 'color':
+            # return Color_.cast(value_to_cast)
+            pass
+        else:
+            raise Exception(f"Invalid type: {type_to_cast}")
 
 
     # Visit a parse tree produced by LogoTomaParser#print.
@@ -128,7 +154,8 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#save.
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
-        return self.visitChildren(ctx)
+        filename = self.visit(ctx.string())
+        self.cmd.makolot.makopen.saveCanvas(filename)
 
 
     # Visit a parse tree produced by LogoTomaParser#color.

@@ -26,6 +26,7 @@ command
     | whilee
     | save
     | value
+    | hide
     ;
 
 value
@@ -59,8 +60,12 @@ sleep
     : 'sleep' expression
     ;
 
+hide
+    : 'hide' ('on' | 'off' | logic_expression)
+    ;
+
 cast
-    : 'cast' object '->' type_name
+    : 'cast' value '->' type_name
     ;
 
 print
@@ -118,7 +123,7 @@ elsee
     ;
 
 signExpression
-    : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | '(' expression ')')
+    : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | cast | '(' expression ')')
     ;
 
 multiplyingExpression

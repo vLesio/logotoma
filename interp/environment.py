@@ -70,6 +70,7 @@ class Environment():
         if name not in self.global_scope:
             raise Exception(f"Variable '{name}' already not exists.")
         self.global_scope.pop(name)
+          
 
 
 # =================================================================================================

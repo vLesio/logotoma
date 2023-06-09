@@ -14,6 +14,7 @@ class Makolot:
                                 self.screen_size[1]/2 - self.img_size[1]/2)
         self.rotation: int = 90
         self.is_engine_enabled: bool = False
+        self.is_visible: bool = True
         self.velocity: tuple = (0, 0)
         self.wheel_status: int = 0
         self.makopen = Makopen(screen, canvas, self.get_center_position())
@@ -24,8 +25,16 @@ class Makolot:
         
         rotated_image = pygame.transform.rotate(self.makolot, -self.rotation)
         self.move(self.velocity[0], self.velocity[1])
-        self.makopen.draw(self.get_center_position())
-        self.screen.blit(rotated_image, self.position)
+        if self.is_visible:
+            self.makopen.draw(self.get_center_position())
+            self.screen.blit(rotated_image, self.position)
+        
+
+    def hide(self) -> None:
+        self.is_visible = False
+
+    def show(self) -> None:
+        self.is_visible = True
 
     def rotate(self):
         self.rotation += self.wheel_status * 1

@@ -48,4 +48,6 @@ class Bool_(Value_):
     def __bool__(self):
         return self.value
     
+    def cast(self, value: str):
+        return Bool_(value)
 
