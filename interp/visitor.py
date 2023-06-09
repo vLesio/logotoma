@@ -86,6 +86,7 @@ class Visitor(LogoTomaVisitor):
         value = self.visit(ctx.expression())
         self.cmd.makolot.makopen.setWidth(value())
 
+
     # Visit a parse tree produced by LogoTomaParser#sleep.
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
         sleep_time = self.visit(ctx.expression())
@@ -94,13 +95,40 @@ class Visitor(LogoTomaVisitor):
             self.cmd.sleep(sleep_time())
         except AssertionError:
             raise Exception('Sleep time must be an integer.')
+        
+        
+    # Visit a parse tree produced by LogoTomaParser#hide.
+    def visitHide(self, ctx:LogoTomaParser.HideContext):
+        if ctx.logic_expression() is not None:
+            value = self.visit(ctx.logic_expression())
+            if not value:
+                self.cmd.makolot.hide()
+            elif value:
+                self.cmd.makolot.show()
+        elif str(ctx.children[1]) == 'on':
+            self.cmd.makolot.show()
+        elif str(ctx.children[1]) == 'off':
+            self.cmd.makolot.hide()
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
     def visitCast(self, ctx:LogoTomaParser.CastContext):
         type_to_cast = self.visit(ctx.type_name())
-        object_to_cast = self.visit(ctx.object_())
-        self.cmd.env.cast_global_variable(object_to_cast, type_to_cast)
+        value_to_cast = str(self.visit(ctx.value()))
+        
+        if type_to_cast == 'int':
+            return Integer_.cast(self, value_to_cast)
+        elif type_to_cast == 'float':
+            return Float_.cast(self, value_to_cast)
+        elif type_to_cast == 'string':
+            return String_.cast(self, value_to_cast)
+        elif type_to_cast == 'bool':
+            return Bool_.cast(self, value_to_cast)
+        elif type_to_cast == 'color':
+            # return Color_.cast(value_to_cast)
+            pass
+        else:
+            raise Exception(f"Invalid type: {type_to_cast}")
 
 
     # Visit a parse tree produced by LogoTomaParser#print.
@@ -124,7 +152,8 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#save.
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
-        return self.visitChildren(ctx)
+        filename = self.visit(ctx.string())
+        self.cmd.makolot.makopen.saveCanvas(filename)
 
 
     # Visit a parse tree produced by LogoTomaParser#color.

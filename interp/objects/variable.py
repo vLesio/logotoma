@@ -21,20 +21,3 @@ class Variable():
             raise Exception(f"Cannot set value of type '{value.type}' to variable of type '{self.type}'")
         self.value = value
         
-    def castValue(self, type: str):
-        if self.type == type:
-            return self.value
-        
-        if type == 'int':
-            return Integer_(str(self.value))
-        elif type == 'float':
-            return Float_(str(self.value))
-        elif type == 'string':
-            return String_(str(self.value))
-        elif type == 'bool':
-            return Bool_(str(self.value))
-        elif type == 'color':
-            # return Color_(str(self.value))
-            return self.value
-        else:
-            raise Exception(f"Invalid type: {type}")

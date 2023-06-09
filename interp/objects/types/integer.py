@@ -68,3 +68,7 @@ class Integer_(Value_):
             case _:
                 raise Exception(f"Cannot modulo {type(self)} by {o_Type}.")
             
+    def cast(self, value: str):
+        return Integer_(value)
+        
+            

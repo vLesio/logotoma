@@ -61,3 +61,6 @@ class Float_(Value_):
                 return Float_(self.value % other.value)
             case _:
                 raise Exception(f"Cannot modulo {type(self)} by {o_Type}.")
+            
+    def cast(self, value: str):
+        return Float_(value)

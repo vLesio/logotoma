@@ -35,3 +35,6 @@ class Makopen:
     
     def turnOffDrawing(self) -> None:
         self.isDrawing = False
+        
+    def saveCanvas(self, filename: str) -> None:
+        pygame.image.save(self.screen, f'{filename}.png')

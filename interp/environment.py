@@ -56,16 +56,6 @@ class Environment():
             raise Exception(f"Variable '{name}' already not exists.")
         self.get_scope().pop(name)
     
-    def cast_variable(self, name, type):
-        if name not in self.get_scope():
-            raise Exception(f"Variable '{name}' does not exist")
-
-        variable = self.get_variable(name)
-        casted_value = variable.castValue(type)
-
-        self.remove_variable(name)
-        self.add_variable(name, type)
-        self.set_variable(name, casted_value) 
     
 
 # =================================================================================================
@@ -96,17 +86,7 @@ class Environment():
         if name not in self.global_scope:
             raise Exception(f"Variable '{name}' already not exists.")
         self.global_scope.pop(name)
-        
-    def cast_global_variable(self, name, type):
-        if name not in self.global_scope:
-            raise Exception(f"Variable '{name}' does not exist")
-
-        variable = self.get_global_variable(name)
-        casted_value = variable.castValue(type)
-
-        self.remove_global_variable(name)
-        self.add_global_variable(name, type)
-        self.set_global_variable(name, casted_value)       
+          
 
 
 # =================================================================================================
