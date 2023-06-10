@@ -101,13 +101,13 @@ class Visitor(LogoTomaVisitor):
     def visitHide(self, ctx:LogoTomaParser.HideContext):
         if ctx.logic_expression() is not None:
             value = self.visit(ctx.logic_expression())
-            if not value:
+            if value:
                 self.cmd.makolot.hide()
-            elif value:
+            elif not value:
                 self.cmd.makolot.show()
-        elif str(ctx.children[1]) == 'on':
-            self.cmd.makolot.show()
         elif str(ctx.children[1]) == 'off':
+            self.cmd.makolot.show()
+        elif str(ctx.children[1]) == 'on':
             self.cmd.makolot.hide()
 
 
