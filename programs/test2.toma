@@ -1,10 +1,8 @@
-spray color (255, 255, 255)
-spray size 15
-engine on
-sleep 2
-engine off
-sleep 100
-spray off
-sleep 100
-spray on
-sleep 100
+int x = 3
+float y = cast x -> float
+print(y)
+print(x)
+print(cast 1 -> float)
+#float y = cast x -> float
+#print(y)
+

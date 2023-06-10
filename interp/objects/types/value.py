@@ -17,6 +17,9 @@ class Value_():
     def __str__(self):
         return f'{self.value}'
     
+    def __repr__(self):
+        return f'zmienna typu {self.type}'
+    
     def __call__(self):
         return self.value
     

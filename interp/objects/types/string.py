@@ -38,4 +38,5 @@ class String_(Value_):
             case _:
                 raise LogoTomaLogicError(f"Cannot multiply {type(self)} by {o_Type}.")
     
-
+    def cast(self, value: str):
+        return String_(value)

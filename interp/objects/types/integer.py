@@ -13,6 +13,9 @@ class Integer_(Value_):
         except ValueError:
             raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('int', value)
+        
+    def __repr__(self) -> str:
+        return super().__repr__()
 
     def __add__(self, other):
         o_Type = type(other)
@@ -65,4 +68,8 @@ class Integer_(Value_):
                 return float.Float_(self.value % other.value)
             case _:
                 raise LogoTomaLogicError(f"Cannot modulo {type(self)} by {o_Type}.")
+            
+    def cast(self, value: str):
+        return Integer_(value)
+        
             
