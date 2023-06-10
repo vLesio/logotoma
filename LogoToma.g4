@@ -30,8 +30,7 @@ command
     ;
 
 value
-    : string
-    | expression
+    : expression
     | logic_expression
     | color
     ;

@@ -34,4 +34,6 @@ loop 425 times{
     spray size spray_size
 }
 spray switch_off()
-sleep 250
+hide on
+sleep 100
+save "picture"
