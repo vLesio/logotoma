@@ -1,8 +1,10 @@
-bool pattern switch_off(){
-    return False
-}
-bool pattern switch_on(){
-    return True
+string pattern switch_on_off(int a){
+    if(a > 0){
+        return "True"
+    }
+    else{
+        return "False"
+    }
 }
 
 int r = 128
@@ -13,7 +15,7 @@ spray x
 engine True
 sleep 20
 engine off
-x = switch_on()
+x = cast switch_on_off(1) -> bool
 spray x
 float spray_size = 2.0
 loop 425 times{
@@ -33,7 +35,7 @@ loop 425 times{
     }
     spray size spray_size
 }
-spray switch_off()
+spray cast switch_on_off(-1) -> bool
 hide on
 sleep 100
 save "picture"

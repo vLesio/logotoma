@@ -1,8 +1,14 @@
-int x = 3
-float y = cast x -> float
-print(y)
-print(x)
-print(cast 1 -> float)
-#float y = cast x -> float
-#print(y)
+engine on
+sleep 10
+hide on
+spray off
+hide off
+engine off
+sleep 30
+spray color (255, 0, 0)
+spray on
+sleep 300
+hide on
+sleep 100
+save "picture"
 

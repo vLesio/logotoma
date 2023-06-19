@@ -179,9 +179,9 @@ class Visitor(LogoTomaVisitor):
         # return bool value of Bool_ object instead of the Bool_ object itself
         val = self.visit(ctx.logic_expression())
         if val():
-            self.visit(ctx.block())
+            return self.visit(ctx.block())
         elif ctx.elsee() is not None:
-            self.visit(ctx.elsee()) 
+            return self.visit(ctx.elsee()) 
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
@@ -196,7 +196,7 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
     def visitElsee(self, ctx:LogoTomaParser.ElseeContext):
-        self.visit(ctx.block())
+        return self.visit(ctx.block())
 
 
     # Visit a parse tree produced by LogoTomaParser#signExpression.
@@ -330,22 +330,23 @@ class Visitor(LogoTomaVisitor):
 
     # Visit a parse tree produced by LogoTomaParser#block.
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
+        value = None
         self.cmd.env.add_scope()
         for statement in ctx.statement():
             if statement.getText().startswith('return'):
                 if statement.value() is not None:
-                    self.cmd.env.remove_scope()
-                    return self.visit(statement.value())
+                    value = self.visit(statement.value())
             elif self.visit(statement) is not None:
-                self.visit(statement)
+                value = self.visit(statement)
         self.cmd.env.remove_scope()
+        return value
 
 
     # Visit a parse tree produced by LogoTomaParser#statement.
     def visitStatement(self, ctx:LogoTomaParser.StatementContext):
         if ctx.value() is not None:
             return self.visit(ctx.value())
-        self.visit(ctx.line())
+        return self.visit(ctx.line())
         
         
     # Visit a parse tree produced by LogoTomaParser#function.
@@ -373,7 +374,7 @@ class Visitor(LogoTomaVisitor):
         f_instance =  self.cmd.env.get_function(f_name)
         # f_instance =  self.cmd.env.call_function(f_name, *args)
         print(f_instance.is_void_type())
-        if not f_instance.is_void_type():
+        if not f_instance.is_void_type():          
             value = self.visit(f_instance(*args)())
             # f_instance.remove_vars_from_global_scope()
             self.cmd.env.remove_scope()
