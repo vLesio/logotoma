@@ -1,14 +1,20 @@
-engine on
-sleep 10
-hide on
-spray off
-hide off
-engine off
-sleep 30
-spray color (255, 0, 0)
-spray on
-sleep 300
-hide on
-sleep 100
-save "picture"
-
+int a = 10
+a = a + 10
+if(a > 10){
+    int b = 1
+    a = b + a
+}
+int pattern aaa(){
+    return 10
+}
+int pattern my_fun(int b){
+    int a = -1
+    print(b)
+    if (b < 10){
+        b = b + 1
+        print("b teraz wynosi " + b)
+        return my_fun(b)
+    }
+}
+print(aaa())
+print(my_fun(1))
