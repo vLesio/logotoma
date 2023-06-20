@@ -7,7 +7,23 @@
 - Tomasz Makowski (makowskit@student.agh.edu.pl) 
 
 ## Założenia ogólne
+LogoToma to język inspirowany Logo.
 
+Rozszerza on podstawowe zachowania żółwia z Logo o pęd i przyspieszenie co pozwala na tworzenie znacznie bardziej skomplikowanych kształtów i obrazów w 2D.
+
+Sterujemy silnikami Makolota (naszym pędzlem) dzięki poleceniom wbudowanym wymienionym w sekcji `Polecenia wbudowane`.
+
+Poprzez włączenie głównego silnika nadajemy mu przyspieszenie w kierunku jego frontu, a poprzez manipulacje kołem sterowym obracamy go według jego własnej osi. Standardowo Makolot znajduje się w trybie rysowania, w którym tworzy za sobą linię w postaci kropek. Możemy to jednak zmienić w zależności od potrzeb. Ze względu na specyfike podstawowych praw fizyki, podczas tworzenia programów w LogoTomie kluczowym jest korzystanie z polecenia wstrzymującego na chwilę dalsze wykonywanie kodu, w celu rozpędzania Makolota.
+
+Język zapewnia użytkownikowi:
+ - Zmienne w przestrzeniach żywotności 
+ - Deklarowanie własnych funkcji
+ - Podstawowe operacje arytmetyczne zgodne z zasdami matematyki
+ - Podstawowe instrukcje sterujące takie jak pętle i instrukcje warunkowe
+ - Obsługę błędów
+ - Tworzenie obrazów w aplikacji okienkowej
+ - Zarządzanie kształtem rysowanej lini
+ - Zapisywanie wynikowego obrazu
 
 ## Elementy języka
 
@@ -51,7 +67,7 @@ Wywołanie funkcji:
 |cast \<value\> -> \<type\>|Rzutuje wartość na podany typ, jeśli operacja jest możliwa|
 |print \<value\>|Wypisuje podaną wartość do konsoli|
 |save \<string\>|Zapisuje wygenerowany obraz do pliku o podanej nazwie w formacje .png|
-|hide <'on' \| 'off' \| bool>|Ukrywa lub pokazuje Makolotu|
+|hide <'on' \| 'off' \| bool>|Ukrywa lub pokazuje Makolot|
 
 ## Spis tokenów i gramatyka
 
