@@ -186,13 +186,17 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#loope.
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
         for __ in range(self.visit(ctx.value())()):
-            self.visit(ctx.block())
+            value = self.visit(ctx.block())
+            if value is not None:
+                return value
 
 
     # Visit a parse tree produced by LogoTomaParser#whilee.
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
         while self.visit(ctx.value())():
-            self.visit(ctx.block())
+            value = self.visit(ctx.block())
+            if value is not None:
+                return value
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
     def visitElsee(self, ctx:LogoTomaParser.ElseeContext):
@@ -333,9 +337,22 @@ class Visitor(LogoTomaVisitor):
         value = None
         self.cmd.env.add_scope()
         for statement in ctx.statement():
-            if statement.getText().startswith('return'):
+            if statement.getText().startswith('loop while'):
+                value = self.visit(statement)
+                if value is not None:
+                    break
+            elif statement.getText().startswith('loop'):
+                value = self.visit(statement)
+                if value is not None:
+                    break
+            elif statement.getText().startswith('if'):
+                value = self.visit(statement)
+                if value is not None:
+                    break
+            elif statement.getText().startswith('return'):
                 if statement.value() is not None:
                     value = self.visit(statement.value())
+                break
             elif self.visit(statement) is not None:
                 value = self.visit(statement)
         self.cmd.env.remove_scope()
