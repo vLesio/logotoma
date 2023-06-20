@@ -8,13 +8,11 @@ int pattern aaa(){
     return 10
 }
 int pattern my_fun(int b){
-    int a = -1
     print(b)
     if (b < 10){
         b = b + 1
-        print("b teraz wynosi " + b)
         return my_fun(b)
     }
 }
 print(aaa())
-print(my_fun(1))
+my_fun(1)

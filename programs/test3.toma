@@ -1,0 +1,101 @@
+void pattern heartAngle(){
+    loop 10 times{
+        spray on
+        engine on
+        sleep 3
+        engine off
+        sleep 10
+        spray off
+        wheel left
+        sleep 180
+        wheel off
+        engine on
+        sleep 3
+        engine off
+        engine on
+        sleep 3
+        engine off
+        sleep 2
+        spray off
+        wheel left
+        sleep 180
+        wheel off
+        engine on
+        sleep 3
+        engine off
+        wheel left
+        sleep 20
+        wheel off
+    }
+}
+
+void pattern heartLine(){
+    spray on
+    engine on
+    sleep 4
+    engine off
+    sleep 40
+    spray off
+    wheel left
+    sleep 180
+    wheel off
+    engine on
+    sleep 4
+    engine off
+    engine on
+    sleep 4
+    engine off
+    wheel left
+    sleep 180
+    wheel off
+    engine on
+    sleep 4
+    engine off
+}
+
+spray False
+wheel left
+sleep 45
+wheel off
+engine on
+sleep 5
+engine off
+wheel left
+sleep 180
+wheel off
+engine on
+sleep 5
+engine off
+engine on
+sleep 2
+engine off
+sleep 10
+wheel left
+sleep 180
+wheel off
+engine on
+sleep 2
+engine off
+wheel left
+sleep 90
+wheel off
+heartAngle()
+wheel right
+sleep 20
+wheel off
+heartLine()
+wheel left
+sleep 90
+wheel off
+heartLine()
+heartAngle()
+
+spray off
+engine on
+sleep 5
+engine off
+sleep 500
+
+hide on
+sleep 100
+save "heart"
