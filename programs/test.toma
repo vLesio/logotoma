@@ -7,7 +7,7 @@ string pattern switch_on_off(int a){
     }
 }
 
-float rf = 128.0
+floatr rf = 128.0
 int r = cast rf -> int
 int g = 0
 int b = 128
