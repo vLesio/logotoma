@@ -1,3 +1,5 @@
+# Problem z przekazywaniem zmiennych typu color fo funkcji
+
 void pattern draw_left_curve(int length, int angle, color color_of_spray){
     spray color color_of_spray
     sleep length

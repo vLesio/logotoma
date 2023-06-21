@@ -1,3 +1,6 @@
+# spray_clr nie działa - nie zwraca koloru
+# zwraca (zmienna typu int, zmienna typu int, zmienna typu int)
+
 string pattern string_function(string text){
     if(cast text -> int % 2 == 0){
         return text + ".0" 
