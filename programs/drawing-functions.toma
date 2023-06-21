@@ -21,4 +21,4 @@ draw_left_curve(50, 180, (255, 0, 0))
 draw_left_curve(40, 90, (0, 255, 255))
 draw_right_curve(50, 90, (0, 0, 255))
 draw_right_curve(100, 180, (20, 20, 20))
-save "picture.jpg"
+save "picture"

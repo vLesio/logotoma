@@ -1,0 +1,29 @@
+engine on
+sleep 5
+engine off
+wheel left
+sleep 45
+wheel off
+spray color (255, 0, 0)
+engine on
+sleep 5
+engine off
+wheel left
+sleep 45
+wheel off
+spray size 5
+spray color (0, 255, 0)
+engine on
+sleep 5
+wheel left
+sleep 45
+wheel off
+engine off
+hide on
+sleep 100
+hide off
+sleep 100
+spray off
+sleep 100
+spray on
+sleep 500

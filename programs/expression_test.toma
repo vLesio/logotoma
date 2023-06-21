@@ -1,7 +1,4 @@
-
-
 bool a = True
-
 
 int b = 123
 int c = 23
@@ -9,13 +6,23 @@ int c = 23
 
 
 if( !(a & (5 > 4)) | (b % c == 4 | 124 % 23 * 10 >= 1)){
-
     engine on
-
+    sleep 5
+    engine off
 }
 
+if(a & (4 > 4)){
+    wheel left
+    sleep 45
+    wheel off
+}
+if(a | (4 > 4)){
+    wheel right
+    sleep 45
+    wheel off
+}
+sleep 100
 
-
-
-
-float d = 3 / 4 * (6 + 4) + ((b + c * 3) * 4 + 6)
+# Should be 781.5
+float d = 3.0 / 4 * (6 + 4) + ((b + c * 3) * 4 + 6)
+print d

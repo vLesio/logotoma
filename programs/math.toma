@@ -1,0 +1,26 @@
+int a = 0
+int b = 1
+int c = 2
+
+print a
+
+a = a+ 1
+print a
+
+a = a + 2 * 2
+print a
+
+b = (b + 2) * 2
+print b
+
+c = c % 2 - 8
+print c
+
+c = a
+
+print "a: " + a
+print "b: " + b
+print "c: " + c
+print a==c
+print a==b
+print b==c

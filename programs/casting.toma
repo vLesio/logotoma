@@ -1,0 +1,23 @@
+string pattern string_function(string text){
+    if(cast text -> int % 2 == 0){
+        return text + ".0" 
+    }
+    return text + ".5"
+}
+
+color pattern spray_clr(int r, int g, int b){
+    return (r, g, b)
+}
+
+print(spray_clr(255,0,0))
+engine on
+sleep 5
+engine off
+float _size = cast string_function("1") -> float
+spray color spray_clr(0, 0, 255)
+spray size _size
+sleep 100
+_size = cast string_function("2") -> float
+spray color spray_clr(255, 128, 0)
+spray size _size
+sleep 500
