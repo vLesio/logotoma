@@ -14,20 +14,6 @@ from interp.objects.function.function import Function_
 from interp.objects.types.types import types
 from interp.error_handling.exceptions import LogoTomaValueError
 
-from copy import deepcopy
-
-
-def for_all_methods(decorator):
-    def decorate(cls):
-        for attr in cls.__dict__: # there's propably a better way to do this
-            if callable(getattr(cls, attr)):
-                setattr(cls, attr, decorator(getattr(cls, attr)))
-        return cls
-    return decorate
-
-
-
-@for_all_methods(handle_exception)
 class Visitor(LogoTomaVisitor):
 
     def __init__(self, cmd: KosmoToma):
@@ -35,21 +21,25 @@ class Visitor(LogoTomaVisitor):
         self.cmd = cmd
 
     # Visit a parse tree produced by LogoTomaParser#program.
+    @handle_exception
     def visitProgram(self, ctx:LogoTomaParser.ProgramContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by LogoTomaParser#line.
+    @handle_exception
     def visitLine(self, ctx:LogoTomaParser.LineContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by LogoTomaParser#command.
+    @handle_exception
     def visitCommand(self, ctx:LogoTomaParser.CommandContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by LogoTomaParser#engine.
+    @handle_exception
     def visitEngine(self, ctx:LogoTomaParser.EngineContext):
         if str(ctx.children[1]) == 'on':
             self.cmd.makolot.enable_engine()
@@ -58,6 +48,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#wheel.
+    @handle_exception
     def visitWheel(self, ctx:LogoTomaParser.WheelContext):
         if str(ctx.children[1]) == 'right':
             # print('setting right')
@@ -71,6 +62,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#spray.
+    @handle_exception
     def visitSpray(self, ctx:LogoTomaParser.SprayContext):
         if ctx.logic_expression() is not None:
             value = self.visit(ctx.logic_expression())
@@ -85,6 +77,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_color.
+    @handle_exception
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
         if ctx.color() is not None:
             r, g, b = self.visitColor(ctx.color())
@@ -96,12 +89,14 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_size.
+    @handle_exception
     def visitSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
         value = self.visit(ctx.expression())
         self.cmd.makolot.makopen.setWidth(value())
 
 
     # Visit a parse tree produced by LogoTomaParser#sleep.
+    @handle_exception
     def visitSleep(self, ctx:LogoTomaParser.SleepContext):
         sleep_time = self.visit(ctx.expression())
         try:
@@ -112,6 +107,7 @@ class Visitor(LogoTomaVisitor):
         
         
     # Visit a parse tree produced by LogoTomaParser#hide.
+    @handle_exception
     def visitHide(self, ctx:LogoTomaParser.HideContext):
         if ctx.logic_expression() is not None:
             value = self.visit(ctx.logic_expression())
@@ -126,6 +122,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
+    @handle_exception
     def visitCast(self, ctx:LogoTomaParser.CastContext):
         type_to_cast = self.visit(ctx.type_name())
         value_to_cast = str(self.visit(ctx.value()))
@@ -146,6 +143,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#print.
+    @handle_exception
     def visitPrint(self, ctx:LogoTomaParser.PrintContext):
         print(f'[PROGRAM]: {self.visit(ctx.value())}')
     
@@ -157,38 +155,45 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#assign.
+    @handle_exception
     def visitAssign(self, ctx:LogoTomaParser.AssignContext):
         if ctx.type_name() is not None:
             self.cmd.env.add_variable(ctx.identifier().getText(), ctx.type_name().getText())
         self.cmd.env.set_variable(ctx.identifier().getText(), self.visit(ctx.value()))
 
     # Visit a parse tree produced by LogoTomaParser#deref.
+    @handle_exception
     def visitDeref(self, ctx:LogoTomaParser.DerefContext):
         return self.cmd.env.get_value(self.visit(ctx.identifier()))
 
 
     # Visit a parse tree produced by LogoTomaParser#save.
+    @handle_exception
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
         filename = self.visit(ctx.string())
         self.cmd.makolot.makopen.saveCanvas(filename)
 
 
     # Visit a parse tree produced by LogoTomaParser#color.
+    @handle_exception
     def visitColor(self, ctx:LogoTomaParser.ColorContext):
         r, g, b = [self.visitChildren(value) for value in ctx.value()]
         return r, g, b
 
     # Visit a parse tree produced by LogoTomaParser#type_name.
+    @handle_exception
     def visitType_name(self, ctx:LogoTomaParser.Type_nameContext):
         return ctx.getText()
 
 
     # Visit a parse tree produced by LogoTomaParser#value.
+    @handle_exception
     def visitValue(self, ctx:LogoTomaParser.ValueContext):
         return self.visitChildren(ctx)
 
 
     # Visit a parse tree produced by LogoTomaParser#ife.
+    @handle_exception
     def visitIfe(self, ctx:LogoTomaParser.IfeContext):
         # There has to be '()' at the end of the visit to the logic_expression because it will
         # return bool value of Bool_ object instead of the Bool_ object itself
@@ -199,6 +204,7 @@ class Visitor(LogoTomaVisitor):
             return self.visit(ctx.elsee()) 
 
     # Visit a parse tree produced by LogoTomaParser#loope.
+    @handle_exception
     def visitLoope(self, ctx:LogoTomaParser.LoopeContext):
         for __ in range(self.visit(ctx.value())()):
             value = self.visit(ctx.block())
@@ -207,6 +213,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#whilee.
+    @handle_exception
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
         while self.visit(ctx.value())():
             value = self.visit(ctx.block())
@@ -214,11 +221,13 @@ class Visitor(LogoTomaVisitor):
                 return value
 
     # Visit a parse tree produced by LogoTomaParser#elsee.
+    @handle_exception
     def visitElsee(self, ctx:LogoTomaParser.ElseeContext):
         return self.visit(ctx.block())
 
 
     # Visit a parse tree produced by LogoTomaParser#signExpression.
+    @handle_exception
     def visitSignExpression(self, ctx:LogoTomaParser.SignExpressionContext):
         value = None
         if ctx.expression() is not None:
@@ -233,6 +242,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#multiplyingExpression.
+    @handle_exception
     def visitMultiplyingExpression(self, ctx:LogoTomaParser.MultiplyingExpressionContext):
         l = self.visit(ctx.signExpression(0))
         for index, i in enumerate(ctx.MULTIPLYING_OPERATORS()):
@@ -250,6 +260,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#expression.
+    @handle_exception
     def visitExpression(self, ctx:LogoTomaParser.ExpressionContext):
         l = self.visit(ctx.multiplyingExpression(0))
         for i, op in enumerate(ctx.SIGN_OPERATORS()):
@@ -262,6 +273,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#logicBit.
+    @handle_exception
     def visitLogicBit(self, ctx:LogoTomaParser.LogicBitContext):
         negate = False 
         value = None
@@ -291,6 +303,7 @@ class Visitor(LogoTomaVisitor):
         
 
     # Visit a parse tree produced by LogoTomaParser#comparisonExpression.
+    @handle_exception
     def visitComparisonExpression(self, ctx:LogoTomaParser.ComparisonExpressionContext):
         op = str(ctx.COMPARISON_OPERATORS())
         condition = None
@@ -313,6 +326,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#logic_expression.
+    @handle_exception
     def visitLogic_expression(self, ctx:LogoTomaParser.Logic_expressionContext):
         value = self.visit(ctx.comparisonExpression(0))
         if len(ctx.comparisonExpression()) > 1:
@@ -326,28 +340,33 @@ class Visitor(LogoTomaVisitor):
     
 
     # Visit a parse tree produced by LogoTomaParser#integer.
+    @handle_exception
     def visitInteger(self, ctx:LogoTomaParser.IntegerContext):
         # return int(ctx.getText())
         return Integer_(ctx.getText())
 
 
     # Visit a parse tree produced by LogoTomaParser#floate.
+    @handle_exception
     def visitFloate(self, ctx:LogoTomaParser.FloateContext):
         return Float_(ctx.getText())
 
 
     # Visit a parse tree produced by LogoTomaParser#bool.
+    @handle_exception
     def visitBool(self, ctx:LogoTomaParser.BoolContext):
         # return self.visitChildren(ctx)
         return Bool_(ctx.BOOL().getText())
 
     # Visit a parse tree produced by LogoTomaParser#string.
+    @handle_exception
     def visitString(self, ctx:LogoTomaParser.StringContext):
         # return ctx.STRING().getText()
         return String_(ctx.STRING().getText()[1:-1])
 
 
     # Visit a parse tree produced by LogoTomaParser#block.
+    @handle_exception
     def visitBlock(self, ctx:LogoTomaParser.BlockContext):
         value = None
         self.cmd.env.add_scope()
@@ -375,6 +394,7 @@ class Visitor(LogoTomaVisitor):
 
 
     # Visit a parse tree produced by LogoTomaParser#statement.
+    @handle_exception
     def visitStatement(self, ctx:LogoTomaParser.StatementContext):
         if ctx.value() is not None:
             return self.visit(ctx.value())
@@ -382,6 +402,7 @@ class Visitor(LogoTomaVisitor):
         
         
     # Visit a parse tree produced by LogoTomaParser#function.
+    @handle_exception
     def visitFunction(self, ctx:LogoTomaParser.FunctionContext):
         f_name = self.visit(ctx.identifier(0))
         f_type_name = self.visit(ctx.type_name(0))
@@ -399,6 +420,7 @@ class Visitor(LogoTomaVisitor):
         
     
     # Visit a parse tree produced by LogoTomaParser#f_call.
+    @handle_exception
     def visitF_call(self, ctx:LogoTomaParser.F_callContext):
         f_name = self.visit(ctx.identifier())
         args = [self.visit(i) for i in ctx.value()]
@@ -418,10 +440,12 @@ class Visitor(LogoTomaVisitor):
         
 
     # Visit a parse tree produced by LogoTomaParser#comment.
+    @handle_exception
     def visitComment(self, ctx:LogoTomaParser.CommentContext):
         return self.visitChildren(ctx)
     
     # Visit a parse tree produced by LogoTomaParser#identifier.
+    @handle_exception
     def visitIdentifier(self, ctx:LogoTomaParser.IdentifierContext):
         return ctx.IDENTIFIER().getText()
     

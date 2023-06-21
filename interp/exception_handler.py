@@ -1,12 +1,10 @@
-from functools import wraps
 from interp.error_handling import exceptions as ex
 
 def handle_exception(func):
     
-    @wraps(func)
     def inner_function(*args, **kwargs):
         try:
-            func(*args, **kwargs)
+            return func(*args, **kwargs)
             
         except ex.LogoTomaException as e:
             
