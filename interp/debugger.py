@@ -1,5 +1,5 @@
 class Debugger():
-    debug = True
+    debug = False
 
     def log(self, msg):
         if self.debug:
