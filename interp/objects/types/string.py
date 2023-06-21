@@ -5,6 +5,7 @@ from interp.objects.types.value import Value_
 from interp.objects.types import float
 from interp.objects.types import integer
 from interp.objects.types import color
+from interp.objects.types import bool
 
 from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError
 
@@ -26,6 +27,8 @@ class String_(Value_):
             case float.Float_.__qualname__:
                 return String_(self.value + str(other.value))
             case color.Color_.__qualname__:
+                return String_(self.value + str(other.value))
+            case bool.Bool_.__qualname__:
                 return String_(self.value + str(other.value))
             case _:
                 raise LogoTomaLogicError(f"Cannot add {o_Type} to {type(self)}.")

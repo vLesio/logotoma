@@ -1,6 +1,7 @@
 
 from interp.debugger import debug
 from interp.objects.types import integer
+from interp.objects.types import string
 from interp.objects.types.value import Value_
 from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError
 
@@ -17,6 +18,15 @@ class Bool_(Value_):
         except LogoTomaValueError:
             raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('bool', value)
+
+    def __add__(self, other):
+        o_Type = type(other)
+        match o_Type.__qualname__:
+            case string.String_.__qualname__:
+                return string.String_(str(self.value) + str(other.value))
+            case _:
+                raise LogoTomaLogicError(f"Cannot add {o_Type} to {type(self)}.")
+
 
     def __mul__(self, other):
         o_Type = type(other)
