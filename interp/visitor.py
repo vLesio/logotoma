@@ -5,6 +5,7 @@ from interp.kosmotoma import KosmoToma
 from interp.makopen import Makopen
 
 from interp.debugger import debug
+from interp.objects.types.color import Color_
 from interp.objects.types.float_ import Float_
 
 from interp.objects.types.integer import Integer_
@@ -91,13 +92,21 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#spray_color.
     @handle_exception
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
-        if ctx.color() is not None:
-            r, g, b = self.visitColor(ctx.color())
-            self.cmd.makolot.makopen.setColor((abs(r())%256, abs(g())%256, abs(b())%256))
-        elif ctx.identifier() is not None:
-            debug.log('identifier')
-        elif ctx.f_call() is not None:
-            debug.log('f_call')
+        value = self.visit(ctx.value())
+        try:
+            assert isinstance(value, Color_)
+        except AssertionError:
+            raise LogoTomaValueError(f'\'{type(value)}\' is not a valid type for \'spray_color\' command')
+        
+        self.cmd.makolot.makopen.setColor(value())
+
+        # if ctx.color() is not None:
+        #     print(type(self.visit(ctx.color())()))
+        #     self.cmd.makolot.makopen.setColor(self.visit(ctx.color())())
+        # elif ctx.identifier() is not None:
+        #     debug.log('identifier')
+        # elif ctx.f_call() is not None:
+        #     debug.log('f_call')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_size.
@@ -148,8 +157,7 @@ class Visitor(LogoTomaVisitor):
         elif type_to_cast == 'bool':
             return Bool_.cast(self, value_to_cast)
         elif type_to_cast == 'color':
-            # return Color_.cast(value_to_cast)
-            pass
+            return Color_.cast(value_to_cast)
         else:
             raise Exception(f"Invalid type: {type_to_cast}")
 
@@ -189,8 +197,10 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#color.
     @handle_exception
     def visitColor(self, ctx:LogoTomaParser.ColorContext):
-        r, g, b = [self.visitChildren(value) for value in ctx.value()]
-        return r, g, b
+        rgb = tuple([self.visitChildren(value) for value in ctx.value()])
+        debug.log(f'{rgb}   {type(rgb)}')
+        debug.log(f'{type(Color_(rgb))}')
+        return Color_(rgb)
 
     # Visit a parse tree produced by LogoTomaParser#type_name.
     @handle_exception
@@ -439,7 +449,6 @@ class Visitor(LogoTomaVisitor):
         self.cmd.env.add_scope(fun_scope=True)
         f_instance =  self.cmd.env.get_function(f_name)
         # f_instance =  self.cmd.env.call_function(f_name, *args)
-        print(f_instance.is_void_type())
         if not f_instance.is_void_type():          
             value = self.visit(f_instance(*args)())
             # f_instance.remove_vars_from_global_scope()

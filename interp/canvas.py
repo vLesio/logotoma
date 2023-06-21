@@ -17,6 +17,6 @@ class Canvas:
     def nextFrame(self) -> None:
         for dot in self.points:
             pygame.draw.circle(self.screen, dot.color, dot.position, dot.size)
-    
+
     def addDot(self, position: tuple, color: tuple, size=1.0) -> None:
         self.points.append(Dot(position, color, size))

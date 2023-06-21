@@ -18,11 +18,10 @@ class Value_():
         return f'{self.value}'
     
     def __repr__(self):
-        return f'zmienna typu {self.type}'
+        return f'{self.value}'
     
     def __call__(self):
         return self.value
-    
     
     def __lt__(self, other):
         return bool.Bool_(self.value < other.value)

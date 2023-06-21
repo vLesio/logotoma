@@ -48,7 +48,7 @@ spray
     ;
 
 spray_color
-    : 'spray color' (color | identifier | f_call)
+    : 'spray color' value
     ;
 
 spray_size

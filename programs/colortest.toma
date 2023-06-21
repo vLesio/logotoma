@@ -1,0 +1,8 @@
+color col = (128, 128, 128)
+print col
+
+spray color col
+
+engine on
+
+sleep 3
