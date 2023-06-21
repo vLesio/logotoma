@@ -5,7 +5,7 @@ from interp.kosmotoma import KosmoToma
 from interp.makopen import Makopen
 
 from interp.debugger import debug
-from interp.objects.types.float import Float_
+from interp.objects.types.float_ import Float_
 
 from interp.objects.types.integer import Integer_
 from interp.objects.types.string import String_
@@ -41,12 +41,18 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#engine.
     @handle_exception
     def visitEngine(self, ctx:LogoTomaParser.EngineContext):
-        if str(ctx.children[1]) == 'on':
+        if ctx.logic_expression() is not None:
+            value = self.visit(ctx.logic_expression())
+            if value():
+                self.cmd.makolot.enable_engine()
+            else:
+                self.cmd.makolot.disable_engine()
+        elif str(ctx.children[1]) == 'on':
             self.cmd.makolot.enable_engine()
         elif str(ctx.children[1]) == 'off':
             self.cmd.makolot.disable_engine()
         else:
-            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'engine\' command')
+            raise LogoTomaValueError(f'\'{ctx.children[1].getText()}\' is not a valid value for \'engine\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#wheel.

@@ -2,7 +2,7 @@
 from interp.debugger import debug
 from interp.objects.types.value import Value_
 
-from interp.objects.types import float
+from interp.objects.types import float_
 from interp.objects.types import integer
 from interp.objects.types import color
 from interp.objects.types import bool
@@ -24,7 +24,7 @@ class String_(Value_):
                 return String_(self.value + other.value)
             case integer.Integer_.__qualname__:
                 return String_(self.value + str(other.value))
-            case float.Float_.__qualname__:
+            case float_.Float_.__qualname__:
                 return String_(self.value + str(other.value))
             case color.Color_.__qualname__:
                 return String_(self.value + str(other.value))

@@ -1,6 +1,6 @@
 from interp.objects.types.value import Value_
 
-from interp.objects.types import float
+from interp.objects.types import float_
 from interp.objects.types import string
 from interp.objects.types import color
 
@@ -9,7 +9,7 @@ from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicEr
 class Integer_(Value_):
     def __init__(self, value: str):
         try:
-            value = int(value)
+            value = int(float(value))
         except ValueError:
             raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('int', value)
@@ -22,8 +22,8 @@ class Integer_(Value_):
         match o_Type.__qualname__:
             case Integer_.__qualname__:
                 return Integer_(self.value + other.value)
-            case float.Float_.__qualname__:
-                return float.Float_(self.value + other.value)
+            case float_.Float_.__qualname__:
+                return float_.Float_(self.value + other.value)
             case string.String_.__qualname__:
                 return string.String_(str(self.value) + str(other.value))
             case _:
@@ -34,8 +34,8 @@ class Integer_(Value_):
         match o_Type.__qualname__:
             case Integer_.__qualname__:
                 return Integer_(self.value - other.value)
-            case float.Float_.__qualname__:
-                return float.Float_(self.value - other.value)
+            case float_.Float_.__qualname__:
+                return float_.Float_(self.value - other.value)
             case _:
                 raise LogoTomaLogicError(f"Cannot subtract {o_Type} from {type(self)}.")
             
@@ -44,8 +44,8 @@ class Integer_(Value_):
         match o_Type.__qualname__:
             case Integer_.__qualname__:
                 return Integer_(self.value * other.value)
-            case float.Float_.__qualname__:
-                return float.Float_(self.value * other.value)
+            case float_.Float_.__qualname__:
+                return float_.Float_(self.value * other.value)
             case _:
                 raise LogoTomaLogicError(f"Cannot multiply {type(self)} by {o_Type}.")
             
@@ -54,8 +54,8 @@ class Integer_(Value_):
         match o_Type.__qualname__:
             case Integer_.__qualname__:
                 return Integer_(self.value // other.value)
-            case float.Float_.__qualname__:
-                return float.Float_(self.value / other.value)
+            case float_.Float_.__qualname__:
+                return float_.Float_(self.value / other.value)
             case _:
                 raise LogoTomaLogicError(f"Cannot divide {type(self)} by {o_Type}.")
             
@@ -64,8 +64,8 @@ class Integer_(Value_):
         match o_Type.__qualname__:
             case Integer_.__qualname__:
                 return Integer_(self.value % other.value)
-            case float.Float_.__qualname__:
-                return float.Float_(self.value % other.value)
+            case float_.Float_.__qualname__:
+                return float_.Float_(self.value % other.value)
             case _:
                 raise LogoTomaLogicError(f"Cannot modulo {type(self)} by {o_Type}.")
             
