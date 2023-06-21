@@ -28,7 +28,6 @@ class Color_(Value_):
         return f"({self.value[0]}, {self.value[1]}, {self.value[2]})"
         
     def __call__(self):
-        print(f'====== {type(self.value[0])} ======')
         return (self.value[0](), self.value[1](), self.value[2]())
         
     def __add__(self, other):

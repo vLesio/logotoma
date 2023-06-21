@@ -1,20 +1,23 @@
-# Problem z przekazywaniem zmiennych typu color fo funkcji
-
 void pattern draw_left_curve(int length, int angle, color color_of_spray){
     spray color color_of_spray
     sleep length
     wheel left
-    sleep angle
+    engine on
+    sleep 5
+    engine off
+    sleep angle - 5
     wheel off
 }
 void pattern draw_right_curve(int length, int angle, color color_of_spray){
     spray color color_of_spray
     sleep length
     wheel right
-    sleep angle
+    engine on
+    sleep 5
+    engine off
+    sleep angle - 5
     wheel off
 }
-spray off
 spray size (100 % (7 + 88))
 engine on
 sleep 10
@@ -23,4 +26,4 @@ draw_left_curve(50, 180, (255, 0, 0))
 draw_left_curve(40, 90, (0, 255, 255))
 draw_right_curve(50, 90, (0, 0, 255))
 draw_right_curve(100, 180, (20, 20, 20))
-save "picture"
+save "drawing-functions"

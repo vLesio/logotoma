@@ -1,5 +1,3 @@
-# Problem ze zwracaniem koloru
-
 color pattern color_of_spray(int color1, int color2, int color3, int option){
     if(option == 1){
         return (color1, color2, color3)
@@ -20,10 +18,12 @@ engine off
 int i = 0
 
 loop while (i < 10){
-    spray color color_of_spray(0, 255, 255, i)
+    spray color color_of_spray(0, 128, 255, i)
     spray on
     sleep 100
     spray off
     sleep 100
     i = i + 1
 }
+
+save "functions-casting"

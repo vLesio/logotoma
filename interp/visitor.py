@@ -189,8 +189,6 @@ class Visitor(LogoTomaVisitor):
     @handle_exception
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
         filename = self.visit(ctx.string())
-        if not filename.match(r'.*\.$'):
-            raise LogoTomaValueError('Filename must have an extension.')
         self.cmd.makolot.makopen.saveCanvas(filename)
 
 
@@ -226,8 +224,6 @@ class Visitor(LogoTomaVisitor):
             return self.visit(ctx.block())
         elif ctx.elsee() is not None:
             return self.visit(ctx.elsee())
-        else:
-            raise LogoTomaValueError('If condition must be a boolean value.')
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     @handle_exception

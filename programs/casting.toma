@@ -2,7 +2,7 @@
 # zwraca (zmienna typu int, zmienna typu int, zmienna typu int)
 
 string pattern string_function(string text){
-    if(cast text -> int % 2 == 0){
+    if(((cast text -> int) % 2) == 0){
         return text + ".0" 
     }
     return text + ".5"
@@ -24,3 +24,5 @@ _size = cast string_function("2") -> float
 spray color spray_clr(255, 128, 0)
 spray size _size
 sleep 500
+
+save "casting"
