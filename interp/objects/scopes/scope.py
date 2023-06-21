@@ -1,6 +1,6 @@
 from interp.objects.variable import Variable
 from interp.debugger import debug
-
+from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError, LogoTomaSemanticError
 
 class Scope:
     def __init__(self, parent=None):
@@ -20,7 +20,7 @@ class Scope:
     
     def add_variable(self, name, type):
         if name in self.variables:
-            raise Exception(f"Variable '{name}' already exists.")
+            raise LogoTomaLogicError(f"Variable '{name}' already exists.")
         self.variables[name] = Variable(type)
 
     def set_variable(self, name, value):
@@ -30,14 +30,16 @@ class Scope:
         if self.parent:
             self.parent.set_variable(name, value)
             return
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def get_variable(self, name):
         if name in self.variables:
             return self.variables[name]
         if self.parent:
             return self.parent.get_variable(name)
-        raise Exception(f"Variable '{name}' not found.")
+        raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def get_value(self, name):
+        if name not in self.variables:
+            raise LogoTomaSemanticError(f"Variable '{name}' not found.")
         return self.get_variable(name).value

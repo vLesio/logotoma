@@ -5,7 +5,8 @@ from interp.kosmotoma import KosmoToma
 from interp.makopen import Makopen
 
 from interp.debugger import debug
-from interp.objects.types.float import Float_
+from interp.objects.types.color import Color_
+from interp.objects.types.float_ import Float_
 
 from interp.objects.types.integer import Integer_
 from interp.objects.types.string import String_
@@ -41,10 +42,18 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#engine.
     @handle_exception
     def visitEngine(self, ctx:LogoTomaParser.EngineContext):
-        if str(ctx.children[1]) == 'on':
+        if ctx.logic_expression() is not None:
+            value = self.visit(ctx.logic_expression())
+            if value():
+                self.cmd.makolot.enable_engine()
+            else:
+                self.cmd.makolot.disable_engine()
+        elif str(ctx.children[1]) == 'on':
             self.cmd.makolot.enable_engine()
         elif str(ctx.children[1]) == 'off':
             self.cmd.makolot.disable_engine()
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1].getText()}\' is not a valid value for \'engine\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#wheel.
@@ -59,6 +68,8 @@ class Visitor(LogoTomaVisitor):
         elif str(ctx.children[1]) == 'off':
             # print('turning off')
             self.cmd.makolot.set_wheel_state('off')
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'wheel\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray.
@@ -74,24 +85,28 @@ class Visitor(LogoTomaVisitor):
                 self.cmd.makolot.makopen.turnOnDrawing()
         elif str(ctx.children[1]) == 'off':
                 self.cmd.makolot.makopen.turnOffDrawing()
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'spray\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_color.
     @handle_exception
     def visitSpray_color(self, ctx:LogoTomaParser.Spray_colorContext):
-        if ctx.color() is not None:
-            r, g, b = self.visitColor(ctx.color())
-            self.cmd.makolot.makopen.setColor((abs(r())%256, abs(g())%256, abs(b())%256))
-        elif ctx.identifier() is not None:
-            debug.log('identifier')
-        elif ctx.f_call() is not None:
-            debug.log('f_call')
+        value = self.visit(ctx.value())
+        try:
+            assert isinstance(value, Color_)
+        except AssertionError:
+            raise LogoTomaValueError(f'\'{type(value)}\' is not a valid type for \'spray_color\' command')
+        
+        self.cmd.makolot.makopen.setColor(value())
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_size.
     @handle_exception
     def visitSpray_size(self, ctx:LogoTomaParser.Spray_sizeContext):
         value = self.visit(ctx.expression())
+        if value is None:
+            raise LogoTomaValueError('Spray size must be an integer.')
         self.cmd.makolot.makopen.setWidth(value())
 
 
@@ -115,10 +130,14 @@ class Visitor(LogoTomaVisitor):
                 self.cmd.makolot.hide()
             elif not value:
                 self.cmd.makolot.show()
+            else:
+                raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'hide\' command')
         elif str(ctx.children[1]) == 'off':
             self.cmd.makolot.show()
         elif str(ctx.children[1]) == 'on':
             self.cmd.makolot.hide()
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'hide\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#cast.
@@ -136,10 +155,9 @@ class Visitor(LogoTomaVisitor):
         elif type_to_cast == 'bool':
             return Bool_.cast(self, value_to_cast)
         elif type_to_cast == 'color':
-            # return Color_.cast(value_to_cast)
-            pass
+            return Color_.cast(value_to_cast)
         else:
-            raise Exception(f"Invalid type: {type_to_cast}")
+            raise LogoTomaValueError(f"Invalid type: {type_to_cast}")
 
 
     # Visit a parse tree produced by LogoTomaParser#print.
@@ -171,14 +189,18 @@ class Visitor(LogoTomaVisitor):
     @handle_exception
     def visitSave(self, ctx:LogoTomaParser.SaveContext):
         filename = self.visit(ctx.string())
+        if not filename.match(r'.*\.$'):
+            raise LogoTomaValueError('Filename must have an extension.')
         self.cmd.makolot.makopen.saveCanvas(filename)
 
 
     # Visit a parse tree produced by LogoTomaParser#color.
     @handle_exception
     def visitColor(self, ctx:LogoTomaParser.ColorContext):
-        r, g, b = [self.visitChildren(value) for value in ctx.value()]
-        return r, g, b
+        rgb = tuple([self.visitChildren(value) for value in ctx.value()])
+        debug.log(f'{rgb}   {type(rgb)}')
+        debug.log(f'{type(Color_(rgb))}')
+        return Color_(rgb)
 
     # Visit a parse tree produced by LogoTomaParser#type_name.
     @handle_exception
@@ -198,10 +220,14 @@ class Visitor(LogoTomaVisitor):
         # There has to be '()' at the end of the visit to the logic_expression because it will
         # return bool value of Bool_ object instead of the Bool_ object itself
         val = self.visit(ctx.logic_expression())
+        if val is None:
+            raise LogoTomaValueError('If condition must be a boolean value.')
         if val():
             return self.visit(ctx.block())
         elif ctx.elsee() is not None:
-            return self.visit(ctx.elsee()) 
+            return self.visit(ctx.elsee())
+        else:
+            raise LogoTomaValueError('If condition must be a boolean value.')
 
     # Visit a parse tree produced by LogoTomaParser#loope.
     @handle_exception
@@ -215,6 +241,8 @@ class Visitor(LogoTomaVisitor):
     # Visit a parse tree produced by LogoTomaParser#whilee.
     @handle_exception
     def visitWhilee(self, ctx:LogoTomaParser.WhileeContext):
+        if self.visit(ctx.value())() is None:
+            raise LogoTomaValueError('While condition must be a boolean value.')
         while self.visit(ctx.value())():
             value = self.visit(ctx.block())
             if value is not None:
@@ -234,6 +262,9 @@ class Visitor(LogoTomaVisitor):
             value = self.visit(ctx.expression())
         else:
             value = self.visitChildren(ctx)
+            
+        if value is None:
+            raise LogoTomaValueError('Value cannot be None.')
 
         if ctx.SIGN_OPERATORS() is not None and str(ctx.SIGN_OPERATORS().getText()) == '-':
             return value * Integer_(-1)
@@ -245,17 +276,25 @@ class Visitor(LogoTomaVisitor):
     @handle_exception
     def visitMultiplyingExpression(self, ctx:LogoTomaParser.MultiplyingExpressionContext):
         l = self.visit(ctx.signExpression(0))
+        if l is None:
+            raise LogoTomaValueError('Value cannot be None.')
         for index, i in enumerate(ctx.MULTIPLYING_OPERATORS()):
             operator = str(i)
+            second_value = second_value
+            if second_value is None:
+                raise LogoTomaValueError('Value cannot be None.')
+            
             if operator == '*':
-                l = l * self.visit(ctx.signExpression(index+1))
+                l = l * second_value
             elif operator == '/':
-                if type(l) == type(1) and type(self.visit(ctx.signExpression(index+1))) == type(1):
-                    l = l // self.visit(ctx.signExpression(index+1))
+                if type(l) == type(1) and type(second_value) == type(1):
+                    l = l // second_value
                 else:
-                    l = l / self.visit(ctx.signExpression(index+1))
+                    l = l / second_value
             elif operator == '%':
-                l = l % self.visit(ctx.signExpression(index+1))
+                l = l % second_value
+            else:
+                raise LogoTomaValueError('Unknown operator: ' + operator)
         return l
 
 
@@ -263,12 +302,19 @@ class Visitor(LogoTomaVisitor):
     @handle_exception
     def visitExpression(self, ctx:LogoTomaParser.ExpressionContext):
         l = self.visit(ctx.multiplyingExpression(0))
+        if l is None:
+            raise LogoTomaValueError('Value cannot be None.')
         for i, op in enumerate(ctx.SIGN_OPERATORS()):
             op = str(op)
+            second_value = self.visit(ctx.multiplyingExpression(i+1))
+            if second_value is None:
+                raise LogoTomaValueError('Value cannot be None.')
             if op == '+':
-                l = l + self.visit(ctx.multiplyingExpression(i+1))
+                l = l + second_value
             elif op == '-':
-                l = l - self.visit(ctx.multiplyingExpression(i+1))
+                l = l - second_value
+            else:
+                raise LogoTomaValueError('Unknown operator: ' + op)
         return l
 
 
@@ -299,6 +345,8 @@ class Visitor(LogoTomaVisitor):
                 return value * Integer_(-1)
             else:
                 return value
+        else:
+            raise LogoTomaValueError('Value cannot be None.')
         
         
 
@@ -322,6 +370,8 @@ class Visitor(LogoTomaVisitor):
             condition = self.visit(ctx.logicBit(0)) == self.visit(ctx.logicBit(1))
         elif op == '!=':
             condition = self.visit(ctx.logicBit(0)) != self.visit(ctx.logicBit(1))
+        else:
+            raise LogoTomaValueError('Unknown operator: ' + op)
         return condition
 
 
@@ -389,6 +439,8 @@ class Visitor(LogoTomaVisitor):
                 break
             elif self.visit(statement) is not None:
                 value = self.visit(statement)
+            else:
+                raise LogoTomaValueError('Value cannot be None.')
         self.cmd.env.remove_scope()
         return value
 
@@ -427,7 +479,6 @@ class Visitor(LogoTomaVisitor):
         self.cmd.env.add_scope(fun_scope=True)
         f_instance =  self.cmd.env.get_function(f_name)
         # f_instance =  self.cmd.env.call_function(f_name, *args)
-        print(f_instance.is_void_type())
         if not f_instance.is_void_type():          
             value = self.visit(f_instance(*args)())
             # f_instance.remove_vars_from_global_scope()
