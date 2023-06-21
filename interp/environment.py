@@ -35,10 +35,16 @@ class Environment():
         self.get_scope().add_variable(name, type)
 
     def get_variable(self, name):
-        return self.get_scope().get_variable(name)
+        value = self.get_scope().get_variable(name)
+        if value is None:
+            raise LogoTomaSemanticError(f"Variable '{name}' not found.")
+        return value
     
     def get_value(self, name):
-        return self.get_variable(name).value
+        value = self.get_variable(name).value
+        if value is None:
+            raise LogoTomaValueError(f"Variable '{name}' not initialized.")
+        return value
     
     def set_variable(self, name, value):
         self.get_scope().set_variable(name, value)
@@ -59,6 +65,8 @@ class Environment():
         raise LogoTomaSemanticError(f"Variable '{name}' not found.")
     
     def get_global_value(self, name):
+        if name not in self.global_scope:
+            raise LogoTomaValueError(f"Variable '{name}' not initialized.")
         return self.get_global_variable(name).value
     
     def set_global_variable(self, name, value):
