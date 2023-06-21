@@ -1,8 +1,18 @@
-int x = 3
-float y = cast x -> float
-print(y)
-print(x)
-print(cast 1 -> float)
-#float y = cast x -> float
-#print(y)
-
+int a = 10
+a = a + 10
+if(a > 10){
+    int b = 1
+    a = b + a
+}
+int pattern aaa(){
+    return 10
+}
+int pattern my_fun(int b){
+    print(b)
+    if (b < 10){
+        b = b + 1
+        return my_fun(b)
+    }
+}
+print(aaa())
+my_fun(1)

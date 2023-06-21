@@ -122,7 +122,7 @@ elsee
     ;
 
 signExpression
-    : SIGN_OPERATORS? (integer | floate | deref | string | bool | f_call | cast | '(' expression ')')
+    : SIGN_OPERATORS? (integer | floate | f_call | deref | string | bool | cast | '(' expression ')')
     ;
 
 multiplyingExpression

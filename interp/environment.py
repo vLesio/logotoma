@@ -15,9 +15,9 @@ class Environment():
 # =================================================================================================
 
     def add_scope(self, fun_scope=False):
-        if fun_scope:
-            self.scope_stack.append(Scope(None))
-            return
+        # if fun_scope:
+            # self.scope_stack.append(Scope(None))
+            # return
         self.scope_stack.append(Scope(self.get_scope()))
 
     def get_scope(self):
