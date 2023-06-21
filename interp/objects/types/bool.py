@@ -2,6 +2,7 @@
 from interp.debugger import debug
 from interp.objects.types import integer
 from interp.objects.types.value import Value_
+from interp.error_handling.exceptions import LogoTomaValueError, LogoTomaLogicError
 
 
 class Bool_(Value_):
@@ -12,9 +13,9 @@ class Bool_(Value_):
             elif value in ['False', False]:
                 value = False
             else:
-                raise ValueError
-        except ValueError:
-            raise Exception(f"Value {value} cannot be parsed to {type(self)}.")
+                raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
+        except LogoTomaValueError:
+            raise LogoTomaValueError(f"Value {value} cannot be parsed to {type(self)}.")
         super().__init__('bool', value)
 
     def __mul__(self, other):
@@ -26,7 +27,7 @@ class Bool_(Value_):
                 else:
                     return Bool_(self.value)
             case _:
-                raise Exception(f"Cannot multiply {type(self)} with {o_Type}.")
+                raise LogoTomaLogicError(f"Cannot multiply {type(self)} with {o_Type}.")
 
     def __and__(self, other):
         o_Type = type(other)
@@ -34,7 +35,7 @@ class Bool_(Value_):
             case Bool_.__qualname__:
                 return Bool_(self.value and other.value)
             case _:
-                raise Exception(f"Cannot and {type(self)} with {o_Type}.")
+                raise LogoTomaLogicError(f"Cannot and {type(self)} with {o_Type}.")
             
     def __or__(self, other):
         o_Type = type(other)
@@ -43,7 +44,7 @@ class Bool_(Value_):
                 debug.log(f'Comparing {type(self)} with {o_Type}: {self.value or other.value}.')
                 return Bool_(self.value or other.value)
             case _:
-                raise Exception(f"Cannot or {type(self)} with {o_Type}.")
+                raise LogoTomaLogicError(f"Cannot or {type(self)} with {o_Type}.")
             
     def __bool__(self):
         return self.value

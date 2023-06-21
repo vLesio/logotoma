@@ -2,13 +2,15 @@ from interp.objects.types import bool
 
 types = ['bool', 'int', 'float', 'string', 'color']
 
+from interp.error_handling.exceptions import LogoTomaSemanticError
+
 class Value_():
     type = None
     value = None
 
     def __init__(self, type, value):
         if type not in types:
-            raise Exception(f"Unknown type: {type}")
+            raise LogoTomaSemanticError(f"Unknown type: {type}")
         self.type = type
         self.value = value
 
