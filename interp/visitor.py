@@ -45,6 +45,8 @@ class Visitor(LogoTomaVisitor):
             self.cmd.makolot.enable_engine()
         elif str(ctx.children[1]) == 'off':
             self.cmd.makolot.disable_engine()
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'engine\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#wheel.
@@ -59,6 +61,8 @@ class Visitor(LogoTomaVisitor):
         elif str(ctx.children[1]) == 'off':
             # print('turning off')
             self.cmd.makolot.set_wheel_state('off')
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'wheel\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray.
@@ -74,6 +78,8 @@ class Visitor(LogoTomaVisitor):
                 self.cmd.makolot.makopen.turnOnDrawing()
         elif str(ctx.children[1]) == 'off':
                 self.cmd.makolot.makopen.turnOffDrawing()
+        else:
+            raise LogoTomaValueError(f'\'{ctx.children[1]}\' is not a valid value for \'spray\' command')
 
 
     # Visit a parse tree produced by LogoTomaParser#spray_color.
