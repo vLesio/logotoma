@@ -280,7 +280,7 @@ class Visitor(LogoTomaVisitor):
             raise LogoTomaValueError('Value cannot be None.')
         for index, i in enumerate(ctx.MULTIPLYING_OPERATORS()):
             operator = str(i)
-            second_value = second_value
+            second_value = self.visit(ctx.signExpression(index + 1))
             if second_value is None:
                 raise LogoTomaValueError('Value cannot be None.')
             
@@ -439,8 +439,7 @@ class Visitor(LogoTomaVisitor):
                 break
             elif self.visit(statement) is not None:
                 value = self.visit(statement)
-            else:
-                raise LogoTomaValueError('Value cannot be None.')
+                
         self.cmd.env.remove_scope()
         return value
 
