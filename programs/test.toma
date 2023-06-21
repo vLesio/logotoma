@@ -37,5 +37,5 @@ loop 425 times{
 }
 spray cast switch_on_off(-1) -> bool
 hide on
-sleep 100
+sleep cast "100" -> int
 save "picture"
