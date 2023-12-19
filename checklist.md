@@ -1,0 +1,9 @@
+- [X] instrukcję pętli
+- [X] instrukcję warunkową
+- [X] instrukcja złożona/bloku programu (jak blok w nawiasach klamrowych w języku c/c++/Java)
+- [] zmienne
+- [] stałe
+- [X] operacje arytmetyczne
+- [X] operacje logiczne
+- [] operacja wczytywania z wejścia
+- [] wypisywania na wyjście

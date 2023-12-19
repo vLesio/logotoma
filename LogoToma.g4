@@ -10,13 +10,9 @@ line
     ;
 
 command
-    : engine
-    | wheel
-    | spray
-    | spray_color
-    | spray_size
-    | sleep
+    : value
     | cast
+    | input
     | print
     | function
     | f_call
@@ -25,54 +21,22 @@ command
     | ife
     | whilee
     | save
-    | value
-    | hide
     ;
 
 value
     : expression
     | logic_expression
-    | color
-    ;
-
-engine
-    : 'engine' ('on' | 'off' | logic_expression)
-    ;
-
-wheel
-    : 'wheel' ('right' | 'left' | 'off' | logic_expression)
-    ;
-
-spray
-    : 'spray' ('on' | 'off' | logic_expression)
-    ;
-
-spray_color
-    : 'spray color' (color | identifier | f_call)
-    ;
-
-spray_size
-    : 'spray size' expression
-    ;
-
-sleep
-    : 'sleep' expression
-    ;
-
-hide
-    : 'hide' ('on' | 'off' | logic_expression)
     ;
 
 cast
     : 'cast' value '->' type_name
     ;
 
+input
+    : TODO
+
 print
     : 'print' value
-    ;
-
-object
-    : identifier
     ;
 
 assign
@@ -92,13 +56,8 @@ save
     : 'save' string
     ;
 
-color
-    : '(' value ',' value ',' value ')'
-    ;
-
 type_name
     : 'bool'
-    | 'color'
     | 'int'
     | 'float'
     | 'string'
